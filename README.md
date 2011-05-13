@@ -322,9 +322,9 @@ To develop a great project as a team, we need to communicate efficiently as a te
 
     * Subscribe to jira issue changes:
 
-        * [JDOCBOOKSTYLE](https://issues.jboss.org/plugins/servlet/streams?key=JDOCBOOKSTYLE&os_authType=basic)
+        * [TODO](https://issues.jboss.org/plugins/servlet/streams?key=TODO&os_authType=basic)
 
-* Join us on IRC: irc.freenote.net #jboss-docs
+* Join us on IRC: irc.codehaus.org #guvnor
 
 Releasing
 =========
@@ -351,7 +351,7 @@ If everything is perfect:
 
     * Button *release*
 
-* Go to [jira](https://issues.jboss.org/browse/JDOCBOOKSTYLE):
+* Go to [jira](https://issues.jboss.org/browse/TODO):
 
     * Open menu item *Administration*, link *Manage versions*, release the version.
 
