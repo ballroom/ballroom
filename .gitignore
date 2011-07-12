@@ -1,13 +1,11 @@
-/target
-/local
-
-# Eclipse, Netbeans and IntelliJ files
-/.*
-!.gitignore
-/nbproject
-/*.ipr
-/*.iws
-/*.iml
-
-# Repository wide ignore mac DS_Store files
+out
+*.iml
+target
 .DS_Store
+.idea
+build.number
+
+gui/war/WEB-INF
+gui/war/app
+gui/war/dmr_gwt
+gui/war/App.html

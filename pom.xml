@@ -1,127 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.jboss.ballroom</groupId>
-  <artifactId>ballroom</artifactId>
-  <packaging>jar</packaging>
-  <version>0.1.0-SNAPSHOT</version>
-  
-  <name>Ballroom</name>
-  <description>Common Red Hat GWT style</description>
-  <url>http://www.jboss.org/</url>
+    <groupId>org.jboss.ballroom</groupId>
+    <artifactId>ballroom</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0.Beta1-SNAPSHOT</version>
 
-  <organization>
-    <name>JBoss.org</name>
-    <url>http://www.jboss.org</url>
-  </organization>
+    <name>Ballroom</name>
+    <description>Common Red Hat GWT style</description>
+    <url>http://www.jboss.org/</url>
 
-  <scm>
-    <connection>scm:git:git@github.com:ballroom/ballroom.git</connection>
-    <developerConnection>scm:git:git@github.com:ballroom/ballroom.git</developerConnection>
-    <url>https://github.com/ballroom/ballroom</url>
-  </scm>
+    <organization>
+        <name>JBoss.org</name>
+        <url>http://www.jboss.org</url>
+    </organization>
 
-  <repositories>
-    <!-- Conventions are described in http://community.jboss.org/wiki/MavenGettingStarted-Developers -->
-    <repository>
-      <id>jboss-public-repository-group</id>
-      <name>JBoss Public Repository Group</name>
-      <url>http://repository.jboss.org/nexus/content/groups/public/</url>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>daily</updatePolicy>
-      </snapshots>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>jboss-public-repository-group</id>
-      <name>JBoss Public Repository Group</name>
-      <url>http://repository.jboss.org/nexus/content/groups/public/</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
+    <scm>
+        <connection>scm:git:git@github.com:ballroom/ballroom.git</connection>
+        <developerConnection>scm:git:git@github.com:ballroom/ballroom.git</developerConnection>
+        <url>https://github.com/ballroom/ballroom</url>
+    </scm>
 
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <version>1.0</version>
-          <executions>
-            <execution>
-              <goals>
-                <goal>enforce</goal>
-              </goals>
-              <inherited>true</inherited>
-              <configuration>
-                <rules>
-                  <requireJavaVersion>
-                    <version>[1.6.0,)</version>
-                  </requireJavaVersion>
-                  <requireMavenVersion>
-                    <version>[3.0.3,)</version>
-                  </requireMavenVersion>
-                </rules>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>2.1.2</version>
-          <executions>
-            <execution>
-              <goals>
-                <goal>jar</goal>
-                <goal>test-jar</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <artifactId>maven-enforcer-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <!-- Entry needed to create, install and deploy sources jars -->
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>2.0</version>
-        <configuration>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+    <properties>
+        <gwt.version>2.2.0</gwt.version>
+        <gwtp.version>0.6-2.17</gwtp.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-  <distributionManagement>
-    <repository>
-      <id>jboss-releases-repository</id>
-      <name>JBoss Releases Repository</name>
-      <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
-    </repository>
-    <snapshotRepository>
-      <id>jboss-snapshots-repository</id>
-      <name>JBoss Snapshots Repository</name>
-      <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
+    <modules>
+        <module>widgets</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- GWT related -->
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-servlet</artifactId>
+                <version>${gwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-user</artifactId>
+                <version>${gwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-dev</artifactId>
+                <version>${gwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gwtplatform</groupId>
+                <artifactId>gwtp-all</artifactId>
+                <version>${gwtp.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-context</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-web</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>net.sourceforge.htmlunit</groupId>
+                        <artifactId>crawl_htmlunit</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <!-- Conventions are described in http://community.jboss.org/wiki/MavenGettingStarted-Developers -->
+        <repository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Repository Group</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jboss-public-repository-group</id>
+            <name>JBoss Public Repository Group</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>1.0</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <inherited>true</inherited>
+                            <configuration>
+                                <rules>
+                                    <requireJavaVersion>
+                                        <version>[1.6.0,)</version>
+                                    </requireJavaVersion>
+                                    <requireMavenVersion>
+                                        <version>[3.0.2,)</version>
+                                    </requireMavenVersion>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.1.2</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>jar</goal>
+                                <goal>test-jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <!-- Entry needed to create, install and deploy sources jars -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>jboss-releases-repository</id>
+            <name>JBoss Releases Repository</name>
+            <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>jboss-snapshots-repository</id>
+            <name>JBoss Snapshots Repository</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
