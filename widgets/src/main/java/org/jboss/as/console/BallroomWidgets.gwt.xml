@@ -35,12 +35,13 @@
         <when-type-assignable class="org.jboss.as.console.client.widgets.forms.PropertyMetaData" />
     </generate-with>
 
-
     <!--replace-with class="org.jboss.as.console.client.ConsoleFramework">
         <when-type-is class="org.jboss.as.console.client.widgets.Framework"/>
     </replace-with-->
 
-    <!-- Specify the app entry point class.                   -->
+    <stylesheet src="plain.css" />
+    <stylesheet src="redhat.css" />
+
     <entry-point class='org.jboss.as.console.client.widgets.Bootstrap'/>
 
 </module>
