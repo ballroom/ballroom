@@ -4,8 +4,9 @@ target
 .DS_Store
 .idea
 build.number
+*.class
 
-gui/war/WEB-INF
-gui/war/app
-gui/war/dmr_gwt
-gui/war/App.html
+showcase/war/WEB-INF
+showcase/war/app
+showcase/war/dmr_gwt
+showcase/war/App.html

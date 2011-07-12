@@ -25,12 +25,18 @@
 
     <properties>
         <gwt.version>2.2.0</gwt.version>
+        <gwt.maven>2.2.0</gwt.maven>
+        <gwt-log.version>3.1.0</gwt-log.version>
+        <gin.version>1.0_r170</gin.version>
+        <guice.version>3.0-rc2</guice.version>
         <gwtp.version>0.6-2.17</gwtp.version>
+        <junit.version>4.8.1</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <modules>
         <module>widgets</module>
+        <module>showcase</module>
     </modules>
 
     <dependencyManagement>
@@ -54,6 +60,31 @@
                 <artifactId>gwt-dev</artifactId>
                 <version>${gwt.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gwt-log</groupId>
+                <artifactId>gwt-log</artifactId>
+                <version>${gwt-log.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${guice.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.gwt.inject</groupId>
+                <artifactId>gin</artifactId>
+                <version>${gin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.mycila.com.google.inject.extensions</groupId>
+                <artifactId>guice-assisted-inject</artifactId>
+                <version>3.0-20100927</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>com.gwtplatform</groupId>
