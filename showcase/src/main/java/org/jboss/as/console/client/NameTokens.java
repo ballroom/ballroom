@@ -6,4 +6,5 @@ package org.jboss.as.console.client;
  */
 public class NameTokens {
     public static final String mainLayout = "main";
+    public static final String widgets = "widgets";
 }

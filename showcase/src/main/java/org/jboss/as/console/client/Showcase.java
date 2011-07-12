@@ -9,7 +9,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.gwtplatform.mvp.client.DelayedBindRegistry;
-import org.jboss.as.console.client.gin.CoreUI;
+import org.jboss.as.console.client.gin.ShowcaseUI;
 
 /**
  * @author Heiko Braun
@@ -17,7 +17,7 @@ import org.jboss.as.console.client.gin.CoreUI;
  */
 public class Showcase implements EntryPoint {
 
-    public final static CoreUI MODULES = GWT.create(CoreUI.class);
+    public final static ShowcaseUI MODULES = GWT.create(ShowcaseUI.class);
 
     public void onModuleLoad() {
         // Defer all application initialisation code to onModuleLoad2() so that the
@@ -49,6 +49,8 @@ public class Showcase implements EntryPoint {
                 DelayedBindRegistry.bind(MODULES);
 
                 RootLayoutPanel.get().remove(loadingImage);
+
+                MODULES.getPlaceManager().revealDefaultPlace();
             }
         });
     }

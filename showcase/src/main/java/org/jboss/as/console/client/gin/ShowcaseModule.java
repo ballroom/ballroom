@@ -11,8 +11,12 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyFailureHandler;
 import com.gwtplatform.mvp.client.proxy.TokenFormatter;
 import org.jboss.as.console.client.DefaultPlaceManager;
+import org.jboss.as.console.client.WidgetPresenter;
+import org.jboss.as.console.client.WidgetView;
+import org.jboss.as.console.client.layout.MainLayoutPresenter;
+import org.jboss.as.console.client.layout.MainLayoutViewImpl;
 
-public class CoreUIModule extends AbstractPresenterModule {
+public class ShowcaseModule extends AbstractPresenterModule {
 
     protected void configure() {
 
@@ -21,6 +25,17 @@ public class CoreUIModule extends AbstractPresenterModule {
         bind(TokenFormatter.class).to(ParameterTokenFormatter.class).in(Singleton.class);
         bind(RootPresenter.class).asEagerSingleton();
         bind(ProxyFailureHandler.class).to(DefaultProxyFailureHandler.class).in(Singleton.class);
+
+        // main layout
+        bindPresenter(MainLayoutPresenter.class,
+                MainLayoutPresenter.MainLayoutView.class,
+                MainLayoutViewImpl.class,
+                MainLayoutPresenter.MainLayoutProxy.class);
+
+        bindPresenter(WidgetPresenter.class,
+                WidgetPresenter.MyView.class,
+                WidgetView.class,
+                WidgetPresenter.MyProxy.class);
     }
 
 }
