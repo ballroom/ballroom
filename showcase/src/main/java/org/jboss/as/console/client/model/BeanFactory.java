@@ -10,4 +10,5 @@ import com.google.gwt.autobean.shared.AutoBeanFactory;
 public interface BeanFactory extends AutoBeanFactory {
 
     AutoBean<Record> record();
+    AutoBean<User> user();
 }

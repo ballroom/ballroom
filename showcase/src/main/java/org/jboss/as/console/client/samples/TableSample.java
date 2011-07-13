@@ -27,15 +27,10 @@ public class TableSample implements Sample {
     public static final String ID = "tables";
 
     private Framework framework = GWT.create(Framework.class);
+    private BeanFactory factory = (BeanFactory)framework.getBeanFactory();
 
-    private BeanFactory factory;
     private DefaultCellTable<Record> table;
     private ListDataProvider<Record> dataProvider;
-
-
-    public TableSample() {
-        factory = (BeanFactory)framework.getBeanFactory();
-    }
 
     @Override
     public String getId() {

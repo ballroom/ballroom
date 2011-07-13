@@ -2,17 +2,16 @@ package org.jboss.as.console.client;
 
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
-import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
+import org.jboss.as.console.client.samples.FormSample;
 import org.jboss.as.console.client.samples.Sample;
 import org.jboss.as.console.client.samples.TableSample;
 import org.jboss.as.console.client.samples.WindowSample;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Heiko Braun
@@ -30,6 +29,7 @@ public class WidgetView extends ViewImpl implements WidgetPresenter.MyView {
 
         samples.add(new TableSample());
         samples.add(new WindowSample());
+        samples.add(new FormSample());
     }
 
     @Override

@@ -2,18 +2,13 @@ package org.jboss.as.console.client.samples;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.CloseEvent;
-import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import org.jboss.as.console.client.widgets.ContentHeaderLabel;
 import org.jboss.as.console.client.widgets.DefaultButton;
 import org.jboss.as.console.client.widgets.DefaultWindow;
 import org.jboss.as.console.client.widgets.DialogueOptions;
 import org.jboss.as.console.client.widgets.WindowContentBuilder;
-import org.jboss.as.console.client.widgets.forms.FormValidation;
 
 /**
  * @author Heiko Braun
