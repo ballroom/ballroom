@@ -401,16 +401,16 @@ a:focus {
     font-size:12px;
     font-weight: BOLD;
     white-space:nowrap;
-    color:#4A5D75;
+    color:#ffffff;
 
-    background: url(images/rh/tabs/grey/tab-active-center.png) repeat-x top;
-    background-color: #ffffff;
+    background: url(images/rh/tabs/tab-active-center.png) repeat-x top;
+    background-color: #4A5D75;
 }
 
 .tab-right {
     width:15px;
     height:26px!important;
-    background: url(images/rh/tabs/grey/tab-active-right.png) no-repeat top right;
+    background: url(images/rh/tabs/tab-active-right.png) no-repeat top right;
     background-position-x: 100%;
     background-position-y: 0%;
 }
@@ -418,7 +418,7 @@ a:focus {
 .tab-left {
     width:15px;
     height:26px!important;
-    background: url(images/rh/tabs/grey/tab-active-left.png) no-repeat top left;
+    background: url(images/rh/tabs/tab-active-left.png) no-repeat top left;
 }
 
 .title-bar-panel {
@@ -658,7 +658,7 @@ a:focus {
 }
 
 .gwt-TabLayoutPanelTab {
-    background: url(images/rh/tabs/grey/tab-inactive-left.png) no-repeat bottom left;
+    background: url(images/rh/tabs/tab-inactive-left.png) no-repeat bottom left;
     cursor: pointer;
 }
 
@@ -667,17 +667,17 @@ a:focus {
 }
 
 .gwt-TabLayoutPanelTab-selected {
-    background: url(images/rh/tabs/grey/tab-active-left.png) no-repeat bottom left;
+    background: url(images/rh/tabs/tab-active-left.png) no-repeat bottom left;
     z-index: 1;
     cursor: default;
 }
 
 .gwt-TabLayoutPanelTab-selected .gwt-TabLayoutPanelTabInner {
-    background: url(images/rh/tabs/grey/tab-active-right.png) no-repeat bottom right;
+    background: url(images/rh/tabs/tab-active-right.png) no-repeat bottom right;
 }
 
 .gwt-TabLayoutPanelTabs {
-    background: url(images/rh/tabs/grey/tabs-bg.png) repeat-x bottom;
+    background: url(images/rh/tabs/tabs-bg.png) repeat-x bottom;
     padding-left: 2em;
     margin-left: 2px;
     margin-right: 4px;
@@ -695,12 +695,12 @@ a:focus {
 }
 
 .gwt-TabLayoutPanelTab .gwt-TabLayoutPanelTabInner div {
-    background: url(images/rh/tabs/grey/tab-inactive-center.png) repeat-x top;
+    background: url(images/rh/tabs/tab-inactive-center.png) repeat-x top;
 }
 
 .gwt-TabLayoutPanelTab-selected .gwt-TabLayoutPanelTabInner div {
-    background: url(images/rh/tabs/grey/tab-active-center.png) repeat-x top;
-    color:#4A5D75;
+    background: url(images/rh/tabs/tab-active-center.png) repeat-x top;
+    color:#ffffff;
 }
 
 .rhs-content-panel {
