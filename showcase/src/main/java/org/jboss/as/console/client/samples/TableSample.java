@@ -26,6 +26,7 @@ public class TableSample implements Sample {
 
 
     private Framework framework = GWT.create(Framework.class);
+
     private BeanFactory factory;
     private DefaultCellTable<Record> table;
     private ListDataProvider<Record> dataProvider;
@@ -58,6 +59,7 @@ public class TableSample implements Sample {
 
         table = new DefaultCellTable<Record>(6);
 
+        // selection model
         final SingleSelectionModel<Record> selectionModel = new SingleSelectionModel<Record>();
         selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
             @Override
