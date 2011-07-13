@@ -36,7 +36,6 @@
 
     <modules>
         <module>widgets</module>
-        <module>showcase</module>
     </modules>
 
     <dependencyManagement>
@@ -146,7 +145,18 @@
         </pluginRepository>
     </pluginRepositories>
 
+    <profiles>
+        <profile>
+            <id>showcase</id>
+            <modules>
+                <module>widgets</module>
+                <module>showcase</module>
+            </modules>
+        </profile>
+    </profiles>
+
     <build>
+
         <pluginManagement>
             <plugins>
                 <plugin>
