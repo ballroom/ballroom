@@ -6,7 +6,9 @@ target
 build.number
 *.class
 
-showcase/war/WEB-INF
+showcase/war/WEB-INF/lib
+showcase/war/WEB-INF/deploy
+showcase/war/WEB-INF/classes
 showcase/war/app
 showcase/war/dmr_gwt
 showcase/war/App.html
