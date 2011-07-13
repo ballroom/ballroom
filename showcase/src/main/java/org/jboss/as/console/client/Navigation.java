@@ -2,11 +2,15 @@ package org.jboss.as.console.client;
 
 
 import com.google.gwt.user.client.ui.DisclosurePanel;
+import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import org.jboss.as.console.client.samples.Sample;
 import org.jboss.as.console.client.widgets.DisclosureStackHeader;
 import org.jboss.as.console.client.widgets.LHSNavTree;
 import org.jboss.as.console.client.widgets.LHSNavTreeItem;
+
+import java.util.List;
 
 /**
  * @author Heiko Braun
@@ -14,9 +18,12 @@ import org.jboss.as.console.client.widgets.LHSNavTreeItem;
  */
 public class Navigation {
 
-    static LHSNavTreeItem[] links = new LHSNavTreeItem[] {
-      new LHSNavTreeItem("Cell Tables", "widgets;show=tables")
-    };
+
+    private List<Sample> samples;
+
+    public Navigation(List<Sample> samples) {
+        this.samples = samples;
+    }
 
     public Widget asWidget() {
 
@@ -26,8 +33,11 @@ public class Navigation {
         DisclosurePanel panel = new DisclosureStackHeader("Widgets").asWidget();
 
         LHSNavTree tree = new LHSNavTree("widgets");
-        for(LHSNavTreeItem link : links)
-            tree.addItem(link);
+        for(Sample sample : samples)
+        {
+            TreeItem item = new LHSNavTreeItem(sample.getName(), "widgets;show="+sample.getId());
+            tree.addItem(item);
+        }
 
         panel.setContent(tree);
 

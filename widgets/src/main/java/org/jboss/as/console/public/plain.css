@@ -703,5 +703,10 @@ a:focus {
     color:#4A5D75;
 }
 
+.rhs-content-panel {
+    width:100%;
+    padding:15px;
+    padding-bottom: 25px;
+}
 
 

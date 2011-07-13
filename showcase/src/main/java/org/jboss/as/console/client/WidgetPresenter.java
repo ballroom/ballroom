@@ -8,6 +8,7 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.Place;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
+import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 import com.gwtplatform.mvp.client.proxy.RevealContentEvent;
 import org.jboss.as.console.client.layout.MainLayoutPresenter;
@@ -27,6 +28,7 @@ public class WidgetPresenter extends Presenter<WidgetPresenter.MyView, WidgetPre
 
     public interface MyView extends View {
         void setPresenter(WidgetPresenter presenter);
+        void selectSample(String sampleId);
     }
 
     @Inject
@@ -46,6 +48,12 @@ public class WidgetPresenter extends Presenter<WidgetPresenter.MyView, WidgetPre
     @Override
     protected void onReset() {
         super.onReset();
+    }
+
+    @Override
+    public void prepareFromRequest(PlaceRequest request) {
+        String sampleId = request.getParameter("show", "tables");
+        getView().selectSample(sampleId);
     }
 
     @Override

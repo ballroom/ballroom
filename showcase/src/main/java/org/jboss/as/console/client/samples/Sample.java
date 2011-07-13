@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @date 7/12/11
  */
 public interface Sample {
+    String getId();
     String getName();
     Widget asWidget();
 }

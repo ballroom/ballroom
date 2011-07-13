@@ -10,7 +10,6 @@ import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 import org.jboss.as.console.client.model.BeanFactory;
 import org.jboss.as.console.client.model.Record;
-import org.jboss.as.console.client.widgets.ContentHeaderLabel;
 import org.jboss.as.console.client.widgets.DefaultPager;
 import org.jboss.as.console.client.widgets.Framework;
 import org.jboss.as.console.client.widgets.tables.DefaultCellTable;
@@ -25,14 +24,22 @@ import java.util.List;
 public class TableSample implements Sample {
 
 
+    public static final String ID = "tables";
+
     private Framework framework = GWT.create(Framework.class);
 
     private BeanFactory factory;
     private DefaultCellTable<Record> table;
     private ListDataProvider<Record> dataProvider;
 
+
     public TableSample() {
         factory = (BeanFactory)framework.getBeanFactory();
+    }
+
+    @Override
+    public String getId() {
+        return ID;
     }
 
     @Override
@@ -44,13 +51,9 @@ public class TableSample implements Sample {
     public Widget asWidget() {
 
         VerticalPanel layout = new VerticalPanel();
-        layout.setStyleName("fill-layout-width");
-        layout.getElement().setAttribute("style", "padding:15px;");
+        layout.setStyleName("rhs-content-panel");
 
         // desc
-
-        ContentHeaderLabel title = new ContentHeaderLabel("CellTables");
-        layout.add(title);
 
         HTML desc = new HTML();
         desc.setHTML("<p>A simple paging table example.");
