@@ -36,7 +36,6 @@
     </replace-with-->
 
     <stylesheet src="plain.css" />
-    <stylesheet src="redhat.css" />
 
     <entry-point class='org.jboss.as.console.client.widgets.Bootstrap'/>
 
