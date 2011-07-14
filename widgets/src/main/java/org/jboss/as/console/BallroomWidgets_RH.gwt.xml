@@ -31,9 +31,9 @@
     <set-configuration-property name="gin.ginjector"
                                 value="org.jboss.as.console.client.core.gin.CoreUI" /-->
 
-    <!--replace-with class="org.jboss.as.console.client.ConsoleFramework">
+    <replace-with class="org.jboss.as.console.client.NoopFramework">
         <when-type-is class="org.jboss.as.console.client.widgets.Framework"/>
-    </replace-with-->
+    </replace-with>
 
     <stylesheet src="plain.css" />
     <stylesheet src="redhat.css" />
