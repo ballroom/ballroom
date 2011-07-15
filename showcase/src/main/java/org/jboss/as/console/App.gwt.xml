@@ -25,7 +25,7 @@
     <inherits name="com.google.gwt.editor.Editor"/>
     <inherits name="com.google.gwt.i18n.I18N"/>
 
-    <inherits name="org.jboss.as.console.BallroomWidgets"/>
+    <inherits name="org.jboss.as.console.Framework_RH"/>
 
 
     <define-configuration-property name="gin.ginjector" is-multi-valued="false" />
