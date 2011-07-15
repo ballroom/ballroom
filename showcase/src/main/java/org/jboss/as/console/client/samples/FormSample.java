@@ -9,13 +9,13 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import org.jboss.as.console.client.model.BeanFactory;
 import org.jboss.as.console.client.model.User;
-import org.jboss.as.console.client.spi.Framework;
-import org.jboss.as.console.client.widgets.ContentGroupLabel;
-import org.jboss.as.console.client.widgets.common.DefaultButton;
-import org.jboss.as.console.client.widgets.forms.CheckBoxItem;
-import org.jboss.as.console.client.widgets.forms.DisclosureGroupRenderer;
-import org.jboss.as.console.client.widgets.forms.Form;
-import org.jboss.as.console.client.widgets.forms.TextBoxItem;
+import org.jboss.ballroom.client.spi.Framework;
+import org.jboss.ballroom.client.widgets.ContentGroupLabel;
+import org.jboss.ballroom.client.widgets.common.DefaultButton;
+import org.jboss.ballroom.client.widgets.forms.CheckBoxItem;
+import org.jboss.ballroom.client.widgets.forms.DisclosureGroupRenderer;
+import org.jboss.ballroom.client.widgets.forms.Form;
+import org.jboss.ballroom.client.widgets.forms.TextBoxItem;
 
 import java.util.Map;
 

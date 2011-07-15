@@ -17,47 +17,25 @@
   ~ MA  02110-1301, USA.
   -->
 
-<module rename-to="app">
+<module>
 
-    <!-- Inherit the core Web Toolkit stuff.                  -->
     <inherits name='com.google.gwt.user.User'/>
     <inherits name='com.google.gwt.user.theme.chrome.ChromeResources'/>
     <inherits name="com.google.gwt.editor.Editor"/>
-    <inherits name="com.google.gwt.i18n.I18N"/>
 
-    <inherits name="org.jboss.as.console.Framework_RH"/>
-
-
-    <define-configuration-property name="gin.ginjector" is-multi-valued="false" />
-    <set-configuration-property name="gin.ginjector"
-                                value="org.jboss.as.console.client.gin.ShowcaseUI" />
-
-    <!-- Add gwt-log support, default level `DEBUG` -->
-    <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
+    <inherits name='com.gwtplatform.mvp.Mvp' />
     <inherits name="com.google.gwt.autobean.AutoBean"/>
-    <inherits name="com.google.gwt.json.JSON"/>
 
+    <!--define-configuration-property name="gin.ginjector" is-multi-valued="false" />
+    <set-configuration-property name="gin.ginjector"
+                                value="org.jboss.as.console.client.core.gin.CoreUI" /-->
 
-    <set-property name="log_ConsoleLogger" value="ENABLED" />
-    <set-property name="log_GWTLogger" value="ENABLED" />
-    <set-property name="log_SystemLogger" value="ENABLED" />
-
-    <!-- Loggers Disabled by default -->
-    <set-property name="log_DivLogger" value="DISABLED" />
-    <set-property name="log_FirebugLogger" value="DISABLED" />
-    <set-property name="log_WindowLogger" value="DISABLED" />
-
-
-    <set-configuration-property name="log_pattern" value="%d [%-5p] %m%n" />
-
-
-    <replace-with class="org.jboss.as.console.client.ShowcaseFramework">
+    <replace-with class="org.jboss.ballroom.client.spi.NoopFramework">
         <when-type-is class="org.jboss.ballroom.client.spi.Framework"/>
     </replace-with>
 
-    <stylesheet src="showcase.css" />
+    <stylesheet src="plain.css" />
 
-    <!-- Specify the app entry point class.                   -->
-    <entry-point class='org.jboss.as.console.client.Showcase'/>
+    <entry-point class='org.jboss.ballroom.client.Bootstrap'/>
 
 </module>

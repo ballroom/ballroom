@@ -5,10 +5,10 @@ import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import org.jboss.as.console.client.layout.LHSNavTree;
-import org.jboss.as.console.client.layout.LHSNavTreeItem;
+import org.jboss.ballroom.client.layout.LHSNavTree;
+import org.jboss.ballroom.client.layout.LHSNavTreeItem;
 import org.jboss.as.console.client.samples.Sample;
-import org.jboss.as.console.client.widgets.stack.DisclosureStackPanel;
+import org.jboss.ballroom.client.widgets.stack.DisclosureStackPanel;
 
 import java.util.List;
 
