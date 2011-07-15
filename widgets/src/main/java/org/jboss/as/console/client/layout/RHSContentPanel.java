@@ -17,59 +17,45 @@
  * MA  02110-1301, USA.
  */
 
-package org.jboss.as.console.client.widgets.forms;
+package org.jboss.as.console.client.layout;
 
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.dom.client.Style;
+import com.google.gwt.user.client.ui.LayoutPanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
-import org.jboss.as.console.client.widgets.common.DefaultButton;
+import org.jboss.as.console.client.widgets.tabs.FakeTabPanel;
 
 /**
  * @author Heiko Braun
- * @date 3/9/11
+ * @date 2/22/11
  */
-public class ButtonItem extends FormItem<Boolean> {
+public class RHSContentPanel extends LayoutPanel {
 
-    protected DefaultButton button;
+    private VerticalPanel delegate;
 
-    public ButtonItem(String name, String title) {
-        super(name, title);
-        this.button = new DefaultButton(title);
-        isModified = false;
-        isUndefined = false;
-    }
+    public RHSContentPanel(String title) {
 
-    @Override
-    public Boolean getValue() {
-        return true;
-    }
+        super();
 
-    @Override
-    public void resetMetaData() {
+        FakeTabPanel titleBar = new FakeTabPanel(title);
+        super.add(titleBar);
+        super.setWidgetTopHeight(titleBar, 0, Style.Unit.PX, 28, Style.Unit.PX);
 
-    }
+        ScrollPanel scroll = new ScrollPanel();
 
-    @Override
-    public void setValue(Boolean value) {
+        delegate = new VerticalPanel();
+        delegate.setStyleName("rhs-content-panel");
+
+        scroll.add(delegate);
+        super.add(scroll);
+        super.setWidgetTopHeight(scroll, 35, Style.Unit.PX, 100, Style.Unit.PCT);
 
     }
 
     @Override
-    public Widget asWidget() {
-        return button;
+    public void add(Widget widget) {
+        delegate.add(widget);
     }
 
-    @Override
-    public void setEnabled(boolean b) {
-        button.setEnabled(b);
-    }
-
-    public void addClickHandler(ClickHandler handler)
-    {
-        this.button.addClickHandler(handler);
-    }
-
-    @Override
-    public boolean validate(Boolean value) {
-        return true;
-    }
 }

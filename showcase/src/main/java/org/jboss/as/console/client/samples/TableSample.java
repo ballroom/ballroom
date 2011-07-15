@@ -10,8 +10,8 @@ import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 import org.jboss.as.console.client.model.BeanFactory;
 import org.jboss.as.console.client.model.Record;
-import org.jboss.as.console.client.widgets.DefaultPager;
-import org.jboss.as.console.client.widgets.Framework;
+import org.jboss.as.console.client.spi.Framework;
+import org.jboss.as.console.client.widgets.tables.DefaultPager;
 import org.jboss.as.console.client.widgets.tables.DefaultCellTable;
 
 import java.util.ArrayList;

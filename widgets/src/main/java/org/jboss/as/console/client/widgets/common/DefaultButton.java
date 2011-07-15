@@ -17,59 +17,25 @@
  * MA  02110-1301, USA.
  */
 
-package org.jboss.as.console.client.widgets.forms;
+package org.jboss.as.console.client.widgets.common;
 
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Widget;
-import org.jboss.as.console.client.widgets.common.DefaultButton;
+import com.google.gwt.user.client.ui.Button;
 
 /**
  * @author Heiko Braun
- * @date 3/9/11
+ * @date 3/1/11
  */
-public class ButtonItem extends FormItem<Boolean> {
+public class DefaultButton extends Button {
 
-    protected DefaultButton button;
 
-    public ButtonItem(String name, String title) {
-        super(name, title);
-        this.button = new DefaultButton(title);
-        isModified = false;
-        isUndefined = false;
+    public DefaultButton(String title) {
+        super(title);
+        addStyleName("default-button");
     }
 
-    @Override
-    public Boolean getValue() {
-        return true;
-    }
-
-    @Override
-    public void resetMetaData() {
-
-    }
-
-    @Override
-    public void setValue(Boolean value) {
-
-    }
-
-    @Override
-    public Widget asWidget() {
-        return button;
-    }
-
-    @Override
-    public void setEnabled(boolean b) {
-        button.setEnabled(b);
-    }
-
-    public void addClickHandler(ClickHandler handler)
-    {
-        this.button.addClickHandler(handler);
-    }
-
-    @Override
-    public boolean validate(Boolean value) {
-        return true;
+    public DefaultButton(String title, ClickHandler handler) {
+        this(title);
+        addClickHandler(handler);
     }
 }

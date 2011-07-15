@@ -121,4 +121,10 @@ public interface Icons extends ClientBundle {
     @Source("resizer.png")
     ImageResource resize();
 
+    @Source("comboBoxPicker_Over.png")
+        ImageResource comboPicker_over();
+
+    @Source("comboBoxPicker.png")
+    ImageResource comboPicker();
+
 }

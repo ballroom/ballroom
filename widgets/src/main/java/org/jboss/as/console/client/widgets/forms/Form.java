@@ -30,7 +30,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
-import org.jboss.as.console.client.widgets.Framework;
+import org.jboss.as.console.client.spi.Framework;
 
 import java.util.ArrayList;
 import java.util.Collection;

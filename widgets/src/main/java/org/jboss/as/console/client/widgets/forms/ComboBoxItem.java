@@ -22,7 +22,6 @@ package org.jboss.as.console.client.widgets.forms;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.Widget;
-import org.jboss.as.console.client.widgets.ComboBox;
 
 import java.util.Collection;
 

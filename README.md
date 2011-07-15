@@ -36,12 +36,12 @@ In order to use ballroom you need to import the GWT module descriptor:
 
 	<module>
 
-		<inherits name="org.jboss.as.console.BallroomWidgets"/>
+		<inherits name="org.jboss.as.console.Framework"/>
 	
 		[...]
 		
-		<replace-with class="org.jboss.as.console.client.NoopFramework">
-	        <when-type-is class="org.jboss.as.console.client.widgets.Framework"/>
+		<replace-with class="org.jboss.as.console.spi.NoopFramework">
+	        <when-type-is class="org.jboss.as.console.client.spi.Framework"/>
 	    </replace-with>
 		
 	</module>
@@ -49,8 +49,8 @@ In order to use ballroom you need to import the GWT module descriptor:
 Ballroom ships with two different styles. One for jboss.org projects and another one for branded RH products:
 
 
-	* <inherits name="org.jboss.as.console.BallroomWidgets"/>
-	* <inherits name="org.jboss.as.console.BallroomWidgets_RH"/>
+	* <inherits name="org.jboss.as.console.Framework"/>
+	* <inherits name="org.jboss.as.console.Framework_RH"/>
 	
 Library dependencies
 --------------------
@@ -77,8 +77,8 @@ A specific implementation is declared through the module descriptor:
 		
 		[...]
 		
-		<replace-with class="org.jboss.as.console.client.NoopFramework">
-	        <when-type-is class="org.jboss.as.console.client.widgets.Framework"/>
+		<replace-with class="org.jboss.as.console.client.spi.NoopFramework">
+	        <when-type-is class="org.jboss.as.console.client.spi.Framework"/>
 	    </replace-with>
 		
 		[...]

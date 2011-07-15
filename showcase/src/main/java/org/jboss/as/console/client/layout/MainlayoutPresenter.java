@@ -33,7 +33,7 @@ import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
 import com.gwtplatform.mvp.client.proxy.RevealRootLayoutContentEvent;
 import org.jboss.as.console.client.NameTokens;
-import org.jboss.as.console.client.widgets.LoadingOverlay;
+import org.jboss.as.console.client.util.LoadingOverlay;
 
 /**
  * @author Heiko Braun
