@@ -2,6 +2,7 @@ package org.jboss.as.console.client;
 
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
@@ -42,7 +43,7 @@ public class WidgetView extends ViewImpl implements WidgetPresenter.MyView {
     @Override
     public Widget asWidget() {
 
-        DockLayoutPanel layout = new DockLayoutPanel(Style.Unit.PX);
+        SplitLayoutPanel layout = new SplitLayoutPanel();
 
         // nav
         Navigation nav = new Navigation(samples);
