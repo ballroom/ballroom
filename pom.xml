@@ -164,6 +164,7 @@
                     <version>1.0</version>
                     <executions>
                         <execution>
+                            <id>default</id>
                             <goals>
                                 <goal>enforce</goal>
                             </goals>
@@ -176,6 +177,22 @@
                                     <requireMavenVersion>
                                         <version>[3.0.2,)</version>
                                     </requireMavenVersion>
+                                </rules>
+                            </configuration>
+                        </execution>
+
+                        <execution>
+                            <id>release</id>
+                            <phase>deploy</phase>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <inherited>true</inherited>
+                            <configuration>
+                                <rules>
+                                    <requireReleaseVersion>
+                                        <message>No Snapshot Releases allowed!</message>
+                                    </requireReleaseVersion>
                                 </rules>
                             </configuration>
                         </execution>
