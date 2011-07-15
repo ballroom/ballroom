@@ -21,6 +21,7 @@ package org.jboss.as.console.client.layout;
 
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -58,6 +59,8 @@ public class MainLayoutViewImpl extends ViewImpl
         panel.addSouth(footerPanel, 30);
         panel.add(mainContentPanel);
 
+
+        headerPanel.add(new HTML("<h2>Ballroom Showcase</h2>"));
     }
 
     public Widget asWidget() {
