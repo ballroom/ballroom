@@ -98,4 +98,9 @@ public class TextBoxItem extends FormItem<String> {
             return updated.equals(value);
         }
     }
+
+    @Override
+    public void clearValue() {
+        textBox.setText("");
+    }
 }

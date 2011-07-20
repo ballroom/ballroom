@@ -109,4 +109,6 @@ public abstract class FormItem<T> implements InputElement<T> {
     public abstract void setEnabled(boolean b);
 
     public abstract boolean validate(T value);
+
+    public abstract void clearValue();
 }

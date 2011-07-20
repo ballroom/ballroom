@@ -72,4 +72,9 @@ public class ButtonItem extends FormItem<Boolean> {
     public boolean validate(Boolean value) {
         return true;
     }
+
+    @Override
+    public void clearValue() {
+
+    }
 }

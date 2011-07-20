@@ -117,4 +117,9 @@ public class NumberBoxItem extends FormItem<Integer> {
 
         return outcome;
     }
+
+    @Override
+    public void clearValue() {
+        this.textBox.setText("");
+    }
 }

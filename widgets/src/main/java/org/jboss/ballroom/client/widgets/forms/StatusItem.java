@@ -59,4 +59,11 @@ public class StatusItem extends FormItem<Boolean> {
     public void setValue(Boolean b) {
         widget.setText(String.valueOf(b));
     }
+
+    @Override
+    public void clearValue() {
+        widget.setText("");
+    }
+
+
 }

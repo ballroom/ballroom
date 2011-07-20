@@ -28,6 +28,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.RowCountChangeEvent;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 import org.jboss.ballroom.client.spi.Framework;
@@ -130,7 +131,7 @@ public class Form<T> {
     public void cancel() {
         edit(editedEntity);
     }
-    
+
     public void edit(T bean) {
 
         // Needs to be declared (i.e. when creating new instances)
@@ -415,17 +416,38 @@ public class Form<T> {
      * Binds a default single selection model to the table
      * that displays selected rows in a form.
      *
-     * @param instanceTable
+     * @param table
      */
-    public void bind(CellTable<T> instanceTable) {
+    public void bind(CellTable<T> table) {
         final SingleSelectionModel<T> selectionModel = new SingleSelectionModel<T>();
         selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-            @Override
+
             public void onSelectionChange(SelectionChangeEvent event) {
                 edit(selectionModel.getSelectedObject());
             }
         });
-        instanceTable.setSelectionModel(selectionModel);
+        table.setSelectionModel(selectionModel);
+
+        table.addRowCountChangeHandler(new RowCountChangeEvent.Handler() {
+
+            public void onRowCountChange(RowCountChangeEvent event) {
+                if(event.getNewRowCount()==0 && event.isNewRowCountExact())
+                    clearValues();
+
+            }
+        });
+
+    }
+
+    public void clearValues() {
+        for(Map<String, FormItem> groupItems : formItems.values())
+        {
+            for(FormItem item : groupItems.values())
+            {
+                item.clearValue();
+            }
+        }
+
     }
 
     public T getEditedEntity() {

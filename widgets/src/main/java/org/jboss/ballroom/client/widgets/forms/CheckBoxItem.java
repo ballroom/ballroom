@@ -75,4 +75,9 @@ public class CheckBoxItem extends FormItem<Boolean> {
     public boolean validate(Boolean value) {
         return true;
     }
+
+    @Override
+    public void clearValue() {
+        setValue(false);
+    }
 }

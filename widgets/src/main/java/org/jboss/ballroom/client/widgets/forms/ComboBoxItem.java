@@ -147,4 +147,12 @@ public class ComboBoxItem extends FormItem<String> {
         super.setErroneous(b);
         wrapper.setErroneous(b);
     }
+
+    @Override
+    public void clearValue() {
+        if(defaultToFirst)
+            selectItem(0);
+        else
+            comboBox.clearSelection();
+    }
 }

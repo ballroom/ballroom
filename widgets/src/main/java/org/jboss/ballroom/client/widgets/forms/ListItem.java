@@ -92,4 +92,10 @@ public class ListItem extends FormItem<List> {
             textArea.setText(textArea.getText()+item.toString()+"\n");
         }
     }
+
+    @Override
+    public void clearValue() {
+        this.textArea.setText("");
+
+    }
 }

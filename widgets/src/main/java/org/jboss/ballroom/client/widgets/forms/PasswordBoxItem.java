@@ -85,4 +85,9 @@ public class PasswordBoxItem extends FormItem<String> {
             return true;
         }
     }
+
+    @Override
+    public void clearValue() {
+        this.textBox.setText("");
+    }
 }

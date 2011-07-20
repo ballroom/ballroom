@@ -65,4 +65,9 @@ public class TextItem extends FormItem<String> {
     public boolean validate(String value) {
         return true;
     }
+
+    @Override
+    public void clearValue() {
+        this.html.setText("");
+    }
 }
