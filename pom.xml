@@ -218,11 +218,11 @@
             <plugin>
                 <artifactId>maven-enforcer-plugin</artifactId>
             </plugin>
-            <plugin>
-                <!-- Entry needed to create, install and deploy sources jars -->
+      <!--      <plugin>
+                < !- - Entry needed to create, install and deploy sources jars - - >
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-            </plugin>
+            </plugin> -->
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.0</version>

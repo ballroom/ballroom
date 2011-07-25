@@ -92,6 +92,10 @@ public class ComboBoxItem extends FormItem<String> {
     public Widget asWidget() {
         return wrapper;
     }
+    
+    public void clearSelection() {
+        this.comboBox.clearSelection();
+    }
 
     public void setDefaultToFirstOption(boolean b) {
         this.defaultToFirst = b;

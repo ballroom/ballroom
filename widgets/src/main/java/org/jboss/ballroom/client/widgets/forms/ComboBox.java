@@ -243,6 +243,7 @@ public class ComboBox implements HasValueChangeHandlers<String> {
 
     public void clearValues() {
         this.values.clear();
+        refeshCellList();
     }
 
     public void addItem(String s) {

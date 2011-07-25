@@ -46,7 +46,7 @@ import java.util.Map;
  * @author Heiko Braun
  * @date 2/21/11
  */
-public class Form<T> {
+public class Form<T> implements FormAdapter<T> {
 
     private final static Framework framework = GWT.create(Framework.class);
 
@@ -61,11 +61,14 @@ public class Form<T> {
     private T editedEntity = null;
     private final Class<?> conversionType;
 
+    private List<EditListener> listeners = new ArrayList<EditListener>();
+    
     public Form(Class<?> conversionType) {
         this.conversionType = conversionType;
         this.factory = framework.getBeanFactory();
     }
 
+    @Override
     public Class<?> getConversionType() {
         return conversionType;
     }
@@ -128,10 +131,12 @@ public class Form<T> {
         setFieldsInGroup(group, items);
     }
 
+    @Override
     public void cancel() {
         edit(editedEntity);
     }
 
+    @Override
     public void edit(T bean) {
 
         // Needs to be declared (i.e. when creating new instances)
@@ -220,8 +225,25 @@ public class Form<T> {
             }
         });
 
+        notifyListeners(bean);
     }
 
+    private void notifyListeners(T bean) {
+        for (EditListener listener : listeners) {
+            listener.editingBean(bean);
+        }
+    }
+    
+    @Override
+    public void addEditListener(EditListener listener) {
+        this.listeners.add(listener);
+    }
+
+    @Override
+    public void removeEditListener(EditListener listener) {
+        this.listeners.remove(listener);
+    }
+    
     private void visitItem(final String name, FormItemVisitor visitor) {
         for(Map<String, FormItem> groupItems : formItems.values())
         {
@@ -239,6 +261,7 @@ public class Form<T> {
      * Get changed values since last {@link #edit(Object)} ()}
      * @return
      */
+    @Override
     public Map<String, Object> getChangedValues() {
 
         final T updatedEntity = getUpdatedEntity();
@@ -265,6 +288,7 @@ public class Form<T> {
         return finalDiff;
     }
 
+    @Override
     public FormValidation validate()
     {
 
@@ -290,6 +314,7 @@ public class Form<T> {
         return outcome;
     }
 
+    @Override
     public T getUpdatedEntity() {
 
         StringBuilder builder = new StringBuilder("{");
@@ -362,6 +387,7 @@ public class Form<T> {
         return sb.toString();
     }
 
+    @Override
     public Widget asWidget() {
         return build();
     }
@@ -402,6 +428,7 @@ public class Form<T> {
      *
      * @param b
      */
+    @Override
     public void setEnabled(boolean b) {
         for(Map<String, FormItem> groupItems : formItems.values())
         {
@@ -418,15 +445,23 @@ public class Form<T> {
      *
      * @param table
      */
+    @Override
     public void bind(CellTable<T> table) {
-        final SingleSelectionModel<T> selectionModel = new SingleSelectionModel<T>();
+        SingleSelectionModel<T> selectionModel = (SingleSelectionModel<T>)table.getSelectionModel();
+        if (selectionModel == null) {
+            selectionModel = new SingleSelectionModel<T>();
+        }
+        
+        final SingleSelectionModel<T> finalSelectionModel = selectionModel;
+        
         selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 
             public void onSelectionChange(SelectionChangeEvent event) {
-                edit(selectionModel.getSelectedObject());
+                edit(finalSelectionModel.getSelectedObject());
             }
         });
-        table.setSelectionModel(selectionModel);
+        
+        table.setSelectionModel(finalSelectionModel);
 
         table.addRowCountChangeHandler(new RowCountChangeEvent.Handler() {
 
