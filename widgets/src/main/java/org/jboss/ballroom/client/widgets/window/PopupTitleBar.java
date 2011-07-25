@@ -37,7 +37,7 @@ public class PopupTitleBar extends Composite implements HasAllMouseHandlers {
         header.setStyleName("default-window-header");
 
         HTML titleText = new HTML(title);
-        titleText.getElement().setAttribute("style", "padding:5px");
+        titleText.setStyleName("default-window-title");
 
         Image closeIcon = new Image(Icons.INSTANCE.close());
         closeIcon.setAltText("Close");

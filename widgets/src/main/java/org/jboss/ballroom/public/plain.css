@@ -367,6 +367,14 @@ a:focus {
     background-color:#FFFFFF;
     background-image: url('images/sc/skins/Enterprise/images/ToolStrip/background.png');
     color:#4A5D75;
+    height:40px;
+}
+
+.default-window-title{
+    padding: 10px;
+    font-size:14px;
+    font-weight: BOLD;
+    color:#4A5D75;
 }
 
 .default-window-content {
