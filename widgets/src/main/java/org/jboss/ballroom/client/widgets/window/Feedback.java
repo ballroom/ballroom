@@ -24,6 +24,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
  * Collection of feedback windows.
@@ -46,10 +47,9 @@ public class Feedback {
         window.setGlassEnabled(true);
 
         DockLayoutPanel panel = new DockLayoutPanel(Style.Unit.PX);
-        panel.setStyleName("fill-layout-width");
+        panel.setStyleName("default-window-content");
 
         HTML text = new HTML(message);
-        text.getElement().setAttribute("style", "margin:10px;");
 
         ClickHandler confirmHandler = new ClickHandler() {
             @Override
@@ -68,12 +68,10 @@ public class Feedback {
         };
 
         DialogueOptions options = new DialogueOptions("OK", confirmHandler, "Cancel", cancelHandler);
-        options.getElement().setAttribute("style", "margin-bottom:10px;");
-        panel.addSouth(options, 35);
-        panel.add(text);
 
+        Widget content = new WindowContentBuilder(panel, options).build();
 
-        window.setWidget(panel);
+        window.setWidget(content);
 
         window.center();
     }
