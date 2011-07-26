@@ -86,3 +86,11 @@ A specific implementation is declared through the module descriptor:
 	</module>
 	
 	
+Releasing ballroom
+------------------
+
+Please make sure to run the 'release' profile, when doing a relase.
+And remember: No snapshots allowed!
+
+
+
