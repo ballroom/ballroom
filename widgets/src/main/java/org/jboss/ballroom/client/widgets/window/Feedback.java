@@ -24,6 +24,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
@@ -46,14 +47,14 @@ public class Feedback {
 
         window.setGlassEnabled(true);
 
-        DockLayoutPanel panel = new DockLayoutPanel(Style.Unit.PX);
+        VerticalPanel panel = new VerticalPanel();
         panel.setStyleName("default-window-content");
 
         HTML text = new HTML(message);
         panel.add(text);
 
         ClickHandler confirmHandler = new ClickHandler() {
-            @Override
+
             public void onClick(ClickEvent event) {
                 handler.onConfirmation(true);
                 window.hide();
@@ -61,7 +62,7 @@ public class Feedback {
         };
 
         ClickHandler cancelHandler = new ClickHandler() {
-            @Override
+
             public void onClick(ClickEvent event) {
                 handler.onConfirmation(false);
                 window.hide();
