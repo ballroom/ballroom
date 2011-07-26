@@ -10,7 +10,7 @@
     <parent>
         <groupId>org.jboss.ballroom</groupId>
         <artifactId>ballroom</artifactId>
-        <version>1.0.0.Beta6</version>
+        <version>1.0.0.Beta7-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -20,7 +20,7 @@
         <dependency>
             <groupId>org.jboss.ballroom</groupId>
             <artifactId>widgets</artifactId>
-            <version>1.0.0.Beta6</version>
+            <version>1.0.0.Beta7-SNAPSHOT</version>
         </dependency>
 
         <!-- GWT -->
