@@ -50,6 +50,7 @@ public class Feedback {
         panel.setStyleName("default-window-content");
 
         HTML text = new HTML(message);
+        panel.add(text);
 
         ClickHandler confirmHandler = new ClickHandler() {
             @Override
