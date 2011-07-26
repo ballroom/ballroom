@@ -41,8 +41,11 @@ body, p, td, th, option, input, textarea, select {
     font-size: 12px;
     text-decoration: none;
     color:white;
-    background-color: #3A4E64;
+    background-color: #3A4E64!important;
     border-top: 4px solid #3A4E64;
+
+    border-right: 1px solid #3A4E64!important;
+    border-bottom: 1px solid #3A4E64!important;
 }
 
 .header-link:hover {
@@ -164,7 +167,6 @@ deselected tabs
 .help-panel * {
     font-size:11px!important;
 }
-
 
 .default-cell-table{
     font-family:Arial, Verdana, sans-serif;
