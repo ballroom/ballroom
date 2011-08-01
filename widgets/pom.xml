@@ -121,6 +121,25 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        
+        <!-- Testing dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.gwt.inject</groupId>
+            <artifactId>gin</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -129,6 +148,27 @@
                 <directory>src/main/java</directory>
             </resource>
         </resources>
+        <plugins>
+        	<plugin>
+                <!-- Surefire setup in order to be able to run GWT unit tests, according to
+                     http://mojo.codehaus.org/gwt-maven-plugin/user-guide/testing.html -->
+        		<artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                  <additionalClasspathElements>
+                    <additionalClasspathElement>${project.build.sourceDirectory}</additionalClasspathElement>
+                    <additionalClasspathElement>${project.build.testSourceDirectory}</additionalClasspathElement>
+                  </additionalClasspathElements>
+                  <useManifestOnlyJar>false</useManifestOnlyJar>
+                  <forkMode>always</forkMode>
+                  <systemProperties>
+                    <property>
+                      <name>gwt.args</name>
+                      <value>-out ${basedir}/target/test-war</value>
+                    </property>
+                  </systemProperties>
+                </configuration>
+        	</plugin>
+        </plugins>
     </build>
 </project>
 
