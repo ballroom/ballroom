@@ -159,4 +159,8 @@ public class ComboBoxItem extends FormItem<String> {
         else
             comboBox.clearSelection();
     }
+    
+    public void addValueChangeHandler(ValueChangeHandler<String> handler) {
+        this.comboBox.addValueChangeHandler(handler);
+    }
 }
