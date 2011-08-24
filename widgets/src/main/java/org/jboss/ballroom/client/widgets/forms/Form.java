@@ -24,6 +24,7 @@ import com.google.gwt.autobean.shared.AutoBeanCodex;
 import com.google.gwt.autobean.shared.AutoBeanFactory;
 import com.google.gwt.autobean.shared.AutoBeanUtils;
 import com.google.gwt.autobean.shared.AutoBeanVisitor;
+import com.google.gwt.autobean.shared.Splittable;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -131,6 +132,9 @@ public class Form<T> implements FormAdapter<T> {
         setFieldsInGroup(group, items);
     }
 
+    /**
+     * This method passes the original entity back into the form, removing all changes.
+     */
     @Override
     public void cancel() {
         edit(editedEntity);
@@ -314,6 +318,9 @@ public class Form<T> implements FormAdapter<T> {
         return outcome;
     }
 
+    /**
+     * This is what the entity looks like with the user's changes on the form.
+     */
     @Override
     public T getUpdatedEntity() {
 
@@ -366,9 +373,7 @@ public class Form<T> implements FormAdapter<T> {
             int c = 0;
             for(Object item : listObject)
             {
-                sb.append("\"");
-                sb.append(item.toString());
-                sb.append("\"");
+                sb.append(encodeValue(item));
 
                 if(c<listObject.size()-1)
                     sb.append(", ");
@@ -376,9 +381,26 @@ public class Form<T> implements FormAdapter<T> {
                 c++;
             }
             sb.append("]");
-        }
-        else
-        {
+        } else if (AutoBeanUtils.getAutoBean(object) != null) {
+            Splittable split = AutoBeanCodex.encode(AutoBeanUtils.getAutoBean(object));
+            sb.append("{ ");
+            sb.append(encodeValue(split));
+            sb.append(" }");
+        } else if (object instanceof Splittable) {
+            Splittable split = (Splittable)object;
+            if (split.isString()) return encodeValue(split.asString());
+            
+            int c = 0;
+            List<String> keys = split.getPropertyKeys();
+            for (String key : keys) {
+                sb.append(encodeValue(key));
+                sb.append(" : ");
+                sb.append(encodeValue(split.get(key)));
+                if(c<keys.size()-1)
+                    sb.append(", ");
+                c++;
+            }
+        } else {
             sb.append("\"");
             sb.append(object.toString());
             sb.append("\"");
@@ -485,6 +507,12 @@ public class Form<T> implements FormAdapter<T> {
 
     }
 
+    /**
+     * This is the entity that was originally passed in for editing.  It does not include
+     * changes made by the user.
+     * 
+     * @return The original entity used for editing.
+     */
     public T getEditedEntity() {
         return editedEntity;
     }
