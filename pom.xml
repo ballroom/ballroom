@@ -17,6 +17,44 @@
         <url>http://www.jboss.org</url>
     </organization>
 
+	 <issueManagement>
+        <system>jira</system>
+        <url>https://issues.jboss.org/browse/JBAS</url>
+    </issueManagement>
+
+	 <developers>
+        <developer>
+            <name>Heiko Braun</name>
+            <id>hbraun</id>
+            <email>hbraun@redhat.com</email>
+            <organization>Red Hat</organization>
+            <roles>
+                <role>Lead</role>
+            </roles>
+            <timezone>+1</timezone>
+        </developer>
+        <developer>
+            <name>Stan Silvert</name>
+            <id>ssilvert</id>
+        </developer>
+        <developer>
+            <name>David Bosschaert</name>
+            <id>dbosschaert</id>
+        </developer>
+        <developer>
+            <name>Jason Greene</name>
+            <id>jgreene</id>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>lgpl</name>
+            <url>http://repository.jboss.com/licenses/lgpl.txt</url>
+        </license>
+    </licenses>
+
+
     <scm>
         <connection>scm:git:git@github.com:ballroom/ballroom.git</connection>
         <developerConnection>scm:git:git@github.com:ballroom/ballroom.git</developerConnection>
