@@ -19,6 +19,13 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.google.gwt.autobean.shared.AutoBean;
 import com.google.gwt.autobean.shared.AutoBeanCodex;
 import com.google.gwt.autobean.shared.AutoBeanFactory;
@@ -32,14 +39,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.RowCountChangeEvent;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
-import org.jboss.ballroom.client.spi.Framework;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import org.jboss.ballroom.client.spi.Framework;
 
 /**
  * Form data binding that works on {@link AutoBean} entities.
@@ -63,7 +64,7 @@ public class Form<T> implements FormAdapter<T> {
     private final Class<?> conversionType;
 
     private List<EditListener> listeners = new ArrayList<EditListener>();
-    
+
     public Form(Class<?> conversionType) {
         this.conversionType = conversionType;
         this.factory = framework.getBeanFactory();
@@ -237,7 +238,7 @@ public class Form<T> implements FormAdapter<T> {
             listener.editingBean(bean);
         }
     }
-    
+
     @Override
     public void addEditListener(EditListener listener) {
         this.listeners.add(listener);
@@ -247,13 +248,14 @@ public class Form<T> implements FormAdapter<T> {
     public void removeEditListener(EditListener listener) {
         this.listeners.remove(listener);
     }
-    
+
     private void visitItem(final String name, FormItemVisitor visitor) {
+        String namePrefix = name + "_";
         for(Map<String, FormItem> groupItems : formItems.values())
         {
             for(String key : groupItems.keySet())
             {
-                if(key.startsWith(name)) // keys maybe used multiple times
+                if(key.equals(name) || key.startsWith(namePrefix))
                 {
                     visitor.visit(groupItems.get(key));
                 }
@@ -389,7 +391,7 @@ public class Form<T> implements FormAdapter<T> {
         } else if (object instanceof Splittable) {
             Splittable split = (Splittable)object;
             if (split.isString()) return encodeValue(split.asString());
-            
+
             int c = 0;
             List<String> keys = split.getPropertyKeys();
             for (String key : keys) {
@@ -473,16 +475,16 @@ public class Form<T> implements FormAdapter<T> {
         if (selectionModel == null) {
             selectionModel = new SingleSelectionModel<T>();
         }
-        
+
         final SingleSelectionModel<T> finalSelectionModel = selectionModel;
-        
+
         selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 
             public void onSelectionChange(SelectionChangeEvent event) {
                 edit(finalSelectionModel.getSelectedObject());
             }
         });
-        
+
         table.setSelectionModel(finalSelectionModel);
 
         table.addRowCountChangeHandler(new RowCountChangeEvent.Handler() {
@@ -510,7 +512,7 @@ public class Form<T> implements FormAdapter<T> {
     /**
      * This is the entity that was originally passed in for editing.  It does not include
      * changes made by the user.
-     * 
+     *
      * @return The original entity used for editing.
      */
     public T getEditedEntity() {

@@ -19,12 +19,12 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
-
-import java.util.Map;
-import java.util.Set;
 
 /**
  * The default renderer for a group of form items.
@@ -32,6 +32,7 @@ import java.util.Set;
  * @see Form
  *
  * @author Heiko Braun
+ * @author David Bosschaert
  * @date 3/3/11
  */
 public class DefaultGroupRenderer implements GroupRenderer
@@ -43,16 +44,24 @@ public class DefaultGroupRenderer implements GroupRenderer
     @Override
     public Widget render(RenderMetaData metaData, String groupName, Map<String, FormItem> groupItems)
     {
-
         SafeHtmlBuilder builder = new SafeHtmlBuilder();
         builder.appendHtmlConstant(tablePrefix);
 
         // build html structure
-        String[] itemKeys = groupItems.keySet().toArray(new String[]{});
-        FormItem[] values = groupItems.values().toArray(new FormItem[]{});
+        ArrayList<String> itemKeys = new ArrayList<String>(groupItems.keySet());
+        ArrayList<FormItem> values = new ArrayList<FormItem>(groupItems.values());
+
+        // Remove the hidden items from both lists. Iterate from the back so that removal doesn't
+        // require adjustment of the numbering.
+        for (int i=values.size() - 1; i >= 0; i--) {
+            if (!values.get(i).render()) {
+                values.remove(i);
+                itemKeys.remove(i);
+            }
+        }
 
         int i=0;
-        while(i<itemKeys.length)
+        while(i<itemKeys.size())
         {
             builder.appendHtmlConstant("<tr>");
 
@@ -60,10 +69,10 @@ public class DefaultGroupRenderer implements GroupRenderer
             for(col=0; col<metaData.getNumColumns(); col++)
             {
                 int next = i + col;
-                if(next<itemKeys.length)
+                if(next<itemKeys.size())
                 {
-                    FormItem item = values[next];
-                    createItemCell(metaData, builder, itemKeys[next], item);
+                    FormItem item = values.get(next);
+                    createItemCell(metaData, builder, itemKeys.get(next), item);
                 }
                 else
                 {
@@ -80,8 +89,7 @@ public class DefaultGroupRenderer implements GroupRenderer
         HTMLPanel panel = new HTMLPanel(builder.toSafeHtml());
 
         // inline widget
-        Set<String> keys = groupItems.keySet();
-        for(String key : keys)
+        for(String key : itemKeys)
         {
             FormItem item = groupItems.get(key);
             final String widgetId = id + key;
