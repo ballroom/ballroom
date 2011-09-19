@@ -249,7 +249,7 @@ public class Form<T> implements FormAdapter<T> {
         this.listeners.remove(listener);
     }
 
-    private void visitItem(final String name, FormItemVisitor visitor) {
+    void visitItem(final String name, FormItemVisitor visitor) {
         String namePrefix = name + "_";
         for(Map<String, FormItem> groupItems : formItems.values())
         {
