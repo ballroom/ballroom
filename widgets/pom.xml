@@ -158,6 +158,9 @@
                     <additionalClasspathElement>${project.build.sourceDirectory}</additionalClasspathElement>
                     <additionalClasspathElement>${project.build.testSourceDirectory}</additionalClasspathElement>
                   </additionalClasspathElements>
+                  <includes>
+                    <include>**/*TestSuite.java</include>
+                  </includes>
                   <useManifestOnlyJar>false</useManifestOnlyJar>
                   <forkMode>always</forkMode>
                   <systemProperties>
