@@ -41,10 +41,6 @@
             <name>David Bosschaert</name>
             <id>dbosschaert</id>
         </developer>
-        <developer>
-            <name>Jason Greene</name>
-            <id>jgreene</id>
-        </developer>
     </developers>
 
     <licenses>
@@ -219,6 +215,10 @@
 
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                </plugin>
                 <plugin>
                     <artifactId>maven-enforcer-plugin</artifactId>
                     <version>1.0</version>
