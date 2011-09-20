@@ -82,6 +82,10 @@ public abstract class FormItem<T> implements InputElement<T> {
         this.errMessage = errMessage;
     }
 
+    public boolean render() {
+        return true;
+    }
+
     public boolean isModified() {
         return isModified;
     }
