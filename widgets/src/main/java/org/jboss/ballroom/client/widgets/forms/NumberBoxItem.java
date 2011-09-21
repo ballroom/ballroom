@@ -28,7 +28,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Heiko Braun
  * @date 3/28/11
  */
-public class NumberBoxItem extends FormItem<Integer> {
+public class NumberBoxItem extends FormItem<Number> {
 
     private TextBox textBox;
     private InputElementWrapper wrapper;
@@ -57,7 +57,7 @@ public class NumberBoxItem extends FormItem<Integer> {
     }
 
     @Override
-    public Integer getValue() {
+    public Number getValue() {
         String value = textBox.getValue().equals("") ? "0" : textBox.getValue();
         try {
             return Integer.valueOf(value);
@@ -73,8 +73,8 @@ public class NumberBoxItem extends FormItem<Integer> {
     }
 
     @Override
-    public void setValue(Integer number) {
-        if(number>=0)
+    public void setValue(Number number) {
+        if(number.longValue()>=0)
         {
             textBox.setValue(String.valueOf(number));
         }
@@ -97,18 +97,19 @@ public class NumberBoxItem extends FormItem<Integer> {
     }
 
     @Override
-    public boolean validate(Integer value) {
+    public boolean validate(Number value) {
 
         boolean outcome = true;
+        boolean isEmpty = textBox.getValue().equals("");
 
-        if(isRequired() && textBox.getValue().equals(""))
+        if(isRequired() && isEmpty)
         {
             outcome = false;
         }
-        else if(isRequired())
+        else if(!isEmpty)
         {
             try {
-                int i = Integer.parseInt(textBox.getValue());
+                long i = Long.parseLong(textBox.getValue());
                 outcome = (i>=0);
             } catch (NumberFormatException e) {
                 outcome = false;
