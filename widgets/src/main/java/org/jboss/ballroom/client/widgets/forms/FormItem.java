@@ -115,4 +115,6 @@ public abstract class FormItem<T> implements InputElement<T> {
     public abstract boolean validate(T value);
 
     public abstract void clearValue();
+
+    public enum VALUE {Undefined}
 }

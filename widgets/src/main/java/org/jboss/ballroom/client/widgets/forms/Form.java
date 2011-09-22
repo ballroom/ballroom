@@ -287,7 +287,12 @@ public class Form<T> implements FormAdapter<T> {
             {
                 Object val = diff.get(item.getName());
                 if(val!=null && item.isModified())
-                    finalDiff.put(item.getName(), val);
+                {
+                    if(item.isUndefined())
+                        finalDiff.put(item.getName(), FormItem.VALUE.Undefined);
+                    else
+                        finalDiff.put(item.getName(), val);
+                }
             }
         }
 
