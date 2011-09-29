@@ -30,11 +30,17 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class NumberBoxItem extends FormItem<Number> {
 
+    private boolean allowNegativeNumber;
     private TextBox textBox;
     private InputElementWrapper wrapper;
 
     public NumberBoxItem(String name, String title) {
+        this(name, title, false);
+    }
+    
+    public NumberBoxItem(String name, String title, boolean allowNegativeNumber) {
         super(name, title);
+        this.allowNegativeNumber = allowNegativeNumber;
 
         textBox = new TextBox();
         textBox.setName(name);
@@ -110,7 +116,7 @@ public class NumberBoxItem extends FormItem<Number> {
         {
             try {
                 long i = Long.parseLong(textBox.getValue());
-                outcome = (i>=0);
+                outcome = (i >= 0) || allowNegativeNumber;
             } catch (NumberFormatException e) {
                 outcome = false;
             }
