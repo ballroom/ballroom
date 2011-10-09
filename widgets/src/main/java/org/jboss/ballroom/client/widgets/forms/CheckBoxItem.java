@@ -45,7 +45,7 @@ public class CheckBoxItem extends FormItem<Boolean> {
     }
 
     @Override
-    protected void resetMetaData() {
+    public void resetMetaData() {
         super.resetMetaData();
         isUndefined = false; // implicitly defined
         checkBox.setValue(false);
