@@ -102,7 +102,7 @@ public abstract class FormItem<T> implements InputElement<T> {
         isUndefined = undefined;
     }
 
-    protected void resetMetaData() {
+    public void resetMetaData() {
         isModified = false;
         isUndefined = true;
         setErroneous(false);
