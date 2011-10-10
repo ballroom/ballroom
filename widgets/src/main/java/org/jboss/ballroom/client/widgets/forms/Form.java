@@ -280,7 +280,7 @@ public class Form<T> implements FormAdapter<T> {
 
         Map<String, Object> finalDiff = new HashMap<String,Object>();
 
-        // skip unmodified fields
+        // map changes, but skip unmodified fields
         for(Map<String, FormItem> groupItems : formItems.values())
         {
             for(FormItem item : groupItems.values())

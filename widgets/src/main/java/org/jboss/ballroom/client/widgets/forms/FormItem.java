@@ -37,7 +37,10 @@ public abstract class FormItem<T> implements InputElement<T> {
     protected boolean isModified = false;
     protected boolean isUndefined = true;
 
+    protected boolean supportExpressions = false;
+
     protected String errMessage = "Invalid input";
+
 
     public FormItem(String name, String title) {
         this.name = name;
@@ -108,6 +111,14 @@ public abstract class FormItem<T> implements InputElement<T> {
         setErroneous(false);
     }
 
+    public boolean doesSupportExpressions() {
+        return supportExpressions;
+    }
+
+    public void setSupportExpressions(boolean b) {
+        this.supportExpressions = b;
+    }
+
     public abstract Widget asWidget();
 
     public abstract void setEnabled(boolean b);
@@ -116,5 +127,5 @@ public abstract class FormItem<T> implements InputElement<T> {
 
     public abstract void clearValue();
 
-    public enum VALUE {Undefined}
+    public enum UNDEFINED {Value}
 }
