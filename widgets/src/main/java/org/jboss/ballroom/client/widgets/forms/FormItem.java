@@ -52,6 +52,18 @@ public abstract class FormItem<T> implements InputElement<T> {
         this.expressionValue = expr;
     }
 
+    public boolean isExpressionValue() {
+        /*if(!doesSupportExpressions())  // TODO: optimize from meta data
+            return false;
+        */
+        return asExpressionValue()!=null && asExpressionValue().startsWith("$");
+    }
+
+    // TODO: should become abstract
+    public String asExpressionValue() {
+        return null;
+    }
+
     public String getName() {
         return name;
     }
@@ -133,4 +145,15 @@ public abstract class FormItem<T> implements InputElement<T> {
     public abstract void clearValue();
 
     public enum UNDEFINED {Value}
+
+
+    protected void toggleExpressionInput(Widget target, boolean flag)
+    {
+        if(flag)
+        {
+            target.getElement().addClassName("expression-input");
+        }
+        else
+            target.getElement().removeClassName("expression-input");
+    }
 }

@@ -64,12 +64,18 @@ public class NumberBoxItem extends FormItem<Number> {
 
     @Override
     public Number getValue() {
+
         String value = textBox.getValue().equals("") ? "0" : textBox.getValue();
         try {
             return Integer.valueOf(value);
         } catch (NumberFormatException e) {
             return -1;
         }
+    }
+
+    @Override
+    public String asExpressionValue() {
+        return textBox.getValue();
     }
 
     @Override
@@ -80,8 +86,15 @@ public class NumberBoxItem extends FormItem<Number> {
 
     @Override
     public void setValue(Number number) {
-        if(number.longValue()>=0)
+
+        if(expressionValue!=null)
         {
+            toggleExpressionInput(textBox, true);
+            textBox.setValue(expressionValue);
+        }
+        else if(number.longValue()>=0)
+        {
+            toggleExpressionInput(textBox, false);
             textBox.setValue(String.valueOf(number));
         }
     }

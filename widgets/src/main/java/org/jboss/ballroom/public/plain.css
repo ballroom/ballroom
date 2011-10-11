@@ -716,3 +716,6 @@ a:focus {
 }
 
 
+.expression-input {
+    border: 1px solid green;
+}

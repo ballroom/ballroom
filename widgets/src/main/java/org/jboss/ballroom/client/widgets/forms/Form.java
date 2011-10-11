@@ -21,6 +21,7 @@ package org.jboss.ballroom.client.widgets.forms;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -149,18 +150,22 @@ public class Form<T> implements FormAdapter<T> {
             throw new IllegalArgumentException("Invalid entity: null");
 
         // Has to be an AutoBean
-        AutoBean<T> autoBean = AutoBeanUtils.getAutoBean(bean);
+        final AutoBean<T> autoBean = AutoBeanUtils.getAutoBean(bean);
         if(null==autoBean)
             throw new IllegalArgumentException("Not an auto bean: " + bean.getClass());
 
         this.editedEntity = bean;
+
+
+        final Map<String, String> exprMap = autoBean.getTag("EXPRESSIONS")!=null?
+                (Map<String,String>)autoBean.getTag("EXPRESSIONS") : Collections.EMPTY_MAP;
 
         autoBean.accept(new AutoBeanVisitor() {
 
             private boolean isComplex = false;
 
             @Override
-            public boolean visitValueProperty(String propertyName, final Object value, PropertyContext ctx) {
+            public boolean visitValueProperty(final String propertyName, final Object value, PropertyContext ctx) {
 
                 if(isComplex ) return true; // skip complex types
 
@@ -169,6 +174,9 @@ public class Form<T> implements FormAdapter<T> {
                     public void visit(FormItem item) {
 
                         item.resetMetaData();
+
+                        // expressions
+                        item.setExpressionValue(exprMap.get(propertyName));
 
                         if(value!=null)
                         {
@@ -286,7 +294,11 @@ public class Form<T> implements FormAdapter<T> {
             for(FormItem item : groupItems.values())
             {
                 Object val = diff.get(item.getName());
-                if(val!=null && item.isModified())
+                if(item.isExpressionValue())
+                {
+                    finalDiff.put(item.getName(), item.asExpressionValue());
+                }
+                else if(val!=null && item.isModified())
                 {
                     if(item.isUndefined())
                         finalDiff.put(item.getName(), FormItem.UNDEFINED.Value);
