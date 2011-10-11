@@ -59,7 +59,7 @@ public abstract class FormItem<T> implements InputElement<T> {
         return asExpressionValue()!=null && asExpressionValue().startsWith("$");
     }
 
-    // TODO: should become abstract
+    // to support expressions override this method
     public String asExpressionValue() {
         return null;
     }
