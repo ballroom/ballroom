@@ -172,7 +172,7 @@ public class Form<T> implements FormAdapter<T> {
                         item.resetMetaData();
 
                         // expressions
-                       // if(item.doesSupportExpressions())    not yet supported
+                       // if(item.doesSupportExpressions())
                         //{
                             String exprValue = exprMap.get(propertyName);
                             if(exprValue!=null)
@@ -577,17 +577,14 @@ public class Form<T> implements FormAdapter<T> {
     {
         final AutoBean autoBean = asAutoBean(bean);
 
-        final Map<String, String> exprMap = autoBean.getTag(EXPR_TAG)!=null?
-                (Map<String,String>)autoBean.getTag(EXPR_TAG) : new HashMap<String,String>();
+        Map<String, String> exprMap = (Map<String,String>)autoBean.getTag(EXPR_TAG);
+        if(null==exprMap)
+        {
+            exprMap = new HashMap<String,String>();
+            autoBean.setTag(EXPR_TAG, exprMap);
+        }
 
         return exprMap;
-    }
-
-    public static void setExpressions(Object bean, Map<String, String> expr)
-    {
-        final AutoBean autoBean = asAutoBean(bean);
-
-        autoBean.setTag(EXPR_TAG, expr);
     }
 
     private static AutoBean asAutoBean(Object bean) {
