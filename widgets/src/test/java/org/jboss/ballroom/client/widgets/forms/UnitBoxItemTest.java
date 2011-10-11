@@ -143,7 +143,7 @@ public class UnitBoxItemTest extends GWTTestCase {
     public void testModification() {
         UnitBoxItem<String> ubi = new UnitBoxItem<String>("amount", "units", "Amount", String.class);
         ubi.setChoices(Arrays.asList("x", "y", "z"), "y");
-        assertFalse("Precondition", ubi.isModified);
+        assertFalse("Precondition", ubi.isModified());
         ubi.textValueChangeHandler.onValueChange(null);
         assertTrue(ubi.isModified());
 

@@ -38,16 +38,16 @@ public class CheckBoxItem extends FormItem<Boolean> {
         checkBox.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
             @Override
             public void onValueChange(ValueChangeEvent<Boolean> booleanValueChangeEvent) {
-                isModified = true;
+                setModified(true);
             }
         });
-        isUndefined = false;
+        setUndefined(false);
     }
 
     @Override
     public void resetMetaData() {
         super.resetMetaData();
-        isUndefined = false; // implicitly defined
+        setUndefined(false); // implicitly defined
         checkBox.setValue(false);
     }
 

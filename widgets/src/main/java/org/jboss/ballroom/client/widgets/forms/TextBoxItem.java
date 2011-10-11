@@ -42,7 +42,7 @@ public class TextBoxItem extends FormItem<String> {
         textBox.addValueChangeHandler(new ValueChangeHandler<String>() {
             @Override
             public void onValueChange(ValueChangeEvent<String> event) {
-                isModified = true;
+                setModified(true);
             }
         });
         wrapper = new InputElementWrapper(textBox, this);

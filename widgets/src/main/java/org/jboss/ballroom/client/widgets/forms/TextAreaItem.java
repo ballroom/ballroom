@@ -41,7 +41,7 @@ public class TextAreaItem extends FormItem<String> {
         valueChangeHandler = new ValueChangeHandler<String>() {
             @Override
             public void onValueChange(ValueChangeEvent<String> event) {
-                isModified = true;
+                setModified(true);
             }
         };
         textArea.addValueChangeHandler(valueChangeHandler);

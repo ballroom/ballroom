@@ -57,11 +57,11 @@ public class TextAreaItemTest extends GWTTestCase {
     @Test
     public void testErroneous() {
         TextAreaItem tai = new TextAreaItem("a", "b");
-        Assert.assertFalse("Precondition", tai.isErroneous);
+        Assert.assertFalse("Precondition", tai.isErroneous());
         tai.setErroneous(true);
-        Assert.assertTrue(tai.isErroneous);
+        Assert.assertTrue(tai.isErroneous());
         tai.resetMetaData();
-        Assert.assertFalse(tai.isErroneous);
+        Assert.assertFalse(tai.isErroneous());
     }
 
     @Test

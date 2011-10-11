@@ -47,7 +47,7 @@ public class ListBoxItem extends FormItem<String> implements ChoiceItem<String> 
         valueChangeHandler = new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
-                isModified = true;
+                setModified(true);
             }
         };
         listBox.addChangeHandler(valueChangeHandler);
