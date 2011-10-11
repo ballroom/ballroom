@@ -40,9 +40,16 @@ public abstract class FormItem<T> implements InputElement<T> {
     private boolean isUndefined = true;
     private boolean supportExpressions = false;
 
+    protected String expressionValue = null;
+
     public FormItem(String name, String title) {
         this.name = name;
         this.title = title;
+    }
+
+    @Override
+    public void setExpressionValue(String expr) {
+        this.expressionValue = expr;
     }
 
     public String getName() {

@@ -28,6 +28,8 @@ public interface InputElement<T> {
 
     void setValue(T value);
 
+    void setExpressionValue(String expr);
+
     void setErroneous(boolean b);
 
     void setRequired(boolean required);
