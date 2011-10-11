@@ -38,7 +38,7 @@ public abstract class FormItem<T> implements InputElement<T> {
     private boolean isErroneous = false;
     private boolean isModified = false;
     private boolean isUndefined = true;
-    private boolean supportExpressions = false;
+    //private boolean supportExpressions = false;
 
     protected String expressionValue = null;
 
@@ -128,13 +128,13 @@ public abstract class FormItem<T> implements InputElement<T> {
         setErroneous(false);
     }
 
-    public boolean doesSupportExpressions() {
+    /*public boolean doesSupportExpressions() {
         return supportExpressions;
     }
 
     public void setSupportExpressions(boolean b) {
         this.supportExpressions = b;
-    }
+    } */
 
     public abstract Widget asWidget();
 

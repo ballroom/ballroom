@@ -19,14 +19,6 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.google.gwt.autobean.shared.AutoBean;
 import com.google.gwt.autobean.shared.AutoBeanCodex;
 import com.google.gwt.autobean.shared.AutoBeanFactory;
@@ -40,8 +32,14 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.RowCountChangeEvent;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
-
 import org.jboss.ballroom.client.spi.Framework;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Form data binding that works on {@link AutoBean} entities.
@@ -174,8 +172,17 @@ public class Form<T> implements FormAdapter<T> {
                         item.resetMetaData();
 
                         // expressions
-                        item.setExpressionValue(exprMap.get(propertyName));
+                       // if(item.doesSupportExpressions())    not yet supported
+                        //{
+                            String exprValue = exprMap.get(propertyName);
+                            if(exprValue!=null)
+                            {
+                                item.setUndefined(false);
+                                item.setExpressionValue(exprValue);
+                            }
+                        //}
 
+                        // values
                         if(value!=null)
                         {
                             item.setUndefined(false);
@@ -292,10 +299,14 @@ public class Form<T> implements FormAdapter<T> {
             for(FormItem item : groupItems.values())
             {
                 Object val = diff.get(item.getName());
+
+                // expression have precedence over real values
                 if(item.isExpressionValue())
                 {
                     finalDiff.put(item.getName(), item.asExpressionValue());
                 }
+
+                // regular values
                 else if(val!=null && item.isModified())
                 {
                     if(item.isUndefined())
