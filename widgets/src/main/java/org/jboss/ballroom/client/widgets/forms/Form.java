@@ -52,6 +52,7 @@ import org.jboss.ballroom.client.spi.Framework;
 public class Form<T> implements FormAdapter<T> {
 
     private final static Framework framework = GWT.create(Framework.class);
+    private static final String EXPR_TAG = "EXPRESSIONS";
 
     private AutoBeanFactory factory;
     private final static String DEFAULT_GROUP = "default";
@@ -150,15 +151,12 @@ public class Form<T> implements FormAdapter<T> {
             throw new IllegalArgumentException("Invalid entity: null");
 
         // Has to be an AutoBean
-        final AutoBean<T> autoBean = AutoBeanUtils.getAutoBean(bean);
-        if(null==autoBean)
-            throw new IllegalArgumentException("Not an auto bean: " + bean.getClass());
+        final AutoBean<T> autoBean = asAutoBean(bean);
 
         this.editedEntity = bean;
 
 
-        final Map<String, String> exprMap = autoBean.getTag("EXPRESSIONS")!=null?
-                (Map<String,String>)autoBean.getTag("EXPRESSIONS") : Collections.EMPTY_MAP;
+        final Map<String, String> exprMap = getExpressions(editedEntity);
 
         autoBean.accept(new AutoBeanVisitor() {
 
@@ -343,6 +341,8 @@ public class Form<T> implements FormAdapter<T> {
     @Override
     public T getUpdatedEntity() {
 
+        Map<String,String> exprMap = new HashMap<String,String>();
+
         StringBuilder builder = new StringBuilder("{");
         int g=0;
         for(Map<String, FormItem> groupItems : formItems.values())
@@ -363,6 +363,10 @@ public class Form<T> implements FormAdapter<T> {
 
                 i++;
 
+
+                // Expressions
+                if(item.isExpressionValue())
+                    exprMap.put(item.getName(), item.asExpressionValue());
             }
 
             if(g<formItems.size()-1)
@@ -377,6 +381,8 @@ public class Form<T> implements FormAdapter<T> {
                 conversionType,
                 builder.toString()
         );
+
+        decoded.setTag(EXPR_TAG, exprMap);
 
         return (T) decoded.as();
 
@@ -554,4 +560,30 @@ public class Form<T> implements FormAdapter<T> {
 
         return result;
     }
+
+
+    public static Map<String,String> getExpressions(Object bean)
+    {
+        final AutoBean autoBean = asAutoBean(bean);
+
+        final Map<String, String> exprMap = autoBean.getTag(EXPR_TAG)!=null?
+                (Map<String,String>)autoBean.getTag(EXPR_TAG) : new HashMap<String,String>();
+
+        return exprMap;
+    }
+
+    public static void setExpressions(Object bean, Map<String, String> expr)
+    {
+        final AutoBean autoBean = asAutoBean(bean);
+
+        autoBean.setTag(EXPR_TAG, expr);
+    }
+
+    private static AutoBean asAutoBean(Object bean) {
+        final AutoBean autoBean = AutoBeanUtils.getAutoBean(bean);
+        if(null==autoBean)
+            throw new IllegalArgumentException("Not an auto bean: " + bean.getClass());
+        return autoBean;
+    }
+
 }
