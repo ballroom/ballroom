@@ -126,6 +126,7 @@ public abstract class FormItem<T> implements InputElement<T> {
         setModified(false);
         setUndefined(true);
         setErroneous(false);
+        setExpressionValue(null);
     }
 
     /*public boolean doesSupportExpressions() {
