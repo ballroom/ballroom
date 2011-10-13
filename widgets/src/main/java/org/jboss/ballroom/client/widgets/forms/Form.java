@@ -97,6 +97,10 @@ public class Form<T> implements FormAdapter<T> {
         setFieldsInGroup(DEFAULT_GROUP, items);
     }
 
+    public void setFields(FormItem[]... items) {
+        setFieldsInGroup(DEFAULT_GROUP, flatten(items));
+    }
+
     int maxTitleLength = 0; // used for auto layout
     public void setFieldsInGroup(String group, FormItem... items) {
 
@@ -126,11 +130,26 @@ public class Form<T> implements FormAdapter<T> {
         }
     }
 
+    public void setFieldsInGroup(String group, FormItem[]... items) {
+        setFieldsInGroup(group, flatten(items));
+    }
+
     public void setFieldsInGroup(String group, GroupRenderer renderer, FormItem... items) {
 
         this.renderer.put(group, renderer);
 
         setFieldsInGroup(group, items);
+    }
+
+    private FormItem<?>[] flatten(FormItem<?>[]... items) {
+        List<FormItem<?>> l = new ArrayList<FormItem<?>>();
+        for (FormItem<?> [] fiArray : items) {
+            for (FormItem<?> fi : fiArray) {
+                l.add(fi);
+            }
+        }
+        FormItem<?>[] array = l.toArray(new FormItem<?>[l.size()]);
+        return array;
     }
 
     /**

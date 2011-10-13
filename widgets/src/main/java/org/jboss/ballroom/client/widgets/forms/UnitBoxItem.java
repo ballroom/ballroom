@@ -41,16 +41,16 @@ public class UnitBoxItem<T> extends FormItem<T> implements ChoiceItem<String> {
     private String defaultUnit;
     ValueChangeHandler<String> textValueChangeHandler;
     private final HorizontalPanel wrapper;
-    private final UnitFieldFormItem unitFieldFormItem;
+    private UnitFieldFormItem unitFieldFormItem;
     ChangeHandler unitValueChangeHandler;
 
-    public UnitBoxItem(String name, String unitName, String title, Class<T> cls) {
-        super(name, title);
+    public UnitBoxItem(String propertyName, String title, Class<T> cls) {
+        super(propertyName, title);
 
         valueClass = cls;
 
         textBox = new TextBox();
-        textBox.setName(name);
+        textBox.setName(propertyName);
         textBox.setTitle(title);
         textValueChangeHandler = new ValueChangeHandler<String>() {
             @Override
@@ -62,13 +62,14 @@ public class UnitBoxItem<T> extends FormItem<T> implements ChoiceItem<String> {
 
         unitBox = new ListBox();
         unitBox.setVisibleItemCount(1);
-        unitBox.setName(unitName);
-        unitFieldFormItem = new UnitFieldFormItem(unitName);
+        unitBox.setName(propertyName + "unit");
+        unitBox.setTitle(unitBox.getName());
+        unitFieldFormItem = new UnitFieldFormItem();
 
         unitValueChangeHandler = new ChangeHandler() {
             @Override
             public void onChange(ChangeEvent event) {
-                setModified(true);
+                unitFieldFormItem.setModified(true);
             }
         };
         unitBox.addChangeHandler(unitValueChangeHandler);
@@ -76,6 +77,10 @@ public class UnitBoxItem<T> extends FormItem<T> implements ChoiceItem<String> {
         wrapper = new HorizontalPanel();
         wrapper.add(textBox);
         wrapper.add(unitBox);
+    }
+
+    public void setUnitPropertyName(String name) {
+        unitFieldFormItem.name = name;
     }
 
     @Override
@@ -169,8 +174,8 @@ public class UnitBoxItem<T> extends FormItem<T> implements ChoiceItem<String> {
     }
 
     private class UnitFieldFormItem extends FormItem<String> {
-        public UnitFieldFormItem(String name) {
-            super(name, name);
+        public UnitFieldFormItem() {
+            super(null, unitBox.getTitle()); // The name is set using the setUnitPropertyName() method
         }
 
         @Override

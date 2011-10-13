@@ -39,7 +39,8 @@ public class UnitBoxItemTest extends GWTTestCase {
 
     @Test
     public void testUnixBoxItem() {
-        UnitBoxItem<String> ubi = new UnitBoxItem<String>("amount", "units", "Amount", String.class);
+        UnitBoxItem<String> ubi = new UnitBoxItem<String>("amount", "Amount", String.class);
+        ubi.setUnitPropertyName("units");
         assertEquals("amount", ubi.getName());
         assertEquals("units", ubi.getUnitItem().getName());
         assertEquals("Amount", ubi.getTitle());
@@ -75,7 +76,8 @@ public class UnitBoxItemTest extends GWTTestCase {
 
     @Test
     public void testWidget() {
-        UnitBoxItem<String> ubi = new UnitBoxItem<String>("amount", "units", "Amount", String.class);
+        UnitBoxItem<String> ubi = new UnitBoxItem<String>("amount", "Amount", String.class);
+        ubi.setUnitPropertyName("units");
         ComplexPanel widget = (ComplexPanel) ubi.asWidget();
         TextBox foundTextBox = null;
         ListBox foundListBox = null;
@@ -105,7 +107,8 @@ public class UnitBoxItemTest extends GWTTestCase {
 
     @Test
     public void testLong() {
-        UnitBoxItem<Long> ubi = new UnitBoxItem<Long>("amount", "units", "Amount", Long.class);
+        UnitBoxItem<Long> ubi = new UnitBoxItem<Long>("amount", "Amount", Long.class);
+        ubi.setUnitPropertyName("units");
         ubi.setValue(Long.MAX_VALUE);
         assertEquals("" + Long.MAX_VALUE, ubi.textBox.getText());
         ubi.textBox.setText("" + Long.MIN_VALUE);
@@ -119,7 +122,8 @@ public class UnitBoxItemTest extends GWTTestCase {
 
     @Test
     public void testInteger() {
-        UnitBoxItem<Integer> ubi = new UnitBoxItem<Integer>("amount", "units", "Amount", Integer.class);
+        UnitBoxItem<Integer> ubi = new UnitBoxItem<Integer>("amount", "Amount", Integer.class);
+        ubi.setUnitPropertyName("units");
         ubi.setValue(Integer.MAX_VALUE);
         assertEquals("" + Integer.MAX_VALUE, ubi.textBox.getText());
         ubi.textBox.setText("" + Integer.MIN_VALUE);
@@ -133,7 +137,8 @@ public class UnitBoxItemTest extends GWTTestCase {
 
     @Test
     public void testRendering() {
-        UnitBoxItem<String> ubi = new UnitBoxItem<String>("amount", "units", "Amount", String.class);
+        UnitBoxItem<String> ubi = new UnitBoxItem<String>("amount", "Amount", String.class);
+        ubi.setUnitPropertyName("units");
         assertTrue(ubi.render());
         assertFalse("The unit item should return false on its render method as its rendered as part of the main control",
             ubi.getUnitItem().render());
@@ -141,7 +146,8 @@ public class UnitBoxItemTest extends GWTTestCase {
 
     @Test
     public void testModification() {
-        UnitBoxItem<String> ubi = new UnitBoxItem<String>("amount", "units", "Amount", String.class);
+        UnitBoxItem<String> ubi = new UnitBoxItem<String>("amount", "Amount", String.class);
+        ubi.setUnitPropertyName("units");
         ubi.setChoices(Arrays.asList("x", "y", "z"), "y");
         assertFalse("Precondition", ubi.isModified());
         ubi.textValueChangeHandler.onValueChange(null);
@@ -151,6 +157,6 @@ public class UnitBoxItemTest extends GWTTestCase {
         assertFalse(ubi.isModified());
 
         ubi.unitValueChangeHandler.onChange(null);
-        assertTrue(ubi.isModified());
+        assertTrue(ubi.getUnitItem().isModified());
     }
 }
