@@ -19,6 +19,7 @@
 package org.jboss.ballroom.client.widgets.forms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.gwt.junit.client.GWTTestCase;
@@ -58,5 +59,49 @@ public class FormTest extends GWTTestCase {
         f.visitItem("helloThere", visitor);
         assertEquals(1, visited.size());
         assertSame(item2, visited.get(0));
+    }
+
+    @Test
+    public void testSetFields1() {
+        FormItem<String> item = new TextBoxItem("1", "1");
+        FormItem<String> item2 = new TextBoxItem("2", "2");
+        FormItem<String> item3 = new TextBoxItem("3", "3");
+        Form<Object> f = new Form<Object>(Object.class);
+        f.setFields(item, item2, item3);
+
+        assertEquals(Arrays.asList("1", "2", "3"), f.getFormItemNames());
+    }
+
+    @Test
+    public void testSetFields2() {
+        FormItem<String> item = new TextBoxItem("1", "1");
+        FormItem<String> item2 = new TextBoxItem("2", "2");
+        FormItem<String> item3 = new TextBoxItem("3", "3");
+        Form<Object> f = new Form<Object>(Object.class);
+        f.setFields(new FormItem[] {item, item2}, new FormItem [] {}, new FormItem[] {item3});
+
+        assertEquals(Arrays.asList("1", "2", "3"), f.getFormItemNames());
+    }
+
+    @Test
+    public void testSetFieldsInGroup1() {
+        FormItem<String> item = new TextBoxItem("1", "1");
+        FormItem<String> item2 = new TextBoxItem("2", "2");
+        FormItem<String> item3 = new TextBoxItem("3", "3");
+        Form<Object> f = new Form<Object>(Object.class);
+        f.setFieldsInGroup("mygroup", item, item2, item3);
+
+        assertEquals(Arrays.asList("1", "2", "3"), f.getFormItemNames());
+    }
+
+    @Test
+    public void testSetFieldsInGroup2() {
+        FormItem<String> item = new TextBoxItem("1", "1");
+        FormItem<String> item2 = new TextBoxItem("2", "2");
+        FormItem<String> item3 = new TextBoxItem("3", "3");
+        Form<Object> f = new Form<Object>(Object.class);
+        f.setFieldsInGroup("someGroup", new FormItem[] {item, item2}, new FormItem [] {}, new FormItem[] {item3});
+
+        assertEquals(Arrays.asList("1", "2", "3"), f.getFormItemNames());
     }
 }
