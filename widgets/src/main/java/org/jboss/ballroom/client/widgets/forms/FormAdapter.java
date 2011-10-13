@@ -20,6 +20,7 @@ package org.jboss.ballroom.client.widgets.forms;
 
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.IsWidget;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -85,6 +86,12 @@ public interface FormAdapter<T> extends IsWidget {
      */
     T getUpdatedEntity();
 
+    /**
+     * Get the names of all the FormItems
+     * @return The names.
+     */
+    public List<String> getFormItemNames();
+            
     /**
      * Enable/disable this form.
      *
