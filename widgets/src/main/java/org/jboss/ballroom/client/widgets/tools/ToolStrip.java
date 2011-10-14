@@ -56,4 +56,8 @@ public class ToolStrip extends HorizontalPanel{
         right.add(button);
 
     }
+
+    public boolean hasButtons() {
+        return left.getWidgetCount()>0 || right.getWidgetCount()>0;
+    }
 }
