@@ -98,7 +98,11 @@ public class TextBoxItem extends FormItem<String> {
     @Override
     public boolean validate(String value) {
 
-        if(isRequired() && value.equals(""))
+        if(expressionValue!=null)
+        {
+            return true;
+        }
+        else if(isRequired() && value.equals(""))
         {
             return false;
         }

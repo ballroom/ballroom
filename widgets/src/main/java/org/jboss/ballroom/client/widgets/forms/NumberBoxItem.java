@@ -121,7 +121,12 @@ public class NumberBoxItem extends FormItem<Number> {
         boolean outcome = true;
         boolean isEmpty = textBox.getValue().equals("");
 
-        if(isRequired() && isEmpty)
+
+        if(expressionValue!=null)
+        {
+            outcome = true;
+        }
+        else if(isRequired() && isEmpty)
         {
             outcome = false;
         }
