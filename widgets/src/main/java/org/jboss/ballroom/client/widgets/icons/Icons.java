@@ -127,4 +127,7 @@ public interface Icons extends ClientBundle {
     @Source("comboBoxPicker.png")
     ImageResource comboPicker();
 
+    @Source("expr.png")
+    ImageResource expression();
+
 }

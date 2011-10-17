@@ -34,16 +34,41 @@ import org.jboss.ballroom.client.widgets.icons.Icons;
  */
 class InputElementWrapper extends HorizontalPanel {
 
-    private Image img = new Image(Icons.INSTANCE.exclamation());
+    private Image err = new Image(Icons.INSTANCE.exclamation());
+    private Image expr = new Image(Icons.INSTANCE.expression());
 
     public InputElementWrapper(Widget widget, final InputElement input) {
         super();
         add(widget);
-        add(img);
-        img.setVisible(false);
-        img.getElement().getParentElement().setAttribute("style", "width:16px;vertical-align:middle");
 
-        img.addClickHandler(new ClickHandler() {
+        add(expr);
+        expr.setVisible(false);
+        expr.getElement().getParentElement().setAttribute("style", "width:16px;vertical-align:middle");
+
+        /*
+
+        TODO: resolve expressions
+
+        expr.addClickHandler(new ClickHandler() {
+
+            @Override
+            public void onClick(ClickEvent event) {
+
+                PopupPanel popup = new PopupPanel(true);
+                popup.getElement().setAttribute("style", "z-index:20");
+                popup.setWidget(new Label(input.getErrMessage()));
+                popup.setStyleName("popup-hint");
+                popup.setPopupPosition(err.getAbsoluteLeft()+16, err.getAbsoluteTop()+16);
+                popup.show();
+            }
+        });*/
+
+        // error icon
+        add(err);
+        err.setVisible(false);
+        err.getElement().getParentElement().setAttribute("style", "width:16px;vertical-align:middle");
+
+        err.addClickHandler(new ClickHandler() {
 
             @Override
             public void onClick(ClickEvent event) {
@@ -51,7 +76,7 @@ class InputElementWrapper extends HorizontalPanel {
                 popup.getElement().setAttribute("style", "z-index:20");
                 popup.setWidget(new Label(input.getErrMessage()));
                 popup.setStyleName("popup-hint");
-                popup.setPopupPosition(img.getAbsoluteLeft()+16, img.getAbsoluteTop()+16);
+                popup.setPopupPosition(err.getAbsoluteLeft()+16, err.getAbsoluteTop()+16);
                 popup.show();
             }
         });
@@ -59,7 +84,12 @@ class InputElementWrapper extends HorizontalPanel {
 
     public void setErroneous(boolean hasErrors)
     {
-        img.setVisible(hasErrors);
+        err.setVisible(hasErrors);
+    }
+
+    public void setExpression(boolean isExpression)
+    {
+        expr.setVisible(isExpression);
     }
 
 }

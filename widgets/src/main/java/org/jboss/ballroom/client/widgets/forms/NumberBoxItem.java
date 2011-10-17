@@ -147,4 +147,9 @@ public class NumberBoxItem extends FormItem<Number> {
     public void clearValue() {
         this.textBox.setText("");
     }
+
+    @Override
+    protected void toggleExpressionInput(Widget target, boolean flag) {
+        wrapper.setExpression(flag);
+    }
 }

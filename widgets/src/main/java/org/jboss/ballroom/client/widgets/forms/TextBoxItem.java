@@ -117,4 +117,9 @@ public class TextBoxItem extends FormItem<String> {
     public void clearValue() {
         textBox.setText("");
     }
+
+    @Override
+    protected void toggleExpressionInput(Widget target, boolean flag) {
+        wrapper.setExpression(flag);
+    }
 }
