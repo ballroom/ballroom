@@ -122,7 +122,7 @@ public class NumberBoxItem extends FormItem<Number> {
         boolean isEmpty = textBox.getValue().equals("");
 
 
-        if(expressionValue!=null)
+        if(expressionValue!=null || isExpressionScheme(textBox.getValue()))
         {
             outcome = true;
         }

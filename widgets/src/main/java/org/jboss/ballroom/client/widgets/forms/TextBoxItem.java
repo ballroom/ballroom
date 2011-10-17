@@ -98,7 +98,7 @@ public class TextBoxItem extends FormItem<String> {
     @Override
     public boolean validate(String value) {
 
-        if(expressionValue!=null)
+        if(expressionValue!=null || isExpressionScheme(textBox.getValue()))
         {
             return true;
         }

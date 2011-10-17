@@ -157,4 +157,9 @@ public abstract class FormItem<T> implements InputElement<T> {
         else
             target.getElement().removeClassName("expression-input");
     }
+
+    public static boolean isExpressionScheme(String value)
+    {
+        return value.startsWith("${") && value.endsWith("}");
+    }
 }
