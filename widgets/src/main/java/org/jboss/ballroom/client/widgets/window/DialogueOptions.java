@@ -31,6 +31,9 @@ import org.jboss.ballroom.client.widgets.common.DefaultButton;
  */
 public class DialogueOptions extends HorizontalPanel {
 
+    private DefaultButton submit;
+    private Label cancel;
+
     public DialogueOptions(ClickHandler submitHandler, ClickHandler cancelHandler) {
         this("Save", submitHandler, "Cancel", cancelHandler);
     }
@@ -41,12 +44,12 @@ public class DialogueOptions extends HorizontalPanel {
 
         getElement().setAttribute("style", "margin-top:10px;width:100%");
 
-        DefaultButton submit = new DefaultButton(submitText);
+        submit = new DefaultButton(submitText);
         submit.getElement().setAttribute("style", "min-width:60px;height:18px");
         submit.addClickHandler(submitHandler);
 
 
-        Label cancel = new Label(cancelText);
+        cancel = new Label(cancelText);
         cancel.setStyleName("html-link");
         cancel.addClickHandler(cancelHandler);
 
@@ -62,5 +65,11 @@ public class DialogueOptions extends HorizontalPanel {
         cancel.getElement().getParentElement().setAttribute("style","vertical-align:middle");
         submit.getElement().getParentElement().setAttribute("align", "right");
         submit.getElement().getParentElement().setAttribute("width", "100%");
+    }
+
+    public DialogueOptions showCancel(boolean b)
+    {
+        cancel.setVisible(b);
+        return this;
     }
 }

@@ -78,6 +78,40 @@ public class Feedback {
         window.center();
     }
 
+     public static void alert(String title, String message)
+    {
+        final DefaultWindow window = new DefaultWindow(title);
+
+        int width = 320;
+        int height = 240;
+
+        window.setWidth(width);
+        window.setHeight(height);
+
+        window.setGlassEnabled(true);
+
+        VerticalPanel panel = new VerticalPanel();
+        panel.setStyleName("default-window-content");
+
+        HTML text = new HTML(message);
+        panel.add(text);
+
+        ClickHandler confirmHandler = new ClickHandler() {
+
+            public void onClick(ClickEvent event) {
+                window.hide();
+            }
+        };
+
+        DialogueOptions options = new DialogueOptions("OK", confirmHandler, "Cancel", confirmHandler);
+
+        Widget content = new WindowContentBuilder(panel, options.showCancel(false)).build();
+
+        window.setWidget(content);
+
+        window.center();
+    }
+
     public interface ConfirmationHandler
     {
         void onConfirmation(boolean isConfirmed);
