@@ -534,7 +534,14 @@ public class Form<T> implements FormAdapter<T> {
         selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 
             public void onSelectionChange(SelectionChangeEvent event) {
-                edit(finalSelectionModel.getSelectedObject());
+                T selectedObject = finalSelectionModel.getSelectedObject();
+                if(selectedObject!=null)
+                    edit(selectedObject);
+                else
+                {
+                    clearValues();
+
+                }
             }
         });
 
@@ -552,6 +559,7 @@ public class Form<T> implements FormAdapter<T> {
     }
 
     public void clearValues() {
+
         for(Map<String, FormItem> groupItems : formItems.values())
         {
             for(FormItem item : groupItems.values())
@@ -560,6 +568,7 @@ public class Form<T> implements FormAdapter<T> {
             }
         }
 
+        editedEntity = null;
     }
 
     /**
