@@ -97,29 +97,8 @@
 
         <dependency>
             <groupId>com.gwtplatform</groupId>
-            <artifactId>gwtp-all</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-context</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-beans</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-web</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>net.sourceforge.htmlunit</groupId>
-                    <artifactId>crawl_htmlunit</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>gwtp-mvp-client</artifactId>
+            <scope>provided</scope>
         </dependency>
         
         <!-- Testing dependencies -->
