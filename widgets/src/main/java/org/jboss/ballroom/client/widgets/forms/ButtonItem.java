@@ -31,9 +31,17 @@ public class ButtonItem extends FormItem<Boolean> {
 
     protected DefaultButton button;
 
+    @Deprecated
     public ButtonItem(String name, String title) {
         super(name, title);
         this.button = new DefaultButton(title);
+        setModified(false);
+        setUndefined(false);
+    }
+
+    public ButtonItem(String name, String title, String label) {
+        super(name, title);
+        this.button = new DefaultButton(label);
         setModified(false);
         setUndefined(false);
     }
