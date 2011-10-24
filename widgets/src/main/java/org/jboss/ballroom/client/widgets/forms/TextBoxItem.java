@@ -65,18 +65,19 @@ public class TextBoxItem extends FormItem<String> {
     }
 
     @Override
-    public void setValue(String value) {
-
+    public void setExpressionValue(String expr) {
+        this.expressionValue = expr;
         if(expressionValue!=null)
         {
             toggleExpressionInput(textBox, true);
             textBox.setValue(expressionValue);
         }
-        else
-        {
-            toggleExpressionInput(textBox, false);
-            textBox.setValue(value.trim());
-        }
+    }
+
+    @Override
+    public void setValue(String value) {
+        toggleExpressionInput(textBox, false);
+        textBox.setValue(value.trim());
     }
 
     @Override

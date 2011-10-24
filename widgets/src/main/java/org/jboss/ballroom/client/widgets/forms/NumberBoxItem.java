@@ -28,7 +28,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Heiko Braun
  * @date 3/28/11
  */
-public class NumberBoxItem extends FormItem<Number> {
+public class    NumberBoxItem extends FormItem<Number> {
 
     private boolean allowNegativeNumber;
     private TextBox textBox;
@@ -85,16 +85,21 @@ public class NumberBoxItem extends FormItem<Number> {
     }
 
     @Override
-    public void setValue(Number number) {
+    public void setExpressionValue(String expr) {
 
+        this.expressionValue = expr;
         if(expressionValue!=null)
         {
             toggleExpressionInput(textBox, true);
             textBox.setValue(expressionValue);
         }
-        else if(number.longValue()>=0)
+    }
+
+    @Override
+    public void setValue(Number number) {
+        toggleExpressionInput(textBox, false);
+        if(number.longValue()>=0)
         {
-            toggleExpressionInput(textBox, false);
             textBox.setValue(String.valueOf(number));
         }
     }
