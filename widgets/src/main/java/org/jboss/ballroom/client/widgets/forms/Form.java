@@ -202,7 +202,7 @@ public class Form<T> implements FormAdapter<T> {
                         //}
 
                         // values
-                        if(value!=null)
+                        else if(value!=null)
                         {
                             item.setUndefined(false);
                             item.setValue(value);
