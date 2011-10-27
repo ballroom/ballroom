@@ -27,6 +27,9 @@ import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Event;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SelectionModel;
+import com.google.gwt.view.client.SingleSelectionModel;
 
 import java.util.Collections;
 import java.util.List;
@@ -45,6 +48,8 @@ public class DefaultCellTable<T> extends CellTable {
 
     private boolean isEmpty = false;
     private boolean isEnabled = false;
+
+    private T lastSelection = null;
 
     public interface RowOverHandler {
         void onRowOver(int rowNum);
@@ -153,6 +158,25 @@ public class DefaultCellTable<T> extends CellTable {
                 }
             }
         }
+    }
+
+    @Override
+    public void setSelectionModel(SelectionModel selectionModel) {
+        super.setSelectionModel(selectionModel);
+        if(selectionModel instanceof SingleSelectionModel)
+        {
+            final SingleSelectionModel<T> model = ((SingleSelectionModel<T>)selectionModel);
+            model.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+                @Override
+                public void onSelectionChange(SelectionChangeEvent event) {
+                    lastSelection = model.getSelectedObject();
+                }
+            });
+        }
+    }
+
+    public T getLastSelection() {
+        return lastSelection;
     }
 
     public void setRowOverHandler(RowOverHandler rowOverHandler) {
