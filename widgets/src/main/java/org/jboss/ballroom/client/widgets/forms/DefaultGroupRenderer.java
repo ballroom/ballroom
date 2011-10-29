@@ -105,7 +105,12 @@ public class DefaultGroupRenderer implements GroupRenderer
         final String widgetId = id + key;
 
         builder.appendHtmlConstant("<td class='form-item-title' style='width:"+metaData.getTitleWidth()*5+"pt'>");
-        builder.appendEscaped(item.getTitle()+":");
+        
+        String title = item.getTitle();
+        if ((title != null) && title.trim().length() > 0) {
+            builder.appendEscaped(item.getTitle()+":");
+        }
+        
         builder.appendHtmlConstant("</td>");
 
         builder.appendHtmlConstant("<td id='" + widgetId + "' class='form-item'>").appendHtmlConstant("</td>");
