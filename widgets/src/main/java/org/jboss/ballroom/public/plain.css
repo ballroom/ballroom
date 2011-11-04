@@ -70,6 +70,7 @@ a:focus {
     color: black;
     border: 1px solid #A7ABB4;
     width:100%;
+    background-color:#ffffff;
 }
 
 .cellTableHeader {
