@@ -195,12 +195,12 @@ public class ComboBox implements HasValueChangeHandlers<String> {
 
         if(isEnabled)
         {
-            popup.setWidth(header.getOffsetWidth()+"px");
+            popup.setWidth((header.getOffsetWidth()-10)+"px");
             popup.setHeight((cellList.getRowCount()*25)+"px");
 
             popup.setPopupPosition(
                     header.getAbsoluteLeft(),
-                    header.getAbsoluteTop()+20
+                    header.getAbsoluteTop()+22
             );
 
             popup.show();
