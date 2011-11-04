@@ -20,6 +20,8 @@
 package org.jboss.ballroom.client.widgets.tools;
 
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Widget;
+import org.jboss.ballroom.client.widgets.forms.ComboBox;
 
 /**
  * @author Heiko Braun
@@ -59,5 +61,14 @@ public class ToolStrip extends HorizontalPanel{
 
     public boolean hasButtons() {
         return left.getWidgetCount()>0 || right.getWidgetCount()>0;
+    }
+
+    public void addToolWidget(Widget widget) {
+        left.add(widget);
+    }
+
+    public void addToolWidgetRight(Widget widget) {
+
+        right.add(widget);
     }
 }
