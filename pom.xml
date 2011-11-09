@@ -75,10 +75,16 @@
     <dependencyManagement>
         <dependencies>
 
-            <!-- GWT related -->
+               <!-- GWT related -->
             <dependency>
                 <groupId>com.google.gwt</groupId>
                 <artifactId>gwt-servlet</artifactId>
+                <version>${gwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-dev</artifactId>
                 <version>${gwt.version}</version>
             </dependency>
 
@@ -89,10 +95,17 @@
             </dependency>
 
             <dependency>
-                <groupId>com.google.gwt</groupId>
-                <artifactId>gwt-dev</artifactId>
-                <version>${gwt.version}</version>
-                <scope>runtime</scope>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>1.0.0.GA</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>1.0.0.GA</version>
+                <classifier>sources</classifier>
+                <scope>provided</scope>
             </dependency>
 
             <dependency>
@@ -100,6 +113,21 @@
                 <artifactId>gwt-log</artifactId>
                 <version>${gwt-log.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                 <groupId>com.gwtplatform</groupId>
+                 <artifactId>gwtp-mvp-client</artifactId>
+                 <version>${gwtp.version}</version>
+                 <scope>provided</scope>
+               </dependency>
+
 
             <dependency>
                 <groupId>com.google.inject</groupId>
@@ -119,33 +147,6 @@
                 <version>${gin.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.gwtplatform</groupId>
-                <artifactId>gwtp-mvp-client</artifactId>
-                <scope>provided</scope>
-                <version>${gwtp.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>1.0.0.GA</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>1.0.0.GA</version>
-                <classifier>sources</classifier>
-                <scope>provided</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-                <scope>test</scope>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
