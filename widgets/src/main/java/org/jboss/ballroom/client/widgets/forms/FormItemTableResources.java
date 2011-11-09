@@ -3,7 +3,6 @@ package org.jboss.ballroom.client.widgets.forms;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.cellview.client.CellTable;
-import org.jboss.ballroom.client.widgets.tables.DefaultCellTableStyle;
 
 /**
  * @author Heiko Braun
