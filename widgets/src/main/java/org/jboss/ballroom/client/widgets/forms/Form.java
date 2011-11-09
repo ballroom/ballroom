@@ -68,6 +68,7 @@ public class Form<T> implements FormAdapter<T> {
 
     private DeckPanel deck;
     private List<PlainFormView> plainViews = new ArrayList<PlainFormView>();
+    private boolean isEnabled =true; // backwards compatibility
 
     public Form(Class<?> conversionType) {
         this.conversionType = conversionType;
@@ -530,7 +531,8 @@ public class Form<T> implements FormAdapter<T> {
 
         deck.add(editPanel);
 
-        deck.showWidget(0);
+        // toggle default view
+        toggleViews();
 
         return deck;
     }
@@ -543,20 +545,15 @@ public class Form<T> implements FormAdapter<T> {
     @Override
     public void setEnabled(boolean isEnabled) {
 
-        // TODO: can this be removed?
-        for(Map<String, FormItem> groupItems : formItems.values())
-        {
-            for(FormItem item : groupItems.values())
-            {
-                item.setEnabled(isEnabled);
-            }
-        }
+        this.isEnabled = isEnabled;
 
-        if(deck!=null)  // might no be created yet
-        {
-            int index = isEnabled ? 1 :0;
-            deck.showWidget(index);
-        }
+        if(deck!=null)  // might no be created yet (backwards compatibility)
+            toggleViews();
+    }
+
+    private void toggleViews() {
+        int index = isEnabled ? 1 :0;
+        deck.showWidget(index);
     }
 
     /**
