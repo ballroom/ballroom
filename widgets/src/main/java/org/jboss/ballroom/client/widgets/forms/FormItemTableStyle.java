@@ -5,7 +5,7 @@ import com.google.gwt.user.cellview.client.CellTable;
 public class FormItemTableStyle implements CellTable.Style {
 
     public String cellTableCell() {
-        return "cellTableCell";
+        return "formItemTableCell";
     }
 
     @Override

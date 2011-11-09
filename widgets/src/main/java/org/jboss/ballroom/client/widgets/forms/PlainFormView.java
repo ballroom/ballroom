@@ -20,7 +20,7 @@ import java.util.List;
  * @author Heiko Braun
  * @date 11/9/11
  */
-public class FormItemView {
+public class PlainFormView {
 
     private static final FormItemTableResources DEFAULT_CELL_TABLE_RESOURCES =
             new FormItemTableResources();
@@ -30,7 +30,7 @@ public class FormItemView {
     private List<Row> rows;
     private int numColumns = 2;
 
-    public FormItemView(List<FormItem> items) {
+    public PlainFormView(List<FormItem> items) {
         this.items = items;
     }
 

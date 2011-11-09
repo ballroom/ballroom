@@ -35,12 +35,23 @@ public class DisclosureGroupRenderer  implements GroupRenderer {
 
         DisclosurePanel disclosurePanel = new DisclosurePanel(groupName);
         disclosurePanel.addStyleName("default-disclosure");
+        disclosurePanel.addStyleName("fill-layout-width");
+
         DefaultGroupRenderer renderer = new DefaultGroupRenderer();
 
         disclosurePanel.add(
                 renderer.render(metaData, groupName, groupItems)
         );
 
+        return disclosurePanel;
+    }
+
+    @Override
+    public Widget renderPlain(String groupName, PlainFormView plainView) {
+        DisclosurePanel disclosurePanel = new DisclosurePanel(groupName);
+        disclosurePanel.addStyleName("default-disclosure");
+        disclosurePanel.addStyleName("fill-layout-width");
+        disclosurePanel.add( plainView.asWidget() );
         return disclosurePanel;
     }
 }

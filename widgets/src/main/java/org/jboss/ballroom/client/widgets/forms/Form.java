@@ -66,6 +66,9 @@ public class Form<T> implements FormAdapter<T> {
 
     private List<EditListener> listeners = new ArrayList<EditListener>();
 
+    private DeckPanel deck;
+    private List<PlainFormView> plainViews = new ArrayList<PlainFormView>();
+
     public Form(Class<?> conversionType) {
         this.conversionType = conversionType;
         this.factory = framework.getBeanFactory();
@@ -266,7 +269,8 @@ public class Form<T> implements FormAdapter<T> {
         notifyListeners(bean);
 
 
-        itemView.refresh();
+        // plain views
+        refreshItemViews();
 
     }
 
@@ -474,8 +478,10 @@ public class Form<T> implements FormAdapter<T> {
         return build();
     }
 
-    private DeckPanel deck;
-    private FormItemView itemView;
+    private void refreshItemViews() {
+        for(PlainFormView view : plainViews)
+            view.refresh();
+    }
 
     private Widget build() {
 
@@ -485,15 +491,17 @@ public class Form<T> implements FormAdapter<T> {
         // ----------------------
         // view panel
 
-        Map<String, FormItem> defaultItems = formItems.get(DEFAULT_GROUP);
-        itemView = new FormItemView(new ArrayList<FormItem>(defaultItems.values()));
-        deck.add(itemView.asWidget());
+        VerticalPanel viewPanel = new VerticalPanel();
+        viewPanel.setStyleName("fill-layout-width");
+        viewPanel.addStyleName("form-view-panel");
+        deck.add(viewPanel.asWidget());
 
         // ----------------------
         // edit panel
 
-        VerticalPanel parentPanel = new VerticalPanel();
-        parentPanel.setStyleName("fill-layout-width");
+        VerticalPanel editPanel = new VerticalPanel();
+        editPanel.setStyleName("fill-layout-width");
+        editPanel.addStyleName("form-edit-panel");
 
         RenderMetaData metaData = new RenderMetaData();
         metaData.setNumColumns(numColumns);
@@ -502,24 +510,25 @@ public class Form<T> implements FormAdapter<T> {
         for(String group : formItems.keySet())
         {
             Map<String, FormItem> groupItems = formItems.get(group);
+            GroupRenderer groupRenderer = null;
+
             if(DEFAULT_GROUP.equals(group))
-            {
-                DefaultGroupRenderer defaultGroupRenderer = new DefaultGroupRenderer();
-
-                Widget defaultGroupWidget = defaultGroupRenderer.render(metaData,DEFAULT_GROUP, groupItems);
-                parentPanel.add(defaultGroupWidget);
-            }
+                groupRenderer = new DefaultGroupRenderer();
             else
-            {
-                GroupRenderer groupRenderer = renderer.get(group)!=null ?
-                        renderer.get(group) : new FieldsetRenderer();
+                groupRenderer = renderer.get(group)!=null ? renderer.get(group) : new FieldsetRenderer();
 
-                Widget widget = groupRenderer.render(metaData, group, groupItems);
-                parentPanel.add(widget);
-            }
+            // edit view
+            Widget widget = groupRenderer.render(metaData, group, groupItems);
+            editPanel.add(widget);
+
+            // plain view
+            PlainFormView plainView = new PlainFormView(new ArrayList<FormItem>(groupItems.values()));
+            plainView.setNumColumns(numColumns);
+            plainViews.add(plainView);
+            viewPanel.add(groupRenderer.renderPlain(group, plainView));
         }
 
-        deck.add(parentPanel);
+        deck.add(editPanel);
 
         deck.showWidget(0);
 
@@ -534,14 +543,14 @@ public class Form<T> implements FormAdapter<T> {
     @Override
     public void setEnabled(boolean isEnabled) {
 
-
-        /*for(Map<String, FormItem> groupItems : formItems.values())
+        // TODO: can this be removed?
+        for(Map<String, FormItem> groupItems : formItems.values())
         {
             for(FormItem item : groupItems.values())
             {
-                item.setEnabled(b);
+                item.setEnabled(isEnabled);
             }
-        } */
+        }
 
         if(deck!=null)  // might no be created yet
         {

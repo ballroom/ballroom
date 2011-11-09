@@ -745,10 +745,12 @@ a:focus {
 .formItemTableOddRow {
     border-top: 1px solid #e5e5e5;
     background-color:#fafafa;
+
 }
 
 .formItemTableCell {
-    padding:5px;
+    padding-top:10px;
+    padding-bottom:10px;
 }
 
 .formItemTableHoveredRow {
@@ -761,4 +763,12 @@ a:focus {
 
 .formItemTableKeyboardSelectedRow {
     background-color:#ffffff;
+}
+
+.form-view-panel {
+
+}
+
+.form-edit-panel {
+
 }

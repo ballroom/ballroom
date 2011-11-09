@@ -117,4 +117,9 @@ public class DefaultGroupRenderer implements GroupRenderer
         // contents added later
         builder.appendHtmlConstant("</td>");
     }
+
+    @Override
+    public Widget renderPlain(String groupName, PlainFormView plainView) {
+        return plainView.asWidget();
+    }
 }
