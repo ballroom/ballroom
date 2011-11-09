@@ -19,6 +19,10 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
+import com.google.gwt.event.logical.shared.OpenEvent;
+import com.google.gwt.event.logical.shared.OpenHandler;
 import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -30,28 +34,69 @@ import java.util.Map;
  */
 public class DisclosureGroupRenderer  implements GroupRenderer {
 
+    // link one to each other
+    private DisclosurePanel first = null;
+
     @Override
     public Widget render(RenderMetaData metaData, String groupName, Map<String, FormItem> groupItems) {
 
-        DisclosurePanel disclosurePanel = new DisclosurePanel(groupName);
-        disclosurePanel.addStyleName("default-disclosure");
-        disclosurePanel.addStyleName("fill-layout-width");
+        first = new DisclosurePanel(groupName);
+        first.addStyleName("default-disclosure");
+        first.addStyleName("fill-layout-width");
 
         DefaultGroupRenderer renderer = new DefaultGroupRenderer();
 
-        disclosurePanel.add(
+        first.add(
                 renderer.render(metaData, groupName, groupItems)
         );
 
-        return disclosurePanel;
+        return first;
     }
 
     @Override
     public Widget renderPlain(String groupName, PlainFormView plainView) {
-        DisclosurePanel disclosurePanel = new DisclosurePanel(groupName);
-        disclosurePanel.addStyleName("default-disclosure");
-        disclosurePanel.addStyleName("fill-layout-width");
-        disclosurePanel.add( plainView.asWidget() );
-        return disclosurePanel;
+
+        if(null==first)
+            throw new IllegalStateException("Make sure to render the default (edit) widget first!");
+
+        DisclosurePanel second = new DisclosurePanel(groupName);
+        second.addStyleName("default-disclosure");
+        second.addStyleName("fill-layout-width");
+        second.add( plainView.asWidget());
+
+        linkOneToEachOther(first, second);
+
+        return second;
+    }
+
+    private void linkOneToEachOther(final DisclosurePanel one, final DisclosurePanel theOther) {
+        theOther.addOpenHandler(new OpenHandler<DisclosurePanel>() {
+            @Override
+            public void onOpen(OpenEvent<DisclosurePanel> event) {
+                one.setOpen(true);
+            }
+        });
+
+        theOther.addCloseHandler(new CloseHandler<DisclosurePanel>() {
+            @Override
+            public void onClose(CloseEvent<DisclosurePanel> disclosurePanelCloseEvent) {
+                one.setOpen(false);
+            }
+        });
+
+        one.addOpenHandler(new OpenHandler<DisclosurePanel>() {
+            @Override
+            public void onOpen(OpenEvent<DisclosurePanel> event) {
+                theOther.setOpen(true);
+            }
+        });
+
+        one.addCloseHandler(new CloseHandler<DisclosurePanel>() {
+            @Override
+            public void onClose(CloseEvent<DisclosurePanel> disclosurePanelCloseEvent) {
+                theOther.setOpen(false);
+            }
+        });
+
     }
 }
