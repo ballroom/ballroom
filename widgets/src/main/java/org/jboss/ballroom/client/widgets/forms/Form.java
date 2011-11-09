@@ -27,6 +27,7 @@ import com.google.gwt.autobean.shared.AutoBeanVisitor;
 import com.google.gwt.autobean.shared.Splittable;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.ui.DeckPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.RowCountChangeEvent;
@@ -263,6 +264,10 @@ public class Form<T> implements FormAdapter<T> {
         });
 
         notifyListeners(bean);
+
+
+        itemView.refresh();
+
     }
 
     private void notifyListeners(T bean) {
@@ -469,7 +474,24 @@ public class Form<T> implements FormAdapter<T> {
         return build();
     }
 
+    private DeckPanel deck;
+    private FormItemView itemView;
+
     private Widget build() {
+
+        deck = new DeckPanel();
+        deck.setStyleName("fill-layout-width");
+
+        // ----------------------
+        // view panel
+
+        Map<String, FormItem> defaultItems = formItems.get(DEFAULT_GROUP);
+        itemView = new FormItemView(new ArrayList<FormItem>(defaultItems.values()));
+        deck.add(itemView.asWidget());
+
+        // ----------------------
+        // edit panel
+
         VerticalPanel parentPanel = new VerticalPanel();
         parentPanel.setStyleName("fill-layout-width");
 
@@ -497,7 +519,11 @@ public class Form<T> implements FormAdapter<T> {
             }
         }
 
-        return parentPanel;
+        deck.add(parentPanel);
+
+        deck.showWidget(0);
+
+        return deck;
     }
 
     /**
@@ -506,13 +532,21 @@ public class Form<T> implements FormAdapter<T> {
      * @param b
      */
     @Override
-    public void setEnabled(boolean b) {
-        for(Map<String, FormItem> groupItems : formItems.values())
+    public void setEnabled(boolean isEnabled) {
+
+
+        /*for(Map<String, FormItem> groupItems : formItems.values())
         {
             for(FormItem item : groupItems.values())
             {
                 item.setEnabled(b);
             }
+        } */
+
+        if(deck!=null)  // might no be created yet
+        {
+            int index = isEnabled ? 1 :0;
+            deck.showWidget(index);
         }
     }
 

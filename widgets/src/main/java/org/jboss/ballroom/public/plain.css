@@ -720,3 +720,45 @@ a:focus {
 .expression-input {
     border: 1px solid green;
 }
+
+
+.form-item-table{
+    font-family:Arial, Verdana, sans-serif;
+    font-size:11px;
+    color: black;
+    width:100%;
+    background-color:#ffffff;
+}
+
+.formItemTableHeader {
+
+}
+
+.formItemTableFooter {
+
+}
+
+.formItemTableEvenRow {
+    background-color:#ffffff;
+}
+
+.formItemTableOddRow {
+    border-top: 1px solid #e5e5e5;
+    background-color:#fafafa;
+}
+
+.formItemTableCell {
+    padding:5px;
+}
+
+.formItemTableHoveredRow {
+    background-color:#ffffff;
+}
+
+.formItemTableSelectedRow {
+    background-color:#ffffff;
+}
+
+.formItemTableKeyboardSelectedRow {
+    background-color:#ffffff;
+}

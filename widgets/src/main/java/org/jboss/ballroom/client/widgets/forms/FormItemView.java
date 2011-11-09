@@ -10,6 +10,7 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 
 import java.util.ArrayList;
@@ -21,117 +22,107 @@ import java.util.List;
  */
 public class FormItemView {
 
+    private static final FormItemTableResources DEFAULT_CELL_TABLE_RESOURCES =
+            new FormItemTableResources();
 
-    private CellTable<Tuples> table;
-    private FormItem[] items;
-    private List<Tuples> tuples;
+    private CellTable<Row> table;
+    private List<FormItem> items;
+    private List<Row> rows;
+    private int numColumns = 2;
 
-    public FormItemView(FormItem... items) {
+    public FormItemView(List<FormItem> items) {
         this.items = items;
+    }
+
+    public void setNumColumns(int numColumns) {
+        this.numColumns = numColumns;
     }
 
     public Widget asWidget() {
 
-        table = new CellTable<Tuples>();
-        table.setStyleName("fill-layout-width");
+        table = new CellTable<Row>(20, DEFAULT_CELL_TABLE_RESOURCES);
+        table.setStyleName("form-item-table");
 
-        Column firstCol = new Column<Tuples, String>(new TitleCell()) {
-            @Override
-            public String getValue(Tuples tuple) {
-                return tuple.getFirst().getTitle();
-            }
-        };
+        for(int col = 0; col<numColumns; col++)
+        {
+            final int currentCol = col;
 
-
-        Column secondCol = new TextColumn<Tuples>() {
-            @Override
-            public String getValue(Tuples tuple) {
-                return String.valueOf(tuple.getFirst().getValue());
-            }
-        };
+            Column titleCol = new Column<Row, String>(new TitleCell()) {
+                @Override
+                public String getValue(Row row) {
+                    FormItem item = row.get(currentCol);
+                    return item!=null ? item.getTitle() : "";
+                }
+            };
 
 
-        Column thirdCol = new Column<Tuples, String>(new TitleCell()) {
-            @Override
-            public String getValue(Tuples tuple) {
-                if(tuple.getSecond()!=null)
-                    return tuple.getSecond().getTitle();
-                else
-                    return "";
-            }
-        };
+            Column valueCol = new TextColumn<Row>() {
+                @Override
+                public String getValue(Row row) {
+                    FormItem item = row.get(currentCol);
+                    return item!=null ? String.valueOf(item.getValue()) : "";
+                }
+            };
 
-        Column fourthCol = new TextColumn<Tuples>() {
-            @Override
-            public String getValue(Tuples tuple) {
-                if(tuple.getSecond()!=null)
-                    return String.valueOf(tuple.getSecond().getValue());
-                else
-                    return "";
-            }
-        };
+            int colWidth = 100/(numColumns*2);
 
+            table.setColumnWidth(titleCol, colWidth-10, Style.Unit.PCT);
+            table.setColumnWidth(valueCol, colWidth+10, Style.Unit.PCT);
 
-        //table.setColumnWidth(firstCol, 25, Style.Unit.PCT);
-        table.setColumnWidth(secondCol, 35, Style.Unit.PCT);
-        //table.setColumnWidth(thirdCol, 25, Style.Unit.PCT);
-        table.setColumnWidth(fourthCol, 35, Style.Unit.PCT);
+            table.addColumn(titleCol);
+            table.addColumn(valueCol);
 
-
-        table.addColumn(firstCol);
-        table.addColumn(secondCol);
-        table.addColumn(thirdCol);
-        table.addColumn(fourthCol);
-
+        }
 
         table.setTableLayoutFixed(false);
+        table.setEmptyTableWidget(new HTML());
+        table.setLoadingIndicator(new HTML());
 
-        tuples = groupItems();
+        rows = groupItems();
 
         return table;
     }
 
     public void refresh() {
 
-        table.setRowCount(tuples.size(), true);
-        table.setRowData(tuples);
+        table.setRowCount(rows.size(), true);
+        table.setRowData(rows);
     }
 
-    private List<Tuples> groupItems() {
-        List<Tuples> tuples = new ArrayList<Tuples>();
+    private List<Row> groupItems() {
+        List<Row> rows = new ArrayList<Row>();
 
-        for(int i=1; i<items.length; i+=2)
+        int i=0;
+        while(i<items.size())
         {
-            if(i>items.length)
-            {
-                // just the first item
-                tuples.add(new Tuples(items[i-1], null));
+            FormItem[] itemsPerRow = new FormItem[numColumns];
 
-            }
-            else
+            for(int col=0; col<numColumns;col++)
             {
-                // both items
-                tuples.add(new Tuples(items[i-1], items[i]));
+                if(i+col>=items.size())
+                    itemsPerRow[col] = null;
+                else
+                    itemsPerRow[col] = items.get(i+col);
             }
+
+            rows.add(new Row(itemsPerRow));
+
+            i+=numColumns;
         }
-        return tuples;
+
+        return rows;
     }
 
-    private final class Tuples {
-        FormItem first;
-        FormItem second;
+    private final class Row {
 
-        Tuples(FormItem first, FormItem second) {
-            this.first = first;
-            this.second = second;
+        FormItem[] items;
+
+        Row(FormItem... items) {
+            this.items = items;
         }
 
-        public FormItem getFirst() {
-            return first;
-        }
-
-        public FormItem getSecond() {
-            return second;
+        public FormItem get(int i) {
+            return items[i];
         }
     }
 
@@ -152,9 +143,9 @@ public class FormItemView {
                 SafeHtmlBuilder safeHtmlBuilder)
         {
 
-            safeHtmlBuilder.append(
-                    TEMPLATE.render(title)
-            );
+            boolean hasTitle = title!=null && !title.equals("");
+            SafeHtml render = hasTitle ? TEMPLATE.render(title) : new SafeHtmlBuilder().toSafeHtml();
+            safeHtmlBuilder.append(render);
 
         }
 
