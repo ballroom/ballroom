@@ -27,6 +27,7 @@ import com.google.gwt.autobean.shared.AutoBeanVisitor;
 import com.google.gwt.autobean.shared.Splittable;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.ui.DeckPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.RowCountChangeEvent;
@@ -64,6 +65,10 @@ public class Form<T> implements FormAdapter<T> {
     private final Class<?> conversionType;
 
     private List<EditListener> listeners = new ArrayList<EditListener>();
+
+    private DeckPanel deck;
+    private List<PlainFormView> plainViews = new ArrayList<PlainFormView>();
+    private boolean isEnabled =true; // backwards compatibility
 
     public Form(Class<?> conversionType) {
         this.conversionType = conversionType;
@@ -172,7 +177,6 @@ public class Form<T> implements FormAdapter<T> {
 
         this.editedEntity = bean;
 
-
         final Map<String, String> exprMap = getExpressions(editedEntity);
 
         autoBean.accept(new AutoBeanVisitor() {
@@ -263,6 +267,10 @@ public class Form<T> implements FormAdapter<T> {
         });
 
         notifyListeners(bean);
+
+
+        // plain views
+        refreshItemViews();
     }
 
     private void notifyListeners(T bean) {
@@ -469,9 +477,30 @@ public class Form<T> implements FormAdapter<T> {
         return build();
     }
 
+    private void refreshItemViews() {
+        for(PlainFormView view : plainViews)
+            view.refresh();
+    }
+
     private Widget build() {
-        VerticalPanel parentPanel = new VerticalPanel();
-        parentPanel.setStyleName("fill-layout-width");
+
+        deck = new DeckPanel();
+        deck.setStyleName("fill-layout-width");
+
+        // ----------------------
+        // view panel
+
+        VerticalPanel viewPanel = new VerticalPanel();
+        viewPanel.setStyleName("fill-layout-width");
+        viewPanel.addStyleName("form-view-panel");
+        deck.add(viewPanel.asWidget());
+
+        // ----------------------
+        // edit panel
+
+        VerticalPanel editPanel = new VerticalPanel();
+        editPanel.setStyleName("fill-layout-width");
+        editPanel.addStyleName("form-edit-panel");
 
         RenderMetaData metaData = new RenderMetaData();
         metaData.setNumColumns(numColumns);
@@ -480,24 +509,30 @@ public class Form<T> implements FormAdapter<T> {
         for(String group : formItems.keySet())
         {
             Map<String, FormItem> groupItems = formItems.get(group);
+            GroupRenderer groupRenderer = null;
+
             if(DEFAULT_GROUP.equals(group))
-            {
-                DefaultGroupRenderer defaultGroupRenderer = new DefaultGroupRenderer();
-
-                Widget defaultGroupWidget = defaultGroupRenderer.render(metaData,DEFAULT_GROUP, groupItems);
-                parentPanel.add(defaultGroupWidget);
-            }
+                groupRenderer = new DefaultGroupRenderer();
             else
-            {
-                GroupRenderer groupRenderer = renderer.get(group)!=null ?
-                        renderer.get(group) : new FieldsetRenderer();
+                groupRenderer = renderer.get(group)!=null ? renderer.get(group) : new FieldsetRenderer();
 
-                Widget widget = groupRenderer.render(metaData, group, groupItems);
-                parentPanel.add(widget);
-            }
+            // edit view
+            Widget widget = groupRenderer.render(metaData, group, groupItems);
+            editPanel.add(widget);
+
+            // plain view
+            PlainFormView plainView = new PlainFormView(new ArrayList<FormItem>(groupItems.values()));
+            plainView.setNumColumns(numColumns);
+            plainViews.add(plainView);
+            viewPanel.add(groupRenderer.renderPlain(metaData, group, plainView));
         }
 
-        return parentPanel;
+        deck.add(editPanel);
+
+        // toggle default view
+        toggleViews();
+
+        return deck;
     }
 
     /**
@@ -506,14 +541,17 @@ public class Form<T> implements FormAdapter<T> {
      * @param b
      */
     @Override
-    public void setEnabled(boolean b) {
-        for(Map<String, FormItem> groupItems : formItems.values())
-        {
-            for(FormItem item : groupItems.values())
-            {
-                item.setEnabled(b);
-            }
-        }
+    public void setEnabled(boolean isEnabled) {
+
+        this.isEnabled = isEnabled;
+
+        if(deck!=null)  // might no be created yet (backwards compatibility)
+            toggleViews();
+    }
+
+    private void toggleViews() {
+        int index = isEnabled ? 1 :0;
+        deck.showWidget(index);
     }
 
     /**

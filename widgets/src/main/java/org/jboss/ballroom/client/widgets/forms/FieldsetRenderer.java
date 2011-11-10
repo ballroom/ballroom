@@ -31,7 +31,7 @@ import java.util.Map;
  */
 public class FieldsetRenderer implements GroupRenderer {
 
-    String id;
+    private String id;
 
     public FieldsetRenderer() {
         this.id = "formGroup_"+HTMLPanel.createUniqueId();
@@ -40,18 +40,29 @@ public class FieldsetRenderer implements GroupRenderer {
     @Override
     public Widget render(RenderMetaData metaData, String groupName, Map<String, FormItem> groupItems) {
 
-        SafeHtmlBuilder builder = new SafeHtmlBuilder();
-
-        builder.appendHtmlConstant("<fieldset id='"+id+"' class='default-fieldset'>");
-        builder.appendHtmlConstant("<legend class='default-legend'>").appendEscaped(groupName).appendHtmlConstant("</legend>");
-        builder.appendHtmlConstant("</fieldset>");
-
-        HTMLPanel html = new HTMLPanel(builder.toSafeHtml());
+        HTMLPanel html = createFieldsetPanel(groupName);
 
         DefaultGroupRenderer defaultGroupRenderer = new DefaultGroupRenderer();
         Widget defaultGroupWidget = defaultGroupRenderer.render(metaData, "", groupItems);
         html.add(defaultGroupWidget,id);
 
         return html;
+    }
+
+    @Override
+    public Widget renderPlain(RenderMetaData metaData, String groupName, PlainFormView plainView) {
+        HTMLPanel html = createFieldsetPanel(groupName);
+        html.add(plainView.asWidget(metaData),id);
+        return html;
+    }
+
+    private HTMLPanel createFieldsetPanel(String groupName) {
+        SafeHtmlBuilder builder = new SafeHtmlBuilder();
+
+        builder.appendHtmlConstant("<fieldset id='"+id+"' class='default-fieldset'>");
+        builder.appendHtmlConstant("<legend class='default-legend'>").appendEscaped(groupName).appendHtmlConstant("</legend>");
+        builder.appendHtmlConstant("</fieldset>");
+
+        return new HTMLPanel(builder.toSafeHtml());
     }
 }

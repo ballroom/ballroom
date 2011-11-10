@@ -60,6 +60,18 @@ public class DefaultGroupRenderer implements GroupRenderer
             }
         }
 
+        int colWidth = 100/(metaData.getNumColumns()*2);
+
+        builder.appendHtmlConstant("<colgroup>");
+        for(int col=0; col<metaData.getNumColumns(); col++)
+        {
+            // it's two TD's per item (title & value)
+            builder.appendHtmlConstant("<col width='"+(colWidth-10)+"%'/>");
+            builder.appendHtmlConstant("<col width='"+(colWidth+10)+"%'/>");
+
+        }
+        builder.appendHtmlConstant("</colgroup>");
+
         int i=0;
         while(i<itemKeys.size())
         {
@@ -103,18 +115,23 @@ public class DefaultGroupRenderer implements GroupRenderer
     private void createItemCell(RenderMetaData metaData, SafeHtmlBuilder builder, String key, FormItem item) {
 
         final String widgetId = id + key;
-
-        builder.appendHtmlConstant("<td class='form-item-title' style='width:"+metaData.getTitleWidth()*5+"pt'>");
         
-        String title = item.getTitle();
+	/* TODO: String title = item.getTitle();
         if ((title != null) && title.trim().length() > 0) {
             builder.appendEscaped(item.getTitle()+":");
-        }
-        
+        } */
+
+        builder.appendHtmlConstant("<td class='form-item-title'>"); // style='width:"+metaData.getTitleWidth()*5+"pt'
+        builder.appendEscaped(item.getTitle()+":");
         builder.appendHtmlConstant("</td>");
 
         builder.appendHtmlConstant("<td id='" + widgetId + "' class='form-item'>").appendHtmlConstant("</td>");
         // contents added later
         builder.appendHtmlConstant("</td>");
+    }
+
+    @Override
+    public Widget renderPlain(RenderMetaData metaData, String groupName, PlainFormView plainView) {
+        return plainView.asWidget(metaData);
     }
 }
