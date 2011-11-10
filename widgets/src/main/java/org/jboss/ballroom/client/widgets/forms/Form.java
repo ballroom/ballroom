@@ -177,7 +177,6 @@ public class Form<T> implements FormAdapter<T> {
 
         this.editedEntity = bean;
 
-
         final Map<String, String> exprMap = getExpressions(editedEntity);
 
         autoBean.accept(new AutoBeanVisitor() {
@@ -272,7 +271,6 @@ public class Form<T> implements FormAdapter<T> {
 
         // plain views
         refreshItemViews();
-
     }
 
     private void notifyListeners(T bean) {
@@ -526,7 +524,7 @@ public class Form<T> implements FormAdapter<T> {
             PlainFormView plainView = new PlainFormView(new ArrayList<FormItem>(groupItems.values()));
             plainView.setNumColumns(numColumns);
             plainViews.add(plainView);
-            viewPanel.add(groupRenderer.renderPlain(group, plainView));
+            viewPanel.add(groupRenderer.renderPlain(metaData, group, plainView));
         }
 
         deck.add(editPanel);

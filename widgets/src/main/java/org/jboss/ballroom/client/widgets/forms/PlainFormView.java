@@ -38,7 +38,7 @@ public class PlainFormView {
         this.numColumns = numColumns;
     }
 
-    public Widget asWidget() {
+    public Widget asWidget(RenderMetaData metaData) {
 
         table = new CellTable<Row>(20, DEFAULT_CELL_TABLE_RESOURCES);
         table.setStyleName("form-item-table");
@@ -67,14 +67,14 @@ public class PlainFormView {
             int colWidth = 100/(numColumns*2);
 
             table.setColumnWidth(titleCol, colWidth-10, Style.Unit.PCT);
-            table.setColumnWidth(valueCol, colWidth+10, Style.Unit.PCT);
+            table.setColumnWidth(valueCol, colWidth + 10, Style.Unit.PCT);
 
             table.addColumn(titleCol);
             table.addColumn(valueCol);
 
         }
 
-        table.setTableLayoutFixed(false);
+        //table.setTableLayoutFixed(true);
         table.setEmptyTableWidget(new HTML());
         table.setLoadingIndicator(new HTML());
 

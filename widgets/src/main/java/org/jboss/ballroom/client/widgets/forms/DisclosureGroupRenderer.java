@@ -54,7 +54,7 @@ public class DisclosureGroupRenderer  implements GroupRenderer {
     }
 
     @Override
-    public Widget renderPlain(String groupName, PlainFormView plainView) {
+    public Widget renderPlain(RenderMetaData metaData, String groupName, PlainFormView plainView) {
 
         if(null==first)
             throw new IllegalStateException("Make sure to render the default (edit) widget first!");
@@ -62,7 +62,7 @@ public class DisclosureGroupRenderer  implements GroupRenderer {
         DisclosurePanel second = new DisclosurePanel(groupName);
         second.addStyleName("default-disclosure");
         second.addStyleName("fill-layout-width");
-        second.add( plainView.asWidget());
+        second.add( plainView.asWidget(metaData));
 
         linkOneToEachOther(first, second);
 

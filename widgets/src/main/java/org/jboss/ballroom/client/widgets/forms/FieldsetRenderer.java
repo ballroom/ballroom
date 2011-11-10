@@ -50,9 +50,9 @@ public class FieldsetRenderer implements GroupRenderer {
     }
 
     @Override
-    public Widget renderPlain(String groupName, PlainFormView plainView) {
+    public Widget renderPlain(RenderMetaData metaData, String groupName, PlainFormView plainView) {
         HTMLPanel html = createFieldsetPanel(groupName);
-        html.add(plainView.asWidget(),id);
+        html.add(plainView.asWidget(metaData),id);
         return html;
     }
 

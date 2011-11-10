@@ -29,5 +29,5 @@ import java.util.Map;
  */
 public interface GroupRenderer {
     Widget render(RenderMetaData metaData, String groupName, Map<String, FormItem> groupItems);
-    Widget renderPlain(String groupName, PlainFormView plainView);
+    Widget renderPlain(RenderMetaData metaData, String groupName, PlainFormView plainView);
 }
