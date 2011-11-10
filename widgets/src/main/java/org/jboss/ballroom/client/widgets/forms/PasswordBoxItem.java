@@ -19,6 +19,8 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -37,6 +39,13 @@ public class PasswordBoxItem extends FormItem<String> {
         textBox = new PasswordTextBox();
         textBox.setName(name);
         textBox.setTitle(title);
+
+        textBox.addValueChangeHandler(new ValueChangeHandler<String>() {
+            @Override
+            public void onValueChange(ValueChangeEvent<String> event) {
+                setModified(true);
+            }
+        });
 
         wrapper = new InputElementWrapper(textBox, this);
     }
