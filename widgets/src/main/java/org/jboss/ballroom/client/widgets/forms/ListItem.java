@@ -19,10 +19,13 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.Widget;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -50,6 +53,13 @@ public class ListItem extends FormItem<List> {
     public ListItem(String name, String title, boolean displayOnly) {
         super(name, title);
         this.textArea = new TextArea();
+
+        this.textArea.addValueChangeHandler(new ValueChangeHandler<String>() {
+            @Override
+            public void onValueChange(ValueChangeEvent<String> event) {
+                setModified(true);
+            }
+        });
         this.displayOnly = displayOnly;
     }
     
@@ -77,12 +87,17 @@ public class ListItem extends FormItem<List> {
         for(String s : split)
             value.add(s);
 
-        return value;
+        // prevent references
+        return new ArrayList(value);
     }
 
     @Override
     public void setValue(List list) {
-        this.value = list;
+
+        this.value.clear();
+
+        this.value.addAll(list);
+
         this.textArea.setText("");
         if (list.size() > 0) {
             this.textArea.setVisibleLines(list.size());
