@@ -36,7 +36,7 @@ public class ComboBoxItem extends FormItem<String> {
     private boolean defaultToFirst;
 
     private InputElementWrapper wrapper;
-    private boolean postInit = false;
+    //private boolean postInit = false;
 
     public ComboBoxItem(String name, String title) {
         super(name, title);
@@ -45,10 +45,10 @@ public class ComboBoxItem extends FormItem<String> {
         this.comboBox.addValueChangeHandler(new ValueChangeHandler<String>() {
             @Override
             public void onValueChange(ValueChangeEvent<String> event) {
-                if(postInit) {
+               // if(postInit) {
                     setModified(true);
-                    setUndefined(comboBox.getSelectedValue().equals(""));
-                }
+                    setUndefined("".equals(comboBox.getSelectedValue()));
+               //}
 
             }
         });
@@ -66,7 +66,7 @@ public class ComboBoxItem extends FormItem<String> {
     @Override
     public void resetMetaData() {
         super.resetMetaData();
-        postInit = false;
+        //postInit = false;
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ComboBoxItem extends FormItem<String> {
             }
         }
 
-        postInit = true;
+        //postInit = true;
     }
 
     public void selectItem(int i) {
