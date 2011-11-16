@@ -337,7 +337,7 @@ public class Form<T> implements FormAdapter<T> {
                 else if(val!=null && item.isModified())
                 {
                     if(item.isUndefined())
-                        finalDiff.put(item.getName(), FormItem.UNDEFINED.Value);
+                        finalDiff.put(item.getName(), FormItem.VALUE_SEMANTICS.UNDEFINED);
                     else
                         finalDiff.put(item.getName(), val);
                 }

@@ -45,8 +45,11 @@ public class ComboBoxItem extends FormItem<String> {
         this.comboBox.addValueChangeHandler(new ValueChangeHandler<String>() {
             @Override
             public void onValueChange(ValueChangeEvent<String> event) {
-                if(postInit)
+                if(postInit) {
                     setModified(true);
+                    setUndefined(comboBox.getSelectedValue().equals(""));
+                }
+
             }
         });
 
@@ -84,7 +87,7 @@ public class ComboBoxItem extends FormItem<String> {
     }
 
     public void selectItem(int i) {
-        setUndefined(false);
+        setUndefined(comboBox.getValue(i).equals(""));
         comboBox.setItemSelected(i, true);
     }
 

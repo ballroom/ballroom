@@ -43,6 +43,27 @@ public class TextBoxItem extends FormItem<String> {
             @Override
             public void onValueChange(ValueChangeEvent<String> event) {
                 setModified(true);
+                if(event.getValue().equals(""))
+                    setUndefined(true);
+            }
+        });
+        wrapper = new InputElementWrapper(textBox, this);
+    }
+
+    public TextBoxItem(String name, String title, boolean isRequired) {
+        super(name, title);
+
+        setRequired(isRequired);
+
+        textBox = new TextBox();
+        textBox.setName(name);
+        textBox.setTitle(title);
+        textBox.addValueChangeHandler(new ValueChangeHandler<String>() {
+            @Override
+            public void onValueChange(ValueChangeEvent<String> event) {
+                setModified(true);
+                if(event.getValue().equals(""))
+                    setUndefined(true);
             }
         });
         wrapper = new InputElementWrapper(textBox, this);

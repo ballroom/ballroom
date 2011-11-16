@@ -118,7 +118,7 @@ public abstract class FormItem<T> implements InputElement<T> {
         return isUndefined;
     }
 
-    void setUndefined(boolean undefined) {
+    protected void setUndefined(boolean undefined) {
         isUndefined = undefined;
     }
 
@@ -145,7 +145,7 @@ public abstract class FormItem<T> implements InputElement<T> {
 
     public abstract void clearValue();
 
-    public enum UNDEFINED {Value}
+    public enum VALUE_SEMANTICS {UNDEFINED}
 
 
     protected void toggleExpressionInput(Widget target, boolean flag)
