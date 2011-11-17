@@ -22,6 +22,8 @@ package org.jboss.ballroom.client.widgets.window;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.safehtml.shared.SafeHtml;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -78,7 +80,13 @@ public class Feedback {
         window.center();
     }
 
-     public static void alert(String title, String message)
+    @Deprecated
+    public static void alert(String title, String message)
+    {
+        alert(title, new SafeHtmlBuilder().appendEscaped(message).toSafeHtml());
+    }
+
+    public static void alert(String title, SafeHtml message)
     {
         final DefaultWindow window = new DefaultWindow(title);
 
