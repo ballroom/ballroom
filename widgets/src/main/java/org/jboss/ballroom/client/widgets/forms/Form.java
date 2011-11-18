@@ -37,7 +37,6 @@ import org.jboss.ballroom.client.spi.Framework;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -271,7 +270,7 @@ public class Form<T> implements FormAdapter<T> {
 
 
         // plain views
-        refreshItemViews();
+        refreshPlainView();
     }
 
     private void notifyListeners(T bean) {
@@ -481,7 +480,7 @@ public class Form<T> implements FormAdapter<T> {
         return build();
     }
 
-    private void refreshItemViews() {
+    private void refreshPlainView() {
         for(PlainFormView view : plainViews)
             view.refresh();
     }
@@ -535,6 +534,7 @@ public class Form<T> implements FormAdapter<T> {
 
         // toggle default view
         toggleViews();
+        refreshPlainView(); // make sureit's build, even empty...
 
         return deck;
     }
@@ -607,11 +607,14 @@ public class Form<T> implements FormAdapter<T> {
         {
             for(FormItem item : groupItems.values())
             {
+                item.resetMetaData();
                 item.clearValue();
             }
         }
 
         editedEntity = null;
+
+        refreshPlainView();
     }
 
     /**

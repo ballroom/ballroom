@@ -60,7 +60,7 @@ public class PlainFormView {
                 @Override
                 public String getValue(Row row) {
                     FormItem item = row.get(currentCol);
-                    return item!=null ? String.valueOf(item.getValue()) : "";
+                    return item!=null ? valueRepresentation(item) : "";
                 }
             };
 
@@ -75,12 +75,34 @@ public class PlainFormView {
         }
 
         //table.setTableLayoutFixed(true);
+
         table.setEmptyTableWidget(new HTML());
         table.setLoadingIndicator(new HTML());
 
         rows = groupItems();
 
         return table;
+    }
+
+    private String valueRepresentation(FormItem item) {
+
+        String represenation = null;
+        Object value = item.getValue();
+
+        if(item.isUndefined())
+        {
+            represenation = "";
+        }
+        else if(value instanceof Boolean)
+        {
+            represenation = (Boolean)value ? "true" : ""; // don't show 'false'
+        }
+        else
+        {
+            represenation = String.valueOf(value);
+        }
+
+        return represenation;
     }
 
     public void refresh() {
