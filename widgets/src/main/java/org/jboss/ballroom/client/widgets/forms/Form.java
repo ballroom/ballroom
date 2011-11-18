@@ -162,7 +162,9 @@ public class Form<T> implements FormAdapter<T> {
      */
     @Override
     public void cancel() {
-        edit(editedEntity);
+
+        if(editedEntity!=null)
+            edit(editedEntity);
     }
 
     @Override
