@@ -64,10 +64,19 @@ public class PlainFormView {
                 }
             };
 
-            int colWidth = 100/(numColumns*2);
+            if(numColumns==1)
+            {
+                table.setColumnWidth(titleCol, 20, Style.Unit.PCT);
+                table.setColumnWidth(valueCol, 80, Style.Unit.PCT);
+            }
+            else
+            {
+                // default columns layout
+                int colWidth = 100/(numColumns*2);
 
-            table.setColumnWidth(titleCol, colWidth-10, Style.Unit.PCT);
-            table.setColumnWidth(valueCol, colWidth + 10, Style.Unit.PCT);
+                table.setColumnWidth(titleCol, colWidth-10, Style.Unit.PCT);
+                table.setColumnWidth(valueCol, colWidth + 10, Style.Unit.PCT);
+            }
 
             table.addColumn(titleCol);
             table.addColumn(valueCol);
