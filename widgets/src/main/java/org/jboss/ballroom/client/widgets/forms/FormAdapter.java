@@ -104,5 +104,6 @@ public interface FormAdapter<T> extends IsWidget {
      * @return The errors (if any).
      */
     FormValidation validate();
-    
+
+    void clearValues();
 }
