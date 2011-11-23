@@ -51,6 +51,9 @@ body, p, td, th, option, input, textarea, select {
 .header-link:hover {
     text-decoration: none;
     border-top: 4px solid #fdfcce;
+    -webkit-transition: border-top .1s ease-in-out;
+    -moz-transition: border-top .1s ease-in-out;
+    transition: border-top .1s ease-in-out;
 }
 
 .header-link-selected {
