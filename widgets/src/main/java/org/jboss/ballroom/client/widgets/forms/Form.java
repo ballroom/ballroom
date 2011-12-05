@@ -19,6 +19,13 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.google.gwt.autobean.shared.AutoBean;
 import com.google.gwt.autobean.shared.AutoBeanCodex;
 import com.google.gwt.autobean.shared.AutoBeanFactory;
@@ -33,14 +40,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.RowCountChangeEvent;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
-import org.jboss.ballroom.client.spi.Framework;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import org.jboss.ballroom.client.spi.Framework;
 
 /**
  * Form data binding that works on {@link AutoBean} entities.
@@ -54,10 +55,10 @@ public class Form<T> implements FormAdapter<T> {
     private static final String EXPR_TAG = "EXPRESSIONS";
 
     private AutoBeanFactory factory;
-    private final static String DEFAULT_GROUP = "default";
+    final static String DEFAULT_GROUP = "default";
 
     private final Map<String, Map<String, FormItem>> formItems = new LinkedHashMap<String, Map<String, FormItem>>();
-    private final Map<String,GroupRenderer> renderer = new HashMap<String, GroupRenderer>();
+    final Map<String,GroupRenderer> renderer = new HashMap<String, GroupRenderer>();
 
     private int numColumns = 1;
     private int nextId = 1;
@@ -140,10 +141,12 @@ public class Form<T> implements FormAdapter<T> {
     }
 
     public void setFieldsInGroup(String group, GroupRenderer renderer, FormItem... items) {
-
         this.renderer.put(group, renderer);
-
         setFieldsInGroup(group, items);
+    }
+
+    public void setFieldsInGroup(String group, GroupRenderer renderer, FormItem[]... items) {
+        setFieldsInGroup(group, renderer, flatten(items));
     }
 
     private FormItem<?>[] flatten(FormItem<?>[]... items) {

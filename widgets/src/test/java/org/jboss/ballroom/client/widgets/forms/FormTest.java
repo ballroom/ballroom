@@ -21,8 +21,10 @@ package org.jboss.ballroom.client.widgets.forms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gwt.junit.client.GWTTestCase;
+import com.google.gwt.user.client.ui.Widget;
 
 import org.junit.Test;
 
@@ -103,5 +105,43 @@ public class FormTest extends GWTTestCase {
         f.setFieldsInGroup("someGroup", new FormItem[] {item, item2}, new FormItem [] {}, new FormItem[] {item3});
 
         assertEquals(Arrays.asList("1", "2", "3"), f.getFormItemNames());
+    }
+
+    @Test
+    public void testSetFieldsInGroupWithRenderer1() {
+        FormItem<String> item = new TextBoxItem("1", "1");
+        FormItem<String> item2 = new TextBoxItem("2", "2");
+        FormItem<String> item3 = new TextBoxItem("3", "3");
+        Form<Object> f = new Form<Object>(Object.class);
+        f.setFieldsInGroup("mygroup", new TestGroupRenderer(), item, item2, item3);
+
+        assertEquals(Arrays.asList("1", "2", "3"), f.getFormItemNames());
+        assertTrue(f.renderer.get("mygroup") instanceof TestGroupRenderer);
+        assertNull(f.renderer.get("somegroup"));
+    }
+
+    @Test
+    public void testSetFieldsInGroupWithRenderer2() {
+        FormItem<String> item = new TextBoxItem("1", "1");
+        FormItem<String> item2 = new TextBoxItem("2", "2");
+        FormItem<String> item3 = new TextBoxItem("3", "3");
+        Form<Object> f = new Form<Object>(Object.class);
+        f.setFieldsInGroup("someGroup", new TestGroupRenderer(), new FormItem[] {item, item2}, new FormItem [] {}, new FormItem[] {item3});
+
+        assertEquals(Arrays.asList("1", "2", "3"), f.getFormItemNames());
+        assertTrue(f.renderer.get("someGroup") instanceof TestGroupRenderer);
+        assertNull(f.renderer.get("mygroup"));
+    }
+
+    private static class TestGroupRenderer implements GroupRenderer {
+        @Override
+        public Widget render(RenderMetaData metaData, String groupName, Map<String, FormItem> groupItems) {
+            return null;
+        }
+
+        @Override
+        public Widget renderPlain(RenderMetaData metaData, String groupName, PlainFormView plainView) {
+            return null;
+        }
     }
 }
