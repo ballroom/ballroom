@@ -98,7 +98,7 @@ public class ListBoxItem extends FormItem<String> implements ChoiceItem<String> 
             throw new NullPointerException();
 
         for (int i=0; i < listBox.getItemCount(); i++) {
-            if (value.equals(listBox.getItemText(i))) {
+            if (value.equalsIgnoreCase(listBox.getItemText(i))) {
                 listBox.setSelectedIndex(i);
                 return;
             }
