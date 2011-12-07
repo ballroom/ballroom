@@ -78,7 +78,7 @@
     </licenses>
 
     <dependencies>
-         <!-- GWT -->
+        <!-- GWT -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
@@ -152,29 +152,50 @@
             </resource>
         </resources>
         <plugins>
-        	<plugin>
+            <plugin>
                 <!-- Surefire setup in order to be able to run GWT unit tests, according to
                      http://mojo.codehaus.org/gwt-maven-plugin/user-guide/testing.html -->
-        		<artifactId>maven-surefire-plugin</artifactId>
+                <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                  <additionalClasspathElements>
-                    <additionalClasspathElement>${project.build.sourceDirectory}</additionalClasspathElement>
-                    <additionalClasspathElement>${project.build.testSourceDirectory}</additionalClasspathElement>
-                  </additionalClasspathElements>
-                  <includes>
-                    <include>**/*TestSuite.java</include>
-                  </includes>
-                  <useManifestOnlyJar>false</useManifestOnlyJar>
-                  <forkMode>always</forkMode>
-                  <systemProperties>
-                    <property>
-                      <name>gwt.args</name>
-                      <value>-out ${basedir}/target/test-war</value>
-                    </property>
-                  </systemProperties>
+                    <skipTests>true</skipTests>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${project.build.sourceDirectory}</additionalClasspathElement>
+                        <additionalClasspathElement>${project.build.testSourceDirectory}</additionalClasspathElement>
+                    </additionalClasspathElements>
+                    <includes>
+                        <include>**/*TestSuite.java</include>
+                    </includes>
+                    <useManifestOnlyJar>false</useManifestOnlyJar>
+                    <forkMode>always</forkMode>
+                    <systemProperties>
+                        <property>
+                            <name>gwt.args</name>
+                            <value>-out ${basedir}/target/test-war</value>
+                        </property>
+                    </systemProperties>
                 </configuration>
-        	</plugin>
+            </plugin>
         </plugins>
     </build>
+
+    <!-- Profiles -->
+    <profiles>
+
+        <profile>
+            <id>enableTests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
 </project>
 
