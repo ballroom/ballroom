@@ -25,7 +25,6 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextBox;
@@ -40,7 +39,7 @@ public class UnitBoxItem<T> extends FormItem<T> implements ChoiceItem<String> {
     final ListBox unitBox;
     private String defaultUnit;
     ValueChangeHandler<String> textValueChangeHandler;
-    private final HorizontalPanel wrapper;
+    private final InputElementWrapper wrapper;
     private UnitFieldFormItem unitFieldFormItem;
     ChangeHandler unitValueChangeHandler;
 
@@ -74,8 +73,7 @@ public class UnitBoxItem<T> extends FormItem<T> implements ChoiceItem<String> {
         };
         unitBox.addChangeHandler(unitValueChangeHandler);
 
-        wrapper = new HorizontalPanel();
-        wrapper.add(textBox);
+        wrapper = new InputElementWrapper(textBox, this);
         wrapper.add(unitBox);
     }
 
@@ -125,10 +123,25 @@ public class UnitBoxItem<T> extends FormItem<T> implements ChoiceItem<String> {
     }
 
     @Override
+    public void setErroneous(boolean b) {
+        super.setErroneous(b);
+        wrapper.setErroneous(b);
+    }
+
+    @Override
+    public String getErrMessage() {
+        return "Invalid value";
+    }
+
+    @Override
     public boolean validate(T value) {
-        if (valueClass.equals(Long.class) || valueClass.equals(Integer.class))
-            // if it's a long or an int then we can just check that the value passed in is the same.
-            return value.getClass().equals(valueClass);
+        if (valueClass.equals(Long.class))
+            // Currently supported values are always >= 0. A -1 return value signals incorrect input.
+            return (Long) value != -1l;
+
+        if (valueClass.equals(Integer.class))
+            // Currently supported values are always >= 0. A -1 return value signals incorrect input.
+            return (Integer) value != -1;
 
         if (valueClass.equals(String.class)) {
             String strVal = (String) value;
