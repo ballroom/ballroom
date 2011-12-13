@@ -487,7 +487,7 @@ public class Form<T> implements FormAdapter<T> {
 
     private void refreshPlainView() {
         for(PlainFormView view : plainViews)
-            view.refresh();
+            view.refresh(getEditedEntity()!=null);
     }
 
     private Widget build() {

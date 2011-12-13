@@ -29,6 +29,8 @@ public class PlainFormView {
     private List<FormItem> items;
     private List<Row> rows;
     private int numColumns = 2;
+    private boolean hasEntity = false;
+    private final static String EMPTY_STRING = "";
 
     public PlainFormView(List<FormItem> items) {
         this.items = items;
@@ -100,21 +102,24 @@ public class PlainFormView {
 
         if(item.isUndefined())
         {
-            represenation = "";
+            represenation = EMPTY_STRING;
         }
         else if(value instanceof Boolean)
         {
-            represenation = (Boolean)value ? "true" : ""; // don't show 'false'
+            String booleanFallback = hasEntity ? "false" : EMPTY_STRING;
+            represenation = (Boolean)value ? "true" : booleanFallback;
         }
         else
         {
-            represenation = String.valueOf(value);
+            represenation = hasEntity ? String.valueOf(value) : EMPTY_STRING;
         }
 
         return represenation;
     }
 
-    public void refresh() {
+    public void refresh(boolean hasEntity) {
+
+        this.hasEntity = hasEntity; // changes the display style (no entity at all != empty entity)
 
         table.setRowCount(rows.size(), true);
         table.setRowData(rows);
