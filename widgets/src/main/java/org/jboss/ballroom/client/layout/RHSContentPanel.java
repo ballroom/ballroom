@@ -30,6 +30,7 @@ import org.jboss.ballroom.client.widgets.tabs.FakeTabPanel;
  * @author Heiko Braun
  * @date 2/22/11
  */
+@Deprecated
 public class RHSContentPanel extends LayoutPanel {
 
     private VerticalPanel delegate;
@@ -40,7 +41,7 @@ public class RHSContentPanel extends LayoutPanel {
 
         FakeTabPanel titleBar = new FakeTabPanel(title);
         super.add(titleBar);
-        super.setWidgetTopHeight(titleBar, 0, Style.Unit.PX, 28, Style.Unit.PX);
+        super.setWidgetTopHeight(titleBar, 0, Style.Unit.PX, 40, Style.Unit.PX);
 
         ScrollPanel scroll = new ScrollPanel();
 
@@ -49,7 +50,7 @@ public class RHSContentPanel extends LayoutPanel {
 
         scroll.add(delegate);
         super.add(scroll);
-        super.setWidgetTopHeight(scroll, 35, Style.Unit.PX, 100, Style.Unit.PCT);
+        super.setWidgetTopHeight(scroll, 40, Style.Unit.PX, 100, Style.Unit.PCT);
 
     }
 

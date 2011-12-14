@@ -37,10 +37,6 @@ public class FakeTabPanel extends HorizontalPanel {
 
         setStyleName("title-bar-panel");
 
-        HTML spacerLeft = new HTML("&nbsp;");
-        add(spacerLeft);
-        spacerLeft.getElement().getParentElement().setAttribute("style", "min-width:15px;width:15px;");
-
         add(new TabHeader(title));
 
         HTML spacerRight= new HTML("&nbsp;");

@@ -23,8 +23,6 @@ import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.CloseEvent;
-import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
@@ -74,15 +72,11 @@ public class ComboBox implements HasValueChangeHandlers<String> {
     private HorizontalPanel header;
     private HTML currentValue;
 
-    private String cssSuffix = "";
     private boolean isEnabled = true;
-
 
     private List<ValueChangeHandler<String>> changeHandlers = new ArrayList<ValueChangeHandler<String>>();
 
     public ComboBox(String cssSuffix) {
-
-        this.cssSuffix = cssSuffix;
 
         cellList = new CellList<String>(new TextCell()
         {
@@ -98,8 +92,7 @@ public class ComboBox implements HasValueChangeHandlers<String> {
 
         });
 
-        final SingleSelectionModel<String> selectionModel =
-                new SingleSelectionModel<String>();
+        final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
         cellList.setSelectionModel(selectionModel);
 
         selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
@@ -134,12 +127,6 @@ public class ComboBox implements HasValueChangeHandlers<String> {
         popup.getElement().setId(panelId);
 
         popup.setStyleName("default-popup");
-
-        popup.addCloseHandler(new CloseHandler<PopupPanel>() {
-            public void onClose(CloseEvent<PopupPanel> event) {
-
-            }
-        });
 
         popup.setWidget(cellList);
 

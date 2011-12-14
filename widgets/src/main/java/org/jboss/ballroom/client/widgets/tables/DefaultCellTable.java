@@ -42,7 +42,7 @@ import java.util.List;
  */
 public class DefaultCellTable<T> extends CellTable {
 
-    private static final DefaultCellTableResources DEFAULT_CELL_TABLE_RESOURCES =
+    public static final DefaultCellTableResources DEFAULT_CELL_TABLE_RESOURCES =
             new DefaultCellTableResources();
     private static final String CELLTABLE_EMPTY_DIV = "celltable-empty-div";
 
