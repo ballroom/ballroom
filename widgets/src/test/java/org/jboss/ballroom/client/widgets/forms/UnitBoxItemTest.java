@@ -159,4 +159,22 @@ public class UnitBoxItemTest extends GWTTestCase {
         ubi.unitValueChangeHandler.onChange(null);
         assertTrue(ubi.getUnitItem().isModified());
     }
+
+    @Test
+    public void testValidate() {
+        UnitBoxItem<String> ubi = new UnitBoxItem<String>("x", "X", String.class);
+        assertFalse(ubi.validate(""));
+        assertTrue(ubi.validate("Hi"));
+        assertFalse(ubi.validate("x y"));
+
+        UnitBoxItem<Long> ubil = new UnitBoxItem<Long>("y", "Y", Long.class);
+        assertTrue(ubil.validate(1l));
+        assertTrue(ubil.validate(Long.MAX_VALUE));
+        assertFalse(ubil.validate(-1l));
+
+        UnitBoxItem<Integer> ubii = new UnitBoxItem<Integer>("z", "Z", Integer.class);
+        assertTrue(ubii.validate(0));
+        assertTrue(ubii.validate(Integer.MAX_VALUE));
+        assertFalse(ubii.validate(-1));
+    }
 }
