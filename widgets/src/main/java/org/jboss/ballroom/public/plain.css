@@ -7,7 +7,8 @@
 
 body, p, td, th, option, input, textarea, select {
     color: #000000;
-    font:12px/1.4 arial,FreeSans,Helvetica,sans-serif;
+    font: 12px "Lucida Sans Unicode","Lucida Grande",sans-serif;
+    /*font:12px/1.4 arial,FreeSans,Helvetica,sans-serif;*/
 }
 
 a {
@@ -105,60 +106,12 @@ a:focus {
 }
 
 .cellTableSelectedRow {
-    background:#667A8E;
+    background:#eef4f9;
 }
 
 /*edit mode*/
 .cellTableKeyboardSelectedRow {
 /*background:none; doesn't work atm */
-}
-
-.section-stack {
-    width:99%;
-    margin:0px;
-    border-left:1px solid #A7ABB4;
-    border-right:1px solid #A7ABB4!important;
-}
-
-.stack-section-header {
-    background-color: #F8F8F8;
-    border-top: 1px solid #A7ABB4;
-    border-bottom: 1px solid #A7ABB4;
-    color: #606060;
-    cursor: pointer;
-    font-family: Arial,Verdana,sans-serif;
-    padding-bottom: 2px;
-    padding-left: 10px;
-    padding-top: 2px;
-    width: 100%;
-}
-
-.stack-section-header-selected {
-    color:#000;
-}
-
-.stack-section-header-inline {
-    font-family:Arial,Verdana,sans-serif;
-    text-overflow:ellipsis;
-    background-color:#F8F8F8;
-    padding-left:10px;
-    padding-top:6px;
-    padding-bottom:4px;
-    height:20px;
-    color:#000;
-    font-size:12px;
-    border-top:1px solid #A7ABB4;
-    border-bottom:1px solid #A7ABB4;
-    cursor:pointer;
-}
-
-.stack-section {
-    border-top: none!important;
-    margin: 0;
-    padding-bottom: 15px;
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%;
 }
 
 .lhs-nav-item {
@@ -172,7 +125,7 @@ a:focus {
 }
 
 .lhs-nav-item:hover {
-    background-color:#667A8E;
+    background-color:#eef4f9;
 }
 
 .title-bar {
@@ -265,7 +218,7 @@ a:focus {
 }
 
 .lhs-tree-item-selected {
-    background-color:#667A8E;
+    background-color:#eef4f9;
 }
 
 .cell-record {
@@ -530,8 +483,8 @@ a:focus {
 }
 
 .menu-cell:hover {
-    /* #667A8E */
-    background-color:#667A8E!important;
+    /* #eef4f9 */
+    background-color:#eef4f9!important;
 }
 
 .vertical-tabpanel-tab {
