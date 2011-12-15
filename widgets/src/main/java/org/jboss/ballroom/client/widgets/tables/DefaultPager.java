@@ -32,5 +32,6 @@ public class DefaultPager extends SimplePager {
 
     public DefaultPager() {
         super(SimplePager.TextLocation.CENTER, pagerResources, false, 0, true);
+        getElement().addClassName("default-pager");
     }
 }
