@@ -62,7 +62,8 @@ public class DialogueOptions extends HorizontalPanel {
         add(submit);
         add(spacer);
         add(cancel);
-        cancel.getElement().getParentElement().setAttribute("style","vertical-align:middle");
+
+        cancel.getElement().getParentElement().setAttribute("style","vertical-align:bottom");
         submit.getElement().getParentElement().setAttribute("align", "right");
         submit.getElement().getParentElement().setAttribute("width", "100%");
     }
