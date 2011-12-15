@@ -23,6 +23,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import org.jboss.ballroom.client.widgets.InlineLink;
 import org.jboss.ballroom.client.widgets.common.DefaultButton;
 
 /**
@@ -32,7 +33,7 @@ import org.jboss.ballroom.client.widgets.common.DefaultButton;
 public class DialogueOptions extends HorizontalPanel {
 
     private DefaultButton submit;
-    private Label cancel;
+    private HTML cancel;
 
     public DialogueOptions(ClickHandler submitHandler, ClickHandler cancelHandler) {
         this("Save", submitHandler, "Cancel", cancelHandler);
@@ -45,15 +46,14 @@ public class DialogueOptions extends HorizontalPanel {
         getElement().setAttribute("style", "margin-top:10px;width:100%");
 
         submit = new DefaultButton(submitText);
-        submit.getElement().setAttribute("style", "min-width:60px;height:18px");
+        submit.getElement().setAttribute("style", "min-width:60px;");
         submit.addClickHandler(submitHandler);
 
 
-        cancel = new Label(cancelText);
-        cancel.setStyleName("html-link");
+        cancel = new InlineLink(cancelText);
         cancel.addClickHandler(cancelHandler);
 
-        getElement().setAttribute("style", "margin-top:15px; width:100%");
+        getElement().setAttribute("style", "margin-top:8px; width:100%");
 
         HTML spacer = new HTML("&nbsp;");
         add(spacer);

@@ -71,35 +71,6 @@ a:focus {
     border:1px solid #A7ABB4;
 }
 
-.form-item-title {
-    font-size:8pt;
-    padding-right:2px;
-    color:#4A5D75;
-    font-weight:bold;
-    white-space:nowrap;
-    text-align:right;
-}
-
-.form-item {
-    padding-top:8px;
-    padding-bottom:8px;
-    padding-right:8px;
-    padding-left:2px;
-    min-width:150px;
-}
-
-.form-group-label {
-    border-bottom: 1px solid #E0E0E0;
-    color: #A4A4A4;
-    font-size: 14px !important;
-    font-weight: bold;
-    height: 20px;
-    margin-bottom: 10px;
-    padding-bottom: 0;
-    padding-top: 20px;
-    width: 100%;
-}
-
 .group-item-title {
     color:#C0C0C0;
 }
@@ -486,48 +457,6 @@ a:focus {
 }
 
 
-.form-item-table{
-    font-family:Arial, Verdana, sans-serif;
-    font-size:11px;
-    color: black;
-    width:100%;
-    background-color:#ffffff;
-}
-
-.formItemTableHeader {
-
-}
-
-.formItemTableFooter {
-
-}
-
-.formItemTableEvenRow {
-    background-color:#ffffff;
-}
-
-.formItemTableOddRow {
-    border-top: 1px solid #e5e5e5;
-    background-color:#fafafa;
-
-}
-
-.formItemTableCell {
-    padding-top:10px;
-    padding-bottom:10px;
-}
-
-.formItemTableHoveredRow {
-    background-color:#ffffff;
-}
-
-.formItemTableSelectedRow {
-    background-color:#ffffff;
-}
-
-.formItemTableKeyboardSelectedRow {
-    background-color:#ffffff;
-}
 
 
 .error-panel {
