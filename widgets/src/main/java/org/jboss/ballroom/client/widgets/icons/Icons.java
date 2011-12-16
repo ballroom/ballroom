@@ -85,10 +85,10 @@ public interface Icons extends ClientBundle {
     @Source("package.png")
     ImageResource deployment();
 
-    @Source("status_red_small.png")
+    @Source("icon_disabled.png")
     ImageResource statusRed_small();
 
-    @Source("status_green_small.png")
+    @Source("icon_enabled.png")
     ImageResource statusGreen_small();
 
     @Source("status_yellow_small.png")
