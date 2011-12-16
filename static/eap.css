@@ -8,7 +8,7 @@ body {
 
 #container {
     max-width: 860px;
-    background: #BEBEBE;
+    background: #8c8f91;
     border-right: 1px solid #A7ABB4;
     border-left: 1px solid #A7ABB4;
     margin-left:auto;
@@ -36,7 +36,8 @@ body {
     top: 0;
     min-height:58px;
     width:100%;
-    background-color: #3B4D64;
+    background: url("images/header_bg.png") repeat-x scroll 0 0 #424242;
+    color:#ffffff;
 }
 
 #footer {
