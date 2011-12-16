@@ -30,17 +30,26 @@ public class DisclosureStackPanel {
 
     private DisclosurePanel panel;
 
-    public DisclosureStackPanel(String title) {
+    public DisclosureStackPanel(String title, boolean first) {
 
         panel = new DisclosurePanel(Icons.INSTANCE.stack_opened(), Icons.INSTANCE.stack_closed(), title);
         panel.setOpen(true);
         panel.getElement().setAttribute("style", "width:100%;");
         panel.getHeader().setStyleName("stack-section-header");
+        if(first) panel.getHeader().addStyleName("stack-section-first");
         panel.setWidth("100%"); // IE 7
+
+    }
+
+    public DisclosureStackPanel(String title) {
+
+        this(title, false);
 
     }
 
     public DisclosurePanel asWidget() {
         return panel;
     }
+
+
 }
