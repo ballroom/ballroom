@@ -19,13 +19,12 @@
 
 package org.jboss.ballroom.client.widgets.window;
 
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -118,6 +117,53 @@ public class Feedback {
         window.setWidget(content);
 
         window.center();
+    }
+
+    public static PopupPanel loading(String title, String message, final LoadingCallback callback) {
+
+        final DefaultWindow window = new DefaultWindow(title);
+
+        int width = 320;
+        int height = 240;
+
+        window.setWidth(width);
+        window.setHeight(height);
+
+        window.setGlassEnabled(true);
+
+        VerticalPanel panel = new VerticalPanel();
+        panel.setStyleName("default-window-content");
+
+        HTML text = new HTML(message);
+        panel.add(text);
+
+        ClickHandler confirmHandler = new ClickHandler() {
+
+            public void onClick(ClickEvent event) {
+                window.hide();
+            }
+        };
+
+        ClickHandler cancelHandler = new ClickHandler() {
+
+            public void onClick(ClickEvent event) {
+                callback.onCancel();
+            }
+        };
+
+        //DialogueOptions options = new DialogueOptions("OK", confirmHandler, "Cancel", cancelHandler);
+
+        Widget content = new WindowContentBuilder(panel, new HTML()).build();
+
+        window.setWidget(content);
+
+        window.center();
+
+        return window;
+    }
+
+    public interface LoadingCallback {
+        void onCancel();
     }
 
     public interface ConfirmationHandler
