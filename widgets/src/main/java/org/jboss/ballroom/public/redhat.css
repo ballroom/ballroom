@@ -767,7 +767,7 @@ a:focus {
 
 .cellListSelectedItem {
     background-color: #e5e5c1;
-    color: white;
+    color: #000000;
     height: auto;
     overflow: visible;
 }
