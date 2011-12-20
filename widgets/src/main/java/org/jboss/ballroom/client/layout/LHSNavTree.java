@@ -40,7 +40,7 @@ import org.jboss.ballroom.client.widgets.icons.DefaultTreeResources;
  * @author Heiko Braun
  * @date 3/24/11
  */
-public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelectionHandler{
+public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelectionHandler {
 
     private static final String TREE_ID_ATTRIBUTE = "treeid";
     private static final Framework framework = GWT.create(Framework.class);
@@ -108,6 +108,9 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
                 public void applyTo(LHSNavTreeItem treeItem) {
                     boolean isSelected = selectedItem.equals(treeItem.getText());
                     treeItem.setSelected(isSelected);
+
+                    if(isSelected && treeItem.getParentItem()!=null)
+                        treeItem.getParentItem().setState(true);
                 }
             });
         }
