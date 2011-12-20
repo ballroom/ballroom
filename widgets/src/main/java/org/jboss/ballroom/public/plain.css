@@ -121,13 +121,32 @@ a:focus {
 
 .lhs-tree-item:hover {
     background-color:#e5e5e5;
+    background-image: url('images/lhs_arrow_over.png');
+    background-position:center right;
+    background-repeat: no-repeat;
     -webkit-transition: background-color .1s ease-in-out;
     -moz-transition: background-color .1s ease-in-out;
     transition: background-color .1s ease-in-out;
+
+    -webkit-transition: background-image .1s ease-in-out;
+    -moz-transition: background-image .1s ease-in-out;
+    transition: background-image .1s ease-in-out;
 }
 
 .lhs-tree-item-selected {
-    background-color:#eef4f9;
+    color:#ffffff!important;
+    background-color:#64645d;
+    background-image: url('images/org_lhs_arrow.png');
+    background-position:center right;
+    background-repeat: no-repeat;
+}
+
+.lhs-tree-item-selected:hover {
+    color:#ffffff!important;
+    background-color:#64645d;
+    background-image: url('images/rh_lhs_arrow.png');
+    background-position:center right;
+    background-repeat: no-repeat;
 }
 
 .cell-record {
@@ -318,6 +337,14 @@ a:focus {
 
 .html-link:hover {
     text-decoration:underline;
+}
+
+.header-prod-version {
+  padding-top:18px;
+  padding-left: 4px;
+  font-size: 13pt!important;
+  font-weight: BOLD;
+  color: #ffffff!important;
 }
 
 .default-toolstrip {
