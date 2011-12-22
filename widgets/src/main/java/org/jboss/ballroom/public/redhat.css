@@ -75,14 +75,6 @@ body {
     float: right;
 }
 
-.header-link {
-    cursor: pointer;
-    font-size: 14px!important;
-    text-decoration: none;
-    padding-bottom: 4px;
-    padding-left:20px;
-}
-
 .header-link-label {
     color:#e5e5e5!important;
 }

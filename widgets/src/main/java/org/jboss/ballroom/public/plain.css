@@ -340,9 +340,8 @@ a:focus {
 }
 
 .header-prod-version {
-  padding-top:18px;
   padding-left: 4px;
-  font-size: 13pt!important;
+  font-size: 15px!important;
   font-weight: BOLD;
   color: #ffffff!important;
 }
@@ -665,7 +664,6 @@ a:focus {
     height: auto;
     overflow: visible;
 }
-
 
 /* regular gwt tabs */
 
