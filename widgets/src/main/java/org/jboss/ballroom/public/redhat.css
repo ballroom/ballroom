@@ -458,7 +458,7 @@ a:focus {
 
 .toolstrip-button {
     background: url("images/buttons/button_bg.gif") repeat-x scroll 0 0 #DDDDDD;
-    border: 1px solid #888888;
+    border: 1px solid #CCC;
     border-radius: 2px 2px 2px 2px;
     color: #000000 !important;
     cursor: pointer;
@@ -478,10 +478,10 @@ a:focus {
 
 .toolstrip-button:hover {
     background: url("images/buttons/button_bg.gif") repeat-x scroll 0 0 #DDDDDD;
-    border: 1px solid #888888;
+    border: 1px solid #888888!important;
     border-radius: 2px 2px 2px 2px;
     color: #000000 !important;
-    text-decoration: underline!important;
+    text-decoration: none!important;
 }
 
 .row-tools {

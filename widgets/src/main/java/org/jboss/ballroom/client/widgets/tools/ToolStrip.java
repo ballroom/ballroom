@@ -54,7 +54,8 @@ public class ToolStrip extends HorizontalPanel{
 
     public void addToolButtonRight(ToolButton button)
     {
-        button.getElement().setAttribute("style", "border-color:#cccccc;margin-right:5px;");
+        button.getElement().setAttribute("style", ";margin-right:5px;");
+        button.addStyleName("toolstrip-button-secondary");
         right.add(button);
 
     }
