@@ -1,7 +1,7 @@
 body {
     background: url("images/eap_bg.png") repeat-x scroll 0 0 #e3dcc0;
     color: #555555;
-    font: 12px "Lucida Sans Unicode","Lucida Grande",sans-serif;
+    font: 12px/1.4 "Lucida Sans Unicode","Lucida Grande",sans-serif;
     margin: 0;
 }
 
@@ -84,4 +84,12 @@ H2 {
 
 sub {
 	color:#a3a7aa;	
+}
+
+.WarnBlock {
+    color:#000000;
+    padding:15px;
+    background-color: #FFD272; /* light yellow */
+     -moz-border-radius: 4px;
+    border-radius: 4px;
 }
