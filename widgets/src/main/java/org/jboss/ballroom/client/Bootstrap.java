@@ -7,7 +7,9 @@ import com.google.gwt.core.client.EntryPoint;
  * @date 7/12/11
  */
 public class Bootstrap implements EntryPoint{
+
     public void onModuleLoad() {
         System.out.println("Detected Ballroom widgets");
+
     }
 }
