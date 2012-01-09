@@ -27,6 +27,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import org.jboss.ballroom.client.I18n;
 
 /**
  * Collection of feedback windows.
@@ -70,7 +71,7 @@ public class Feedback {
             }
         };
 
-        DialogueOptions options = new DialogueOptions("OK", confirmHandler, "Cancel", cancelHandler);
+        DialogueOptions options = new DialogueOptions(I18n.CONSTANTS.common_label_confirm(), confirmHandler, I18n.CONSTANTS.common_label_cancel(), cancelHandler);
 
         Widget content = new WindowContentBuilder(panel, options).build();
 
@@ -110,7 +111,7 @@ public class Feedback {
             }
         };
 
-        DialogueOptions options = new DialogueOptions("OK", confirmHandler, "Cancel", confirmHandler);
+        DialogueOptions options = new DialogueOptions(I18n.CONSTANTS.common_label_confirm(), confirmHandler, I18n.CONSTANTS.common_label_cancel(), confirmHandler);
 
         Widget content = new WindowContentBuilder(panel, options.showCancel(false)).build();
 

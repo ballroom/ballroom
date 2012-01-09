@@ -13,4 +13,8 @@ public interface UIConstants extends Constants {
 
     String common_label_add();
     String common_label_remove();
+
+    String common_label_cancel();
+
+    String common_label_confirm();
 }

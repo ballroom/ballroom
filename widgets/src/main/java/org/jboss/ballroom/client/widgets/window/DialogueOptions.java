@@ -23,6 +23,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import org.jboss.ballroom.client.I18n;
 import org.jboss.ballroom.client.widgets.InlineLink;
 import org.jboss.ballroom.client.widgets.common.DefaultButton;
 
@@ -36,7 +37,7 @@ public class DialogueOptions extends HorizontalPanel {
     private HTML cancel;
 
     public DialogueOptions(ClickHandler submitHandler, ClickHandler cancelHandler) {
-        this("Save", submitHandler, "Cancel", cancelHandler);
+        this(I18n.CONSTANTS.common_label_save(), submitHandler, I18n.CONSTANTS.common_label_cancel(), cancelHandler);
     }
 
     public DialogueOptions(
