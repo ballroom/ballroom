@@ -867,7 +867,7 @@ a:focus {
 
 .stack-section {
     border-top: none!important;
-    margin: 0;
+    margin-top: 5px;
     padding-bottom: 15px;
     padding-left: 0;
     padding-right: 0;
