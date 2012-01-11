@@ -157,7 +157,7 @@ public class ComboBoxItem extends FormItem<String> {
 
     @Override
     public void clearValue() {
-        if(defaultToFirst)
+        if(defaultToFirst && comboBox.getItemCount()>0)
             selectItem(0);
         else
             comboBox.clearSelection();
