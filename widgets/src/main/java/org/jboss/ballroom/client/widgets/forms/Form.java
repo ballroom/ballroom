@@ -365,15 +365,18 @@ public class Form<T> implements FormAdapter<T> {
         {
             for(FormItem item : groupItems.values())
             {
-                boolean validValue = item.validate(item.getValue());
-                if(validValue)
+                if(item.isModified())
                 {
-                    item.setErroneous(false);
-                }
-                else
-                {
-                    outcome.addError(item.getName());
-                    item.setErroneous(true);
+                    boolean validValue = item.validate(item.getValue());
+                    if(validValue)
+                    {
+                        item.setErroneous(false);
+                    }
+                    else
+                    {
+                        outcome.addError(item.getName());
+                        item.setErroneous(true);
+                    }
                 }
             }
         }
