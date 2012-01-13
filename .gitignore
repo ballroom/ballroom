@@ -5,6 +5,9 @@ target
 .idea
 build.number
 *.class
+.project
+.classpath
+.settings
 
 showcase/war/WEB-INF/lib
 showcase/war/WEB-INF/deploy
