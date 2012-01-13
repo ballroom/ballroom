@@ -91,7 +91,8 @@ public class PasswordBoxItem extends FormItem<String> {
         }
         else
         {
-            return true;
+            String updated = value.replace(" ", ""); // contains white space?
+            return updated.equals(value);
         }
     }
 
