@@ -19,8 +19,6 @@
 
 package org.jboss.ballroom.client.layout;
 
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.TreeItem;
 
 /**
@@ -36,14 +34,6 @@ public class LHSNavTreeItem extends TreeItem {
         getElement().setAttribute("token", token);
     }
 
-    public LHSNavTreeItem(String text, ClickHandler handler) {
-        setText(text);
-        HTML html = new HTML(text);
-        html.addClickHandler(handler);
-        setWidget(html);
-        setStyleName("lhs-tree-item");
-    }
-
     public void setKey(String key) {
         getElement().setAttribute("lhs-nav-key", key);
     }
@@ -53,25 +43,6 @@ public class LHSNavTreeItem extends TreeItem {
         if(null == key) key = ""; // graceful
         return key;
     }
-
-    /*public LHSNavTreeItem(String text, ImageResource icon, String token) {
-
-        Image img = new Image(icon);
-        Label label = new Label(text);
-
-        HorizontalPanel horz = new HorizontalPanel();
-        horz.getElement().setAttribute("style", "padding:0px;");
-        horz.add(img);
-        horz.add(label);
-
-        img.getElement().getParentElement().setAttribute("style", "vertical-align:middle;padding-right:5px;");
-        label.getElement().getParentElement().setAttribute("style", "vertical-align:middle");
-
-        setWidget(horz);
-
-        setStyleName("lhs-tree-item");
-        getElement().setAttribute("token", token);
-    } */
 
     public void setSelected(boolean selected) {
         super.setSelected(selected);

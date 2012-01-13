@@ -100,13 +100,19 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
     @Override
     public void onSelectedNavTree(String selectedId, final String selectedItem, String selectedCategory) {
 
-        if(category.equals(selectedCategory))
+        if(category.equals(selectedCategory) || selectedCategory.equals("*"))
         {
             applyStateChange(new StateChange()
             {
                 @Override
                 public void applyTo(LHSNavTreeItem treeItem) {
-                    boolean isSelected = selectedItem.equals(treeItem.getText());
+
+                    String token = treeItem.getElement().hasAttribute("token") ?
+                        treeItem.getElement().getAttribute("token") : "not-set";
+
+                    boolean isSelected = selectedItem.equals(treeItem.getText())
+                            || token.equals(selectedItem);
+
                     treeItem.setSelected(isSelected);
 
                     if(isSelected && treeItem.getParentItem()!=null)
