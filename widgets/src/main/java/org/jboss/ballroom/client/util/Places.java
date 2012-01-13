@@ -30,6 +30,7 @@ import java.util.List;
  */
 public class Places {
 
+    @Deprecated
     public static List<PlaceRequest> fromString(String urlString)
     {
         List<PlaceRequest> places = null;
