@@ -35,12 +35,25 @@ public class LHSHighlightEvent extends GwtEvent<LHSHighlightEvent.NavItemSelecti
     public static final Type TYPE = new Type<NavItemSelectionHandler>();
 
     private String treeId, item, category;
+    private String token;
 
     public LHSHighlightEvent(String treeId, String item, String category) {
         super();
         this.treeId = treeId;
         this.item = item;
         this.category = category;
+    }
+
+    public LHSHighlightEvent(String token) {
+        super();
+        this.treeId = "not-set";
+        this.item = "not-set";
+        this.category = "*";
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
     }
 
     @Override
@@ -50,7 +63,7 @@ public class LHSHighlightEvent extends GwtEvent<LHSHighlightEvent.NavItemSelecti
 
     @Override
     protected void dispatch(NavItemSelectionHandler listener) {
-        listener.onSelectedNavTree(treeId, item, category);
+        listener.onSelectedNavTree(this);
     }
 
     public String getTreeId() {
@@ -66,7 +79,7 @@ public class LHSHighlightEvent extends GwtEvent<LHSHighlightEvent.NavItemSelecti
     }
 
     public interface NavItemSelectionHandler extends EventHandler {
-        void onSelectedNavTree(String treeId, String item, String category);
+        void onSelectedNavTree(LHSHighlightEvent event);
     }
 }
 
