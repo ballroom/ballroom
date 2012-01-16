@@ -69,21 +69,15 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
                     );
 
                 }
-
-                // highlight section
-                Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-                    @Override
-                    public void execute() {
-                        framework.getEventBus().fireEvent(
-                                new LHSHighlightEvent(treeId, selectedItem.getText(), category)
-                        );
-                    }
-                });
-
             }
         });
 
-        framework.getEventBus().addHandler(LHSHighlightEvent.TYPE, this);
+         Scheduler.get().scheduleEntry(new Scheduler.ScheduledCommand() {
+             @Override
+             public void execute() {
+                 framework.getEventBus().addHandler(LHSHighlightEvent.TYPE, LHSNavTree.this);
+             }
+         });
     }
 
     public String getTreeId() {
@@ -98,9 +92,9 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
     }
 
     @Override
-    public void onSelectedNavTree(String selectedId, final String selectedItem, String selectedCategory) {
+    public void onSelectedNavTree(final LHSHighlightEvent event) {
 
-        if(category.equals(selectedCategory) || selectedCategory.equals("*"))
+        if(category.equals(event.getCategory()) || event.getCategory().equals("*"))
         {
             applyStateChange(new StateChange()
             {
@@ -110,16 +104,28 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
                     String token = treeItem.getElement().hasAttribute("token") ?
                         treeItem.getElement().getAttribute("token") : "not-set";
 
-                    boolean isSelected = selectedItem.equals(treeItem.getText())
-                            || token.equals(selectedItem);
+                    boolean isSelected = event.getItem().equals(treeItem.getText())
+                            || token.equals(event.getToken());
 
                     treeItem.setSelected(isSelected);
 
-                    if(isSelected && treeItem.getParentItem()!=null)
-                        treeItem.getParentItem().setState(true);
+                    if(isSelected)
+                    {
+                        openParents(treeItem);
+                    }
                 }
             });
         }
+    }
+
+    private void openParents(TreeItem treeItem) {
+        TreeItem parentItem = treeItem.getParentItem();
+        if(parentItem !=null)
+        {
+            parentItem.setState(true);
+            openParents(parentItem);
+        }
+
     }
 
     void applyStateChange(StateChange stateChange)
