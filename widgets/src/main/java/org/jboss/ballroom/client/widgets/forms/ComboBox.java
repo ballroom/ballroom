@@ -204,20 +204,21 @@ public class ComboBox implements HasValueChangeHandlers<String> {
 
     public void setItemSelected(int i, boolean isSelected) {
 
-        String selectedValue = values.get(i);
+        String selection = "";
 
         if(isSelected && !values.isEmpty())
         {
-            currentValue.setText(selectedValue);
-            onSelection(selectedValue);
+            selection = values.get(i);
+            currentValue.setText(selection);
+            onSelection(selection);
         }
         else if(!isSelected)
         {
-            currentValue.setText("");
-            onSelection("");
+            currentValue.setText(selection);
+            onSelection(selection);
         }
 
-        cellList.getSelectionModel().setSelected(selectedValue, isSelected);
+        cellList.getSelectionModel().setSelected(selection, isSelected);
     }
 
     public void setValues(Collection<String> values)
