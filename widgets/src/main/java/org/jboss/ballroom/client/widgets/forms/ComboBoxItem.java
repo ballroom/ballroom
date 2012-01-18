@@ -66,13 +66,14 @@ public class ComboBoxItem extends FormItem<String> {
     @Override
     public void resetMetaData() {
         super.resetMetaData();
+        clearSelection();
         //postInit = false;
     }
 
     @Override
     public void setValue(String value) {
 
-        comboBox.clearSelection();
+        clearSelection();
 
         for(int i=0; i< comboBox.getItemCount(); i++)
         {
@@ -105,7 +106,10 @@ public class ComboBoxItem extends FormItem<String> {
     }
 
     public void setValueMap(String[] values) {
+
         comboBox.clearValues();
+        comboBox.clearSelection();
+
         for(String s : values)
         {
             comboBox.addItem(s);
@@ -117,6 +121,8 @@ public class ComboBoxItem extends FormItem<String> {
 
     public void setValueMap(Collection<String> values) {
         comboBox.clearValues();
+        comboBox.clearSelection();
+
         for(String s : values)
         {
             comboBox.addItem(s);
@@ -157,10 +163,10 @@ public class ComboBoxItem extends FormItem<String> {
 
     @Override
     public void clearValue() {
+        clearSelection();
+
         if(defaultToFirst && comboBox.getItemCount()>0)
             selectItem(0);
-        else
-            comboBox.clearSelection();
     }
     
     public void addValueChangeHandler(ValueChangeHandler<String> handler) {

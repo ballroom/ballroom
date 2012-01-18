@@ -56,7 +56,6 @@ public class ComboBox implements HasValueChangeHandlers<String> {
     private static final int ESCAPE = 27;
 
     private List<String> values = new ArrayList<String>();
-    private int selectedItemIndex = -1;
 
     interface Template extends SafeHtmlTemplates {
         @Template("<div class=\"{0}\">{1}</div>")
@@ -99,7 +98,7 @@ public class ComboBox implements HasValueChangeHandlers<String> {
             public void onSelectionChange(SelectionChangeEvent event) {
                 String selectedValue = selectionModel.getSelectedObject();
 
-                currentValue.setHTML(selectedValue);
+                currentValue.setText(selectedValue);
                 popup.hide();
 
                 onSelection(selectedValue);
@@ -130,7 +129,7 @@ public class ComboBox implements HasValueChangeHandlers<String> {
 
         popup.setWidget(cellList);
 
-        currentValue = new HTML("&nbsp;");
+        currentValue = new HTML("");
         currentValue.setStyleName("combobox-value"+cssSuffix);
 
         header = new HorizontalPanel();
@@ -176,7 +175,7 @@ public class ComboBox implements HasValueChangeHandlers<String> {
 
     public Widget asWidget() {
         return header;
-    };
+    }
 
     private void openPanel() {
 
@@ -199,19 +198,26 @@ public class ComboBox implements HasValueChangeHandlers<String> {
     }
 
     public String getValue(int i) {
+
         return values.get(i);
     }
 
     public void setItemSelected(int i, boolean isSelected) {
 
+        String selectedValue = values.get(i);
+
         if(isSelected && !values.isEmpty())
         {
-            this.selectedItemIndex =  i;
-            String selectedValue = values.get(selectedItemIndex);
             currentValue.setText(selectedValue);
             onSelection(selectedValue);
-
         }
+        else if(!isSelected)
+        {
+            currentValue.setText("");
+            onSelection("");
+        }
+
+        cellList.getSelectionModel().setSelected(selectedValue, isSelected);
     }
 
     public void setValues(Collection<String> values)
@@ -230,6 +236,7 @@ public class ComboBox implements HasValueChangeHandlers<String> {
 
     public void clearValues() {
         this.values.clear();
+        clearSelection();
         refeshCellList();
     }
 
@@ -275,6 +282,5 @@ public class ComboBox implements HasValueChangeHandlers<String> {
         {
             setItemSelected(i, false);
         }
-        selectedItemIndex = -1;
     }
 }
