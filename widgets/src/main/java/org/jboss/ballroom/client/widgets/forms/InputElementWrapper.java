@@ -39,7 +39,11 @@ class InputElementWrapper extends HorizontalPanel {
 
     public InputElementWrapper(Widget widget, final InputElement input) {
         super();
+
+        setStyleName("fill-layout-width");
+
         add(widget);
+        widget.getElement().getParentElement().setAttribute("style", "width:100%;vertical-align:middle");
 
         add(expr);
         expr.setVisible(false);
