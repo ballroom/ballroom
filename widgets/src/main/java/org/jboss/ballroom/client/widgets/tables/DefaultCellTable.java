@@ -169,13 +169,14 @@ public class DefaultCellTable<T> extends CellTable {
             model.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
                 @Override
                 public void onSelectionChange(SelectionChangeEvent event) {
+
                     lastSelection = model.getSelectedObject();
                 }
             });
         }
     }
 
-    public T getLastSelection() {
+    public T getPreviousSelectedEntity() {
         return lastSelection;
     }
 
@@ -185,6 +186,28 @@ public class DefaultCellTable<T> extends CellTable {
 
     public boolean isEmpty() {
         return isEmpty;
+    }
+
+    /**
+     * In order fo the default selection to work, you need to implement
+     * {@link com.google.gwt.view.client.ProvidesKey} on the selection model.
+     */
+    public void defaultSelectEntity() {
+
+        if(null==getSelectionModel())
+            return;
+
+        if(lastSelection!=null)
+        {
+            getSelectionModel().setSelected(lastSelection, true);
+        }
+        else if(getVisibleItemCount()>0)
+        {
+            getSelectionModel().setSelected(
+                    getVisibleItem(0), true
+            );
+        }
+
     }
 }
 
