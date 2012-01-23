@@ -60,14 +60,17 @@ public class DefaultGroupRenderer implements GroupRenderer
             }
         }
 
-        int colWidth = 100/(metaData.getNumColumns()*2);
+        //int colWidth = 100/(metaData.getNumColumns()*2);
 
-        builder.appendHtmlConstant("<colgroup>");
+        builder.appendHtmlConstant("<colgroup id='cols_"+metaData.getNumColumns()+"'>");
         for(int col=0; col<metaData.getNumColumns(); col++)
         {
             // it's two TD's per item (title & value)
-            builder.appendHtmlConstant("<col width='"+(colWidth-10)+"%'/>");
-            builder.appendHtmlConstant("<col width='"+(colWidth+10)+"%'/>");
+            //builder.appendHtmlConstant("<col width='"+(colWidth-10)+"%'/>");
+            //builder.appendHtmlConstant("<col width='"+(colWidth+10)+"%'/>");
+
+            builder.appendHtmlConstant("<col class='form-item-title-col'/>");
+            builder.appendHtmlConstant("<col class='form-item-col'/>");
 
         }
         builder.appendHtmlConstant("</colgroup>");
