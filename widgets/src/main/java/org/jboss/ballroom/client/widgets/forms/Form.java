@@ -365,7 +365,11 @@ public class Form<T> implements FormAdapter<T> {
         {
             for(FormItem item : groupItems.values())
             {
-                if(item.isModified())
+                // two cases: empty form (create entity) and updating an existing entity
+                // we basically force validation on newly created entities
+                boolean requiresValidation = getEditedEntity()!=null ? item.isModified() : true;
+
+                if(requiresValidation)
                 {
                     boolean validValue = item.validate(item.getValue());
                     if(validValue)
