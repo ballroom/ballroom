@@ -143,7 +143,7 @@ public class ComboBox implements HasValueChangeHandlers<String> {
 
         img.getParent().getElement().setAttribute("width", "18");
 
-        header.getElement().setAttribute("width", "100%");
+        //header.getElement().setAttribute("width", "95%");
         header.getElement().setAttribute("cellspacing", "0");
         header.getElement().setAttribute("cellpadding", "0");
         header.getElement().setAttribute("border", "0");
