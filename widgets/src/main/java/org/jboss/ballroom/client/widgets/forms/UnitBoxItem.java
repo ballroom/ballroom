@@ -33,6 +33,7 @@ import com.google.gwt.user.client.ui.Widget;
 /**
  * @author David Bosschaert
  */
+@Deprecated
 public class UnitBoxItem<T> extends FormItem<T> implements ChoiceItem<String> {
     private final Class<T> valueClass;
     final TextBox textBox;
