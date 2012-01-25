@@ -104,7 +104,20 @@ public class PlainFormView {
         {
             represenation = EMPTY_STRING;
         }
-        else if(value instanceof Boolean)
+        else if(hasEntity && item.isExpressionValue())
+        {
+            represenation = String.valueOf(item.asExpressionValue());
+        }
+        else if(hasEntity && (item instanceof PasswordBoxItem))
+        {
+            // hide passwords
+            StringBuffer sb = new StringBuffer();
+            String plainText = String.valueOf(value);
+            for(int i=0; i<plainText.length(); i++)
+                sb.append("*");
+            represenation = sb.toString();
+        }
+        else if(hasEntity && (value instanceof Boolean))
         {
             String booleanFallback = hasEntity ? "false" : EMPTY_STRING;
             represenation = (Boolean)value ? "true" : booleanFallback;
