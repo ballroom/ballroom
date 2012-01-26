@@ -200,14 +200,14 @@ public class Form<T> implements FormAdapter<T> {
                         item.resetMetaData();
 
                         // expressions
-                       // if(item.doesSupportExpressions())
+                        // if(item.doesSupportExpressions())
                         //{
-                            String exprValue = exprMap.get(propertyName);
-                            if(exprValue!=null)
-                            {
-                                item.setUndefined(false);
-                                item.setExpressionValue(exprValue);
-                            }
+                        String exprValue = exprMap.get(propertyName);
+                        if(exprValue!=null)
+                        {
+                            item.setUndefined(false);
+                            item.setExpressionValue(exprValue);
+                        }
                         //}
 
                         // values
@@ -371,15 +371,30 @@ public class Form<T> implements FormAdapter<T> {
 
                 if(requiresValidation)
                 {
-                    boolean validValue = item.validate(item.getValue());
-                    if(validValue)
-                    {
-                        item.setErroneous(false);
-                    }
-                    else
+                    Object value = item.getValue();
+
+                    // ascii or empty string are ok. the later will be checked in each form item implentation.
+                    String stringValue = String.valueOf(value);
+                    boolean ascii = stringValue.isEmpty() ||
+                            stringValue.matches("^[\\u0020-\\u007e]+$");
+
+                    if(!ascii)
                     {
                         outcome.addError(item.getName());
                         item.setErroneous(true);
+                    }
+                    else
+                    {
+                        boolean validValue = item.validate(value);
+                        if(validValue)
+                        {
+                            item.setErroneous(false);
+                        }
+                        else
+                        {
+                            outcome.addError(item.getName());
+                            item.setErroneous(true);
+                        }
                     }
                 }
             }
