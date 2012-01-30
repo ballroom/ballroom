@@ -27,10 +27,10 @@ public interface Icons extends ClientBundle {
 
     public static final Icons INSTANCE =  GWT.create(Icons.class);
 
-    @Source("stack_opened.png")
+    @Source("stack_open.png")
     ImageResource stack_opened();
 
-    @Source("stack_closed.gif")
+    @Source("stack_close.png")
     ImageResource stack_closed();
 
     @Source("inventory.png")
@@ -69,6 +69,9 @@ public interface Icons extends ClientBundle {
 
     @Source("close.png")
     ImageResource close();
+
+    @Source("close_white.png")
+    ImageResource close_white();
 
     @Source("profile.png")
     ImageResource profile();
@@ -114,6 +117,9 @@ public interface Icons extends ClientBundle {
 
     @Source("maximize.png")
     ImageResource maximize();
+
+    @Source("window_white.png")
+    ImageResource maximize_white();
 
     @Source("minimize.png")
     ImageResource minimize();

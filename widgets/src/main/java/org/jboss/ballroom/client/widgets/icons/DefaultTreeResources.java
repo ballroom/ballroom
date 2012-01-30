@@ -38,12 +38,12 @@ public interface DefaultTreeResources extends Tree.Resources {
     /**
      * An image indicating a closed branch.
      */
-    @Source("opener_closed.png")
+    @Source("tree_closed.png")
     ImageResource treeClosed();
 
     /**
      * An image indicating an open branch.
      */
-    @Source("opener_opened.png")
+    @Source("tree_open.png")
     ImageResource treeOpen();
 }
