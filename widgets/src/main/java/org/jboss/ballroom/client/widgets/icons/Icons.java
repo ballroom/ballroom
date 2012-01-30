@@ -30,7 +30,7 @@ public interface Icons extends ClientBundle {
     @Source("stack_open.png")
     ImageResource stack_opened();
 
-    @Source("stack_close.png")
+    @Source("stack_closed.gif")
     ImageResource stack_closed();
 
     @Source("inventory.png")
