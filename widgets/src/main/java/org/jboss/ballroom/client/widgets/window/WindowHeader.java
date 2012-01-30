@@ -24,14 +24,14 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.PopupPanel;
 import org.jboss.ballroom.client.widgets.icons.Icons;
 
-public class PopupTitleBar extends Composite implements HasAllMouseHandlers {
+public class WindowHeader extends Composite implements HasAllMouseHandlers {
 
     private int origWidth   = -1;
     private int origHeight  = -1;
     private int origTop     = -1;
     private int origLeft    = -1;
 
-    public PopupTitleBar(String title, final PopupPanel callback) {
+    public WindowHeader(String title, final PopupPanel callback) {
 
         final HorizontalPanel header = new HorizontalPanel();
         header.setStyleName("default-window-header");

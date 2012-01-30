@@ -61,7 +61,7 @@ public class DefaultWindow extends ResizePanel {
         DockLayoutPanel layout = new DockLayoutPanel(Style.Unit.PX);
         setStyleName("default-window");
 
-        final PopupTitleBar header = new PopupTitleBar(title, this);
+        final WindowHeader header = new WindowHeader(title, this);
 
         // dnd
 
