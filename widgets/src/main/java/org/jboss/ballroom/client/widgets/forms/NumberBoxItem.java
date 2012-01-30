@@ -53,8 +53,15 @@ public class NumberBoxItem extends FormItem<Number> {
             }
         });
 
+        textBox.setVisibleLength(6);
+
         wrapper = new InputElementWrapper(textBox, this);
 
+    }
+
+    public void setVisibleLength(int length)
+    {
+        textBox.setVisibleLength(length);
     }
 
     @Override
