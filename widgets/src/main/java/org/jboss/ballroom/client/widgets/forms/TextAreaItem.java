@@ -45,7 +45,14 @@ public class TextAreaItem extends FormItem<String> {
             }
         };
         textArea.addValueChangeHandler(valueChangeHandler);
+
+        textArea.setVisibleLines(3);
+
         wrapper = new InputElementWrapper(textArea, this);
+    }
+
+    public void setVisibleLines(int lines) {
+        textArea.setVisibleLines(lines);
     }
 
     @Override
