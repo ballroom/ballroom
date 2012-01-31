@@ -341,6 +341,7 @@ a:focus {
 }
 
 .header-prod-version {
+  padding-top: 20px;
   padding-left: 4px;
   font-size: 15px!important;
   font-weight: BOLD;
