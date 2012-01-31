@@ -55,10 +55,11 @@ public class DefaultWindow extends ResizePanel {
 
     private Command afterShowEvent;
     private boolean fixedLocation = false;
+    private DockLayoutPanel layout;
 
     public DefaultWindow(String title) {
 
-        DockLayoutPanel layout = new DockLayoutPanel(Style.Unit.PX);
+        layout = new DockLayoutPanel(Style.Unit.PX);
         setStyleName("default-window");
 
         final WindowHeader header = new WindowHeader(title, this);
@@ -165,5 +166,13 @@ public class DefaultWindow extends ResizePanel {
     @Override
     public void setHeight(String height) {
         super.setHeight(height);
+    }
+
+    @Override
+    public void show() {
+        super.show();
+
+        layout.forceLayout();
+
     }
 }
