@@ -347,12 +347,6 @@ a:focus {
   color: #ffffff!important;
 }
 
-.default-toolstrip {
-    width:100%;
-    height:20px;
-    padding: 4px 0px 4px 0px;
-    background:url('images/sc/skins/Enterprise/images/ToolStrip/background.png') repeat-x;
-}
 
 .default-toolstrip-secondary {
     width:100%;
