@@ -19,8 +19,9 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.Widget;
 
 import java.util.Collection;
@@ -32,7 +33,7 @@ import java.util.Collection;
 public class ComboBoxItem extends FormItem<String> {
 
 
-    private ComboBox comboBox;
+    private ListBox comboBox;
     private boolean defaultToFirst;
 
     private InputElementWrapper wrapper;
@@ -40,16 +41,14 @@ public class ComboBoxItem extends FormItem<String> {
 
     public ComboBoxItem(String name, String title) {
         super(name, title);
-        this.comboBox = new ComboBox();
+        this.comboBox = new ListBox();
 
-        this.comboBox.addValueChangeHandler(new ValueChangeHandler<String>() {
+        this.comboBox.addChangeHandler(new ChangeHandler() {
+
             @Override
-            public void onValueChange(ValueChangeEvent<String> event) {
-               // if(postInit) {
-                    setModified(true);
-                    setUndefined("".equals(comboBox.getSelectedValue()));
-               //}
-
+            public void onChange(ChangeEvent event) {
+                setModified(true);
+                setUndefined("".equals(getSelectedValue()));
             }
         });
 
@@ -60,7 +59,16 @@ public class ComboBoxItem extends FormItem<String> {
 
     @Override
     public String getValue() {
-        return comboBox.getSelectedValue();
+        return getSelectedValue();
+    }
+
+    private String getSelectedValue() {
+
+        int selectedIndex = comboBox.getSelectedIndex();
+        if(selectedIndex>=0)
+            return comboBox.getValue(selectedIndex);
+        else
+            return "";
     }
 
     @Override
@@ -98,7 +106,7 @@ public class ComboBoxItem extends FormItem<String> {
     }
     
     public void clearSelection() {
-        this.comboBox.clearSelection();
+        this.comboBox.setSelectedIndex(0);
     }
 
     public void setDefaultToFirstOption(boolean b) {
@@ -107,8 +115,9 @@ public class ComboBoxItem extends FormItem<String> {
 
     public void setValueMap(String[] values) {
 
-        comboBox.clearValues();
-        comboBox.clearSelection();
+        comboBox.clear();
+
+        //comboBox.clearSelection();
 
         for(String s : values)
         {
@@ -120,8 +129,8 @@ public class ComboBoxItem extends FormItem<String> {
     }
 
     public void setValueMap(Collection<String> values) {
-        comboBox.clearValues();
-        comboBox.clearSelection();
+        comboBox.clear();
+        //comboBox.clearSelection();
 
         for(String s : values)
         {
@@ -145,7 +154,7 @@ public class ComboBoxItem extends FormItem<String> {
     @Override
     public boolean validate(String value) {
 
-        if(isRequired() && comboBox.getSelectedValue().equals(""))
+        if(isRequired() && getSelectedValue().equals(""))
         {
             return false;
         }
@@ -169,7 +178,7 @@ public class ComboBoxItem extends FormItem<String> {
             selectItem(0);
     }
     
-    public void addValueChangeHandler(ValueChangeHandler<String> handler) {
+   /* public void addValueChangeHandler(ValueChangeHandler<String> handler) {
         this.comboBox.addValueChangeHandler(handler);
-    }
+    }*/
 }
