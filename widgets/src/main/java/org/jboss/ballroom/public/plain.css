@@ -219,10 +219,7 @@ a:focus {
 .combobox {
     padding:0px;
     margin:0px;
-    width:95%;
 }
-
-
 
 .combobox-value {
 
@@ -237,7 +234,7 @@ a:focus {
     height:20px;
     min-height:20px;
 
-    font-size:10px;
+    font-size:11px;
     color:#000;
 
     margin:0px;
@@ -292,6 +289,7 @@ a:focus {
     background-image:none!important;
     color:#ffffff!important;
     height:40px;
+    z-index: 10;
 }
 
 .default-window-title{
