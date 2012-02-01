@@ -118,6 +118,8 @@ public class ComboBoxItem extends FormItem<String> {
         comboBox.clear();
 
         //comboBox.clearSelection();
+        if(values.length==0 || !values[0].isEmpty())
+            comboBox.addItem("");
 
         for(String s : values)
         {
@@ -131,6 +133,9 @@ public class ComboBoxItem extends FormItem<String> {
     public void setValueMap(Collection<String> values) {
         comboBox.clear();
         //comboBox.clearSelection();
+
+        if(values.isEmpty() || !values.iterator().next().isEmpty())
+            comboBox.addItem("");
 
         for(String s : values)
         {
