@@ -19,6 +19,7 @@
 
 package org.jboss.ballroom.client.widgets.window;
 
+import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.dom.client.MouseDownHandler;
@@ -42,6 +43,9 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class DefaultWindow extends ResizePanel {
 
+
+    private final static boolean isIE = Window.Navigator.getUserAgent().contains("MSIE");
+
     public final static double GOLDEN_RATIO = 1.618;
     private static final int ESCAPE = 27;
 
@@ -55,10 +59,11 @@ public class DefaultWindow extends ResizePanel {
 
     private Command afterShowEvent;
     private boolean fixedLocation = false;
+    private DockLayoutPanel layout;
 
     public DefaultWindow(String title) {
 
-        DockLayoutPanel layout = new DockLayoutPanel(Style.Unit.PX);
+        layout = new DockLayoutPanel(Style.Unit.PX);
         setStyleName("default-window");
 
         final WindowHeader header = new WindowHeader(title, this);
@@ -165,5 +170,21 @@ public class DefaultWindow extends ResizePanel {
     @Override
     public void setHeight(String height) {
         super.setHeight(height);
+    }
+
+    @Override
+    public void show() {
+        super.show();
+
+        if(isIE)
+        {
+            Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+                @Override
+                public void execute() {
+                    layout.forceLayout();
+                }
+            });
+        }
+
     }
 }
