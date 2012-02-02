@@ -105,6 +105,7 @@ public class DefaultCellTable<T> extends CellTable {
     }
 
     @Override
+    @Deprecated
     public void setRowData(int start, List values) {
         setEmpty(values.isEmpty());
         super.setRowData(start, values);
