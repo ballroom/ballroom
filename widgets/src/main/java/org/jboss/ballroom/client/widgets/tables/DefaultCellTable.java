@@ -23,10 +23,10 @@ import com.google.gwt.cell.client.Cell;
 import com.google.gwt.dom.client.EventTarget;
 import com.google.gwt.dom.client.Node;
 import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Event;
+import com.google.gwt.view.client.ProvidesKey;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SelectionModel;
 import com.google.gwt.view.client.SingleSelectionModel;
@@ -60,11 +60,19 @@ public class DefaultCellTable<T> extends CellTable {
     private RowOverHandler rowOverHandler = null;
 
     public DefaultCellTable(int pageSize) {
-
         super(pageSize, DEFAULT_CELL_TABLE_RESOURCES);
+        initDefaults();
+    }
 
+    public DefaultCellTable(int pageSize, ProvidesKey<T> keyProvider) {
+
+        super(pageSize, DEFAULT_CELL_TABLE_RESOURCES, keyProvider);
+        initDefaults();
+    }
+
+    private void initDefaults() {
         setStyleName("default-cell-table");
-        setKeyboardSelectionPolicy(HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);
+        setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
 
         // default empty
         setRowCount(0);
@@ -190,25 +198,38 @@ public class DefaultCellTable<T> extends CellTable {
     }
 
     /**
-     * In order fo the default selection to work, you need to implement
-     * {@link com.google.gwt.view.client.ProvidesKey} on the selection model.
+     * In order for the default selection to work, you need to implement
+     * {@link com.google.gwt.view.client.ProvidesKey} on the cell table.
      */
-    public void defaultSelectEntity() {
+    public void selectDefaultEntity() {
 
-        if(null==getSelectionModel())
-            return;
+        if(null == getSelectionModel()) return;
 
-        if(lastSelection!=null)
+        ProvidesKey keyProvider = getKeyProvider();
+        boolean didMatch = false;
+
+        if(keyProvider!=null && getPreviousSelectedEntity()!=null)
         {
-            getSelectionModel().setSelected(lastSelection, true);
-        }
-        else if(getVisibleItemCount()>0)
-        {
-            getSelectionModel().setSelected(
-                    getVisibleItem(0), true
-            );
+            Object prevKey = keyProvider.getKey(getPreviousSelectedEntity());
+            for(Object entity : getVisibleItems())
+            {
+                Object currKey = keyProvider.getKey(entity);
+                if(prevKey.equals(currKey))
+                {
+                    getSelectionModel().setSelected(entity, true);
+                    didMatch=true;
+                    break;
+                }
+
+            }
         }
 
+
+        if(!didMatch && getVisibleItemCount()>0)
+        {
+            lastSelection=null;
+            getSelectionModel().setSelected(getVisibleItem(0), true);
+        }
     }
 }
 
