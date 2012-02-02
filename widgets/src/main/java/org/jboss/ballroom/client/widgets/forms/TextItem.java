@@ -19,50 +19,20 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.Widget;
-
 /**
  * @author Heiko Braun
  * @date 3/1/11
  */
-public class TextItem extends FormItem<String> {
-
-    private HTML html;
+public class TextItem extends TextBoxItem {
 
     public TextItem(String name, String title) {
         super(name, title);
-        this.html = new HTML();
-        setModified(false); // will be ignored
+        textBox.setEnabled(false);
+
     }
 
-    @Override
-    public String getValue() {
-        return html.getText();
-    }
-
-    @Override
-    public void setValue(String value) {
-        html.setText(value);
-    }
-
-    @Override
-    public Widget asWidget() {
-        return html;
-    }
-
-    @Override
-    public void setEnabled(boolean b) {
-        // it's not editable anyway
-    }
-
-    @Override
-    public boolean validate(String value) {
-        return true;
-    }
-
-    @Override
-    public void clearValue() {
-        this.html.setText("");
+    public TextItem(String name, String title, boolean isRequired) {
+        super(name, title, isRequired);
+        textBox.setEnabled(false);
     }
 }
