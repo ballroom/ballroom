@@ -88,17 +88,19 @@ public interface Icons extends ClientBundle {
     @Source("package.png")
     ImageResource deployment();
 
-    @Source("icon_disabled.png")
-    ImageResource statusRed_small();
 
-    @Source("icon_enabled.png")
-    ImageResource statusGreen_small();
+    @Source("status_negative.png")
+    ImageResource status_bad();
 
-    @Source("status_yellow_small.png")
-    ImageResource statusYellow_small();
+    @Source("status_ok.png")
+    ImageResource status_good();
 
-    @Source("status_blue_small.png")
-    ImageResource statusBlue_small();
+    @Source("status_warn.png")
+    ImageResource status_warn();
+
+    @Source("blank.png")
+    ImageResource status_none();
+
 
     @Source("exclamation.png")
     ImageResource exclamation();
