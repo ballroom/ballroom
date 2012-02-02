@@ -33,6 +33,7 @@ import com.google.gwt.autobean.shared.AutoBeanUtils;
 import com.google.gwt.autobean.shared.AutoBeanVisitor;
 import com.google.gwt.autobean.shared.Splittable;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.DeckPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -603,14 +604,20 @@ public class Form<T> implements FormAdapter<T> {
         selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 
             public void onSelectionChange(SelectionChangeEvent event) {
-                T selectedObject = finalSelectionModel.getSelectedObject();
-                if(selectedObject!=null)
-                    edit(selectedObject);
-                else
-                {
-                    clearValues();
 
-                }
+                Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+                    @Override
+                    public void execute() {
+                        T selectedObject = finalSelectionModel.getSelectedObject();
+                        if(selectedObject!=null)
+                            edit(selectedObject);
+                        else
+                        {
+                            clearValues();
+
+                        }
+                    }
+                });
             }
         });
 
