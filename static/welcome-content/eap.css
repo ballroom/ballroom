@@ -1,18 +1,33 @@
+
 body {
-    background: url("images/eap_bg.png") repeat-x scroll 0 0 #e3dcc0;
-    color: #555555;
-    font: 12px/1.4 "Lucida Sans Unicode","Lucida Grande",sans-serif;
-    margin: 0;
+    background-color: #ececec!important;
+    background-image: none!important;
+    color: #555555!important;
+    font: 12px "Lucida Sans Unicode","Lucida Grande",sans-serif;
+    margin: 0 auto;
 }
-
-
 #container {
-    max-width: 860px;
-    background: #8c8f91;
-    border-right: 1px solid #8c8f91;
-    border-left: 1px solid #8c8f91;
-    margin-left:auto;
-    margin-right:auto;
+
+    max-width: 960px;
+    background: #8c9093!important;
+    border-right: 2px solid #8c9093!important;
+    border-left: 2px solid #8c9093!important;
+    margin:0 auto;
+
+    -moz-box-shadow: 6px 6px 6px #e3e3e3,
+    -6px 6px 6px #e3e3e3,
+    6px -6px 6px #e3e3e3,
+    -6px -6px 6px #e3e3e3;
+
+    -webkit-box-shadow: 6px 6px 6px #e3e3e3,
+    -6px 6px 6px #e3e3e3,
+    6px -6px 6px #e3e3e3,
+    -6px -6px 6px #e3e3e3;
+
+    box-shadow: 6px 6px 6px #e3e3e3,
+    -6px 6px 6px #e3e3e3,
+    6px -6px 6px #e3e3e3,
+    -6px -6px 6px #e3e3e3;
 }
 
 #content {
@@ -52,17 +67,20 @@ body {
 }
 
 .section {
-	width:520px;
-	max-width:520px;
+	width:620px;
+	max-width:620px;
 	margin-left:auto;
     margin-right:auto;
 	padding-top:20px;
 }
 
 a {
-	color:#4a6882;
+	color:#415d73;
     outline : none;
-    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 a:active {
@@ -75,15 +93,25 @@ a:link {
 
 
 H1 {
-	color:#8c1916;	
+	color:#424242;
 }
 
 H2 {
-	color:#000000;	
+	color:#424242;
 }
 
 sub {
 	color:#a3a7aa;	
+}
+
+.prod-version {
+    padding-top:20px;
+    padding-left: 4px;
+    padding-bottom: 2px;
+    font-size: 12pt!important;
+    font-weight: BOLD;
+    color: #dbdbdb!important;
+    vertical-align:bottom;
 }
 
 .WarnBlock {
