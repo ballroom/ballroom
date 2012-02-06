@@ -1,26 +1,39 @@
 
-
 ::selection { background-color: transparent; color: #4A5D75; }
 ::-o-selection { background-color: transparent; color: #4A5D75; }
 ::-moz-selection { background-color: transparent; color: #4A5D75; }
 ::-webkit-selection { background-color: transparent; color: #4A5D75; }
 
-/* core layout */
 
 body {
-    background: url("images/rh_bg.png") repeat-x scroll 0 0 #e3dcc0!important;
+    background-color: #ececec!important;
+    background-image: none!important;
     color: #555555!important;
     font: 12/1.4px "Lucida Sans Unicode","Lucida Grande",sans-serif;
     margin: 0;
 }
 
 #container {
-    max-width: 860px;
-    background: #8c8f91!important;
-    border-right: 1px solid #A7ABB4;
-    border-left: 1px solid #A7ABB4;
-    margin-left:auto;
-    margin-right:auto;
+    max-width: 960px;
+    background: #8c9093!important;
+    border-right: 1px solid #A7ABB4!important;
+    border-left: 1px solid #A7ABB4!important;
+    margin:0 auto;
+
+    -moz-box-shadow: 6px 6px 6px #e3e3e3,
+    -6px 6px 6px #e3e3e3,
+    6px -6px 6px #e3e3e3,
+    -6px -6px 6px #e3e3e3;
+
+    -webkit-box-shadow: 6px 6px 6px #e3e3e3,
+    -6px 6px 6px #e3e3e3,
+    6px -6px 6px #e3e3e3,
+    -6px -6px 6px #e3e3e3;
+
+    box-shadow: 6px 6px 6px #e3e3e3,
+    -6px 6px 6px #e3e3e3,
+    6px -6px 6px #e3e3e3,
+    -6px -6px 6px #e3e3e3;
 }
 
 .main-content-panel {
@@ -51,7 +64,7 @@ body {
 }
 
 .page-header {
-    background: url("images/header/rh_header.png") repeat-x scroll 0 0 #424242!important;
+    background: url("images/header/rh_header.png") repeat-x scroll 0 0 #3f3f3f!important;
     color:white;
 }
 
@@ -95,24 +108,24 @@ body {
 }
 
 .header-prod-version {
-  padding-top:20px;
-  padding-left: 4px;
-  font-size: 10pt!important;
-  font-weight: BOLD;
-  color: #ffffff!important;
+    padding-top:20px;
+    padding-left: 4px;
+    font-size: 10pt!important;
+    font-weight: BOLD;
+    color: #dbdbdb!important;
+    vertical-align:bottom;
 }
 
 .logo {
     padding-top:20px;
+    padding-bottom: 4px;
     padding-left:10px;
 }
-
-/*---*/
 
 a {
     outline : none;
     text-decoration: none;
-    color:#4a6882!important;
+    color:#415d73!important;
 }
 
 a:active {
@@ -124,7 +137,7 @@ a:link {
 }
 
 a:focus {
-  -moz-outline-style: none;
+    -moz-outline-style: none;
 }
 
 .description-label {
@@ -202,11 +215,11 @@ a:focus {
 
 .gwt-SplitLayoutPanel-HDragger {
     cursor:col-resize;
-/*background:url(images/sc/skins/Enterprise/images/Splitbar/vsplit_bg.png);*/
-    /*border-left:1px solid #A7ABB4;
-    border-right:1px solid #A7ABB4!important;*/
     border-left:1px solid #E0E0E0!important;
+    background-image:url(images/split_shadow.png);
+    background-repeat: repeat-y;
 }
+
 
 .gwt-SplitLayoutPanel-VDragger {
     cursor:row-resize;
@@ -299,7 +312,7 @@ a:focus {
     border: 1px solid #888888;
     border-radius: 2px 2px 2px 2px;
     color: #000000 !important;
-    text-decoration: underline!important;
+    text-decoration: none!important;
 }
 
 
@@ -322,9 +335,8 @@ a:focus {
 .combobox {
     padding:0px;
     margin:0px;
+    width:100%
 }
-
-
 
 .combobox-value {
 
@@ -339,7 +351,7 @@ a:focus {
     height:20px;
     min-height:20px;
 
-    font-size:10px;
+    font-size:11px;
     color:#000;
 
     margin:0px;
@@ -442,12 +454,14 @@ a:focus {
     text-decoration:underline;
 }
 
-.default-toolstrip {
-    width:100%;
-    height:20px;
-    padding: 4px 0px 4px 0px;
-    background:url('images/sc/skins/Enterprise/images/ToolStrip/background.png') repeat-x;
+.header-prod-version {
+    padding-top: 20px;
+    padding-left: 4px;
+    font-size: 15px!important;
+    font-weight: BOLD;
+    color: #ffffff!important;
 }
+
 
 .default-toolstrip-secondary {
     width:100%;
@@ -483,6 +497,7 @@ a:focus {
     color: #000000 !important;
     text-decoration: none!important;
 }
+
 
 .row-tools {
     visibility:hidden;
@@ -521,8 +536,8 @@ a:focus {
 }
 
 .menu-cell:hover {
-    /* #e5e5c1 */
-    background-color:#e5e5c1!important;
+    /* #ddeef5 */
+    background-color:#ddeef5!important;
 }
 
 .vertical-tabpanel-tab {
@@ -545,13 +560,16 @@ a:focus {
 }
 
 
-
 .help-panel-open {
 
     background-color: #FDFDEF;
     border: 1px solid #EAE9E1;
     border-radius: 5px 5px 5px 5px;
     margin-bottom: 5px;
+
+    padding-bottom:10px;
+    padding-left:10px;
+    padding-right:10px;
 
     opacity: 1.0!important;
 
@@ -588,6 +606,19 @@ a:focus {
     -webkit-transition: opacity .15s ease-in-out .05s;
     -moz-transition: opacity .15s ease-in-out .05s;
     transition: opacity .15s ease-in-out .05s;
+}
+
+.help-field-name {
+    font-size:11px;
+    padding-right:2px;
+    vertical-align:top;
+    text-align: right;
+    white-space: nowrap!important;
+}
+
+
+.help-field-row{
+    margin-top: 4px;
 }
 
 .window-content {
@@ -709,7 +740,7 @@ a:focus {
 }
 
 .cellTreeSelectedItem {
-    background:#e5e5c1;
+    background:#ddeef5;
     color: white;
     height: auto;
     overflow: visible;
@@ -758,12 +789,13 @@ a:focus {
 }
 
 .cellListSelectedItem {
-    background-color: #e5e5c1;
+    background-color: #ddeef5;
     color: #000000;
     height: auto;
     overflow: visible;
 }
 
+/* regular gwt tabs */
 
 /* regular gwt tabs */
 
@@ -811,7 +843,7 @@ a:focus {
 }
 
 .gwt-TabLayoutPanelTabs {
-    background-color: #8c8f91;
+    background-color: #8c9093;
 }
 
 .gwt-TabLayoutPanelTabInner div {
@@ -851,6 +883,7 @@ a:focus {
 .tab-right {
     width:15px;
     height:40px;
+    background-color:#F8F8F8;
     background-color:#ffffff;
 }
 
@@ -862,7 +895,7 @@ a:focus {
 
 .title-bar-panel {
     border: none;
-    background-color: #8c8f91;
+    background-color: #8c9093;
 }
 
 /*gwt old skool tab panels*/
@@ -1006,6 +1039,11 @@ a:focus {
 .cellTableCell {
     padding:5px;
     border-right: 1px solid #e5e5e5;
+
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+    max-width:250px;
 }
 
 .cellTableLastColumn {
@@ -1021,12 +1059,12 @@ a:focus {
 }
 
 .cellTableSelectedRow {
-    background:#e5e5c1;
+    background:#ddeef5;  /* ddeef5 */
 }
 
 /*edit mode*/
 .cellTableKeyboardSelectedRow {
-/*background:none; doesn't work atm */
+    /*background:none; doesn't work atm */
 }
 
 .default-pager {
@@ -1036,15 +1074,15 @@ a:focus {
 
 .content-header-label {
     font-weight:BOLD;
-    color: #8c1916;
+    color: #656565;
     font-size:16px!important;
     padding-bottom:8px;
 }
 
 .content-group-label {
     font-weight:BOLD;
-    color: #A4A4A4;
-    font-size:14px!important;
+    color: #656565;
+    font-size:13px!important;
     height:18px;
     width:100%;
     padding-left:6px;
@@ -1055,12 +1093,36 @@ a:focus {
 
 /* plain form view */
 
+.form-edit-panel table {
+    width:100%;
+}
+
+#cols_1 .form-item-title-col {
+    width:20%;
+    word-wrap: break-word;
+    text-align: right;
+}
+
+#cols_1 .form-item-col {
+    width:80%;
+}
+
+#cols_2 .form-item-title-col {
+
+    width:15%;
+    word-wrap: break-word;
+    text-align: right;
+}
+
+#cols_2 .form-item-col {
+    width:35%;
+}
+
 
 .form-item-table{
     font-size:10px;
     width:100%;
     background-color:#ffffff;
-
 }
 
 .formItemTableHeader {
@@ -1084,7 +1146,11 @@ a:focus {
 .formItemTableCell {
     padding-top:10px;
     padding-bottom:10px;
-    font-size:10px!important;
+    font-size: 13px!important;
+    line-height: 18px;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    max-width: 250px;
 }
 
 .formItemTableHoveredRow {
@@ -1099,12 +1165,18 @@ a:focus {
     background-color:#ffffff;
 }
 
+.formItem {
+    font-size: 13px!important;
+    line-height: 18px;
+}
+
 /* edit form view */
+
 
 .form-item-title {
     font-size:10px!important;
     padding-right:2px;
-    color:#404040!important;
+    color:#4A5D75;
     font-weight:bold!important;
     white-space:nowrap;
     text-align:right;
@@ -1154,4 +1226,56 @@ a:focus {
 
 .FatalBlock {
     background-color: #FF6161; /* slightly darker light red */
+}
+
+
+/* default form customizations */
+
+select {
+    width: 220px;
+    background-color: white;
+}
+
+input, textarea, select, .uneditable-input {
+    display: inline-block;
+    width: 210px;
+    padding: 4px;
+    margin-bottom: 9px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #555;
+    border: 1px solid #CCC;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+    background-color: whiteSmoke;
+    border-color: #DDD;
+    cursor: not-allowed;
+}
+
+select, input[type="file"] {
+    height: 28px;
+    line-height: 28px;
+}
+
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
+    float: left;
+    display:block;
+}
+
+
+input[type=text] {
+    width: 95%;
+}
+
+
+input[type=password] {
+    width: 95%;
+}
+
+textarea {
+    width:95%;
 }

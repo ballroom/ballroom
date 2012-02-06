@@ -101,13 +101,11 @@ a:focus {
     color:#C0C0C0;
 }
 
-
 .gwt-SplitLayoutPanel-HDragger {
     cursor:col-resize;
-    /*background:url(images/sc/skins/Enterprise/images/Splitbar/vsplit_bg.png);*/
-    /*border-left:1px solid #A7ABB4;
-    border-right:1px solid #A7ABB4!important;*/
     border-left:1px solid #E0E0E0!important;
+    background-image:url(images/split_shadow.png);
+    background-repeat: repeat-y;
 }
 
 .gwt-SplitLayoutPanel-VDragger {
@@ -345,6 +343,8 @@ a:focus {
     font-size: 15px!important;
     font-weight: BOLD;
     color: #ffffff!important;
+    vertical-align:bottom;
+    padding-bottom:5px;
 }
 
 
