@@ -26,7 +26,7 @@ a:link {
 }
 
 a:focus {
-  -moz-outline-style: none;
+    -moz-outline-style: none;
 }
 
 .description-label {
@@ -104,7 +104,7 @@ a:focus {
 
 .gwt-SplitLayoutPanel-HDragger {
     cursor:col-resize;
-/*background:url(images/sc/skins/Enterprise/images/Splitbar/vsplit_bg.png);*/
+    /*background:url(images/sc/skins/Enterprise/images/Splitbar/vsplit_bg.png);*/
     /*border-left:1px solid #A7ABB4;
     border-right:1px solid #A7ABB4!important;*/
     border-left:1px solid #E0E0E0!important;
@@ -219,6 +219,7 @@ a:focus {
 .combobox {
     padding:0px;
     margin:0px;
+    width:100%
 }
 
 .combobox-value {
@@ -339,11 +340,11 @@ a:focus {
 }
 
 .header-prod-version {
-  padding-top: 20px;
-  padding-left: 4px;
-  font-size: 15px!important;
-  font-weight: BOLD;
-  color: #ffffff!important;
+    padding-top: 20px;
+    padding-left: 4px;
+    font-size: 15px!important;
+    font-weight: BOLD;
+    color: #ffffff!important;
 }
 
 
@@ -440,13 +441,16 @@ a:focus {
 }
 
 
-
 .help-panel-open {
 
     background-color: #FDFDEF;
     border: 1px solid #EAE9E1;
     border-radius: 5px 5px 5px 5px;
     margin-bottom: 5px;
+
+    padding-bottom:10px;
+    padding-left:10px;
+    padding-right:10px;
 
     opacity: 1.0!important;
 
@@ -483,6 +487,19 @@ a:focus {
     -webkit-transition: opacity .15s ease-in-out .05s;
     -moz-transition: opacity .15s ease-in-out .05s;
     transition: opacity .15s ease-in-out .05s;
+}
+
+.help-field-name {
+    font-size:11px;
+    padding-right:2px;
+    vertical-align:top;
+    text-align: right;
+    white-space: nowrap!important;
+}
+
+
+.help-field-row{
+    margin-top: 4px;
 }
 
 .window-content {
@@ -901,6 +918,11 @@ a:focus {
 .cellTableCell {
     padding:5px;
     border-right: 1px solid #e5e5e5;
+
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+    max-width:250px;
 }
 
 .cellTableLastColumn {
@@ -921,7 +943,7 @@ a:focus {
 
 /*edit mode*/
 .cellTableKeyboardSelectedRow {
-/*background:none; doesn't work atm */
+    /*background:none; doesn't work atm */
 }
 
 .default-pager {
@@ -949,6 +971,31 @@ a:focus {
 }
 
 /* plain form view */
+
+.form-edit-panel table {
+    width:100%;
+}
+
+#cols_1 .form-item-title-col {
+    width:20%;
+    word-wrap: break-word;
+    text-align: right;
+}
+
+#cols_1 .form-item-col {
+    width:80%;
+}
+
+#cols_2 .form-item-title-col {
+
+    width:15%;
+    word-wrap: break-word;
+    text-align: right;
+}
+
+#cols_2 .form-item-col {
+    width:35%;
+}
 
 
 .form-item-table{
@@ -978,7 +1025,11 @@ a:focus {
 .formItemTableCell {
     padding-top:10px;
     padding-bottom:10px;
-    font-size:10px!important;
+    font-size: 13px!important;
+    line-height: 18px;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    max-width: 250px;
 }
 
 .formItemTableHoveredRow {
@@ -991,6 +1042,11 @@ a:focus {
 
 .formItemTableKeyboardSelectedRow {
     background-color:#ffffff;
+}
+
+.formItem {
+    font-size: 13px!important;
+    line-height: 18px;
 }
 
 /* edit form view */
@@ -1051,3 +1107,54 @@ a:focus {
     border-color: #EE1111; /* slightly darker medium red */
 }
 
+
+/* default form customizations */
+
+select {
+    width: 220px;
+    background-color: white;
+}
+
+input, textarea, select, .uneditable-input {
+    display: inline-block;
+    width: 210px;
+    padding: 4px;
+    margin-bottom: 9px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #555;
+    border: 1px solid #CCC;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+    background-color: whiteSmoke;
+    border-color: #DDD;
+    cursor: not-allowed;
+}
+
+select, input[type="file"] {
+    height: 28px;
+    line-height: 28px;
+}
+
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
+    float: left;
+    display:block;
+}
+
+
+input[type=text] {
+    width: 95%;
+}
+
+
+input[type=password] {
+    width: 95%;
+}
+
+textarea {
+    width:95%;
+}
