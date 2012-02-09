@@ -16,8 +16,8 @@ body {
 #container {
     max-width: 960px;
     background: #8c9093!important;
-    border-right: 1px solid #A7ABB4!important;
-    border-left: 1px solid #A7ABB4!important;
+    border-right: 1px solid #e9e6e6!important;
+    border-left: 1px solid #e9e6e6!important;
     margin:0 auto;
 
     -moz-box-shadow: 6px 6px 6px #e3e3e3,
@@ -38,7 +38,7 @@ body {
 
 .main-content-panel {
     background-color: #ffffff;
-    border-bottom:1px solid #A7ABB4;
+    border-bottom:1px solid #e9e6e6;
     margin:4px 2px 2px 2px;
 }
 
@@ -189,7 +189,7 @@ a:focus {
     height:20px;
     width:100%;
     color:#4A5D75;
-    border:1px solid #A7ABB4;
+    border:1px solid #e9e6e6;
 }
 
 .group-item-title {
@@ -261,7 +261,7 @@ a:focus {
 }
 
 .cell-record {
-    border-bottom: 1px solid #A7ABB4;
+    border-bottom: 1px solid #e9e6e6;
     height: 20px;
     padding:5px;
 }
@@ -319,7 +319,7 @@ a:focus {
 }
 
 .default-popup {
-    border: 1px solid #A7ABB4;
+    border: 1px solid #e9e6e6;
     background-color:#ffffff;
     padding:4px;
 
@@ -342,9 +342,9 @@ a:focus {
 
 .combobox-value {
 
-    border-left: 1px solid #A7ABB4;
-    border-top: 1px solid #A7ABB4;
-    border-bottom: 1px solid #A7ABB4;
+    border-left: 1px solid #e9e6e6;
+    border-top: 1px solid #e9e6e6;
+    border-bottom: 1px solid #e9e6e6;
 
     vertical-align:middle;
 
@@ -369,7 +369,7 @@ a:focus {
 }
 
 .combobox-value-disbaled {
-    color:#A7ABB4!important;
+    color:#e9e6e6!important;
 }
 
 .combobox-item {
@@ -392,7 +392,7 @@ a:focus {
 
 
 .default-window {
-    border: 1px solid #A7ABB4;
+    border: 1px solid #e9e6e6;
     background-color:#ffffff;
 
     -moz-box-shadow: 2px 2px 3px #000000;
@@ -403,7 +403,7 @@ a:focus {
 }
 
 .default-window-header {
-    border-bottom: 1px solid #A7ABB4;
+    border-bottom: 1px solid #e9e6e6;
     background-color:#424242!important;
     background-image:none!important;
     color:#ffffff!important;
@@ -423,7 +423,7 @@ a:focus {
 }
 
 .gwt-PopupPanelGlass {
-    background-color:#A7ABB4;
+    background-color:#e9e6e6;
     filter:alpha(opacity=75);
     opacity:0.75;
 
@@ -544,15 +544,15 @@ a:focus {
 .vertical-tabpanel-tab {
     padding:4px;
     border-top:1px solid #ffffff;
-    border-right:1px solid #A7ABB4;
-    border-bottom:1px solid #A7ABB4;
+    border-right:1px solid #e9e6e6;
+    border-bottom:1px solid #e9e6e6;
     background-color:#DDDDDD;
 }
 
 .vertical-tabpanel-tab-selected {
     border-top:1px solid #ffffff;
     border-right:1px solid #ffffff;
-    border-bottom:1px solid #A7ABB4;
+    border-bottom:1px solid #e9e6e6;
     background-color:#ffffff;
 }
 
@@ -657,7 +657,7 @@ a:focus {
 .celltable-button {
 
     background-color: #ffffff;
-    border: 1px solid #A7ABB4;
+    border: 1px solid #e9e6e6;
     border-radius: 2px 2px 2px 2px;
     color: #606060 !important;
     cursor: pointer;
@@ -823,8 +823,8 @@ a:focus {
 
 .gwt-TabLayoutPanelTab {
     background-color:#F8F8F8;
-    border-right: 1px solid #A7ABB4;
-    border-bottom: 1px solid #A7ABB4;
+    border-right: 1px solid #e9e6e6;
+    border-bottom: 1px solid #e9e6e6;
     cursor: pointer;
 }
 
@@ -906,13 +906,13 @@ a:focus {
 }
 
 .gwt-TabBarFirst-wrapper {
-    border-bottom:1px solid #A7ABB4;
+    border-bottom:1px solid #e9e6e6;
     border-right:1px solid #808080;
     width:15px;
 }
 
 .gwt-TabBarRest-wrapper {
-    border-bottom:1px solid #A7ABB4;
+    border-bottom:1px solid #e9e6e6;
 }
 .gwt-TabPanelBottom {
 
@@ -923,9 +923,9 @@ a:focus {
 
 .gwt-TabBarItem-wrapper {
     background-color:#F8F8F8;
-    border-right: 1px solid #A7ABB4;
-    border-bottom: 1px solid #A7ABB4;
-    border-top: 1px solid #A7ABB4;
+    border-right: 1px solid #e9e6e6;
+    border-bottom: 1px solid #e9e6e6;
+    border-top: 1px solid #e9e6e6;
     color: #606060 !important;
     cursor: pointer;
     margin-left: 0px;
@@ -940,9 +940,9 @@ a:focus {
 
 .gwt-TabBarItem-wrapper-selected {
     background-color:#ffffff;
-    border-right: 1px solid #A7ABB4;
-    border-bottom: 1px solid #A7ABB4;
-    border-top: 1px solid #A7ABB4;
+    border-right: 1px solid #e9e6e6;
+    border-bottom: 1px solid #e9e6e6;
+    border-top: 1px solid #e9e6e6;
     color: #000000 !important;
     border-bottom: none!important;
     cursor: default;
