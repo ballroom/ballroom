@@ -298,23 +298,25 @@ a:focus {
 .default-button {
     padding:1px 10px 1px 10px;
     font-size:11px;
-    background: url("images/buttons/button_bg.gif") repeat-x scroll 0 0 #DDDDDD;
-    border: 1px solid #888888;
+    background: url("images/buttons/rh_button_bg.png") repeat-x scroll 0 0 #1a3749;
+    border: 1px solid #1a3749;
     border-radius: 2px 2px 2px 2px;
-    color: #606060 !important;
+    color: #ffffff !important;
     -moz-border-radius: 2px;
     border-radius: 2px;
     white-space:nowrap;
+    height:18px;
+    font-weight: bold;
+    text-shadow: 1px 1px #1a3749;
 }
 
 .default-button:hover {
-    background: url("images/buttons/button_bg.gif") repeat-x scroll 0 0 #DDDDDD;
-    border: 1px solid #888888;
+    background: url("images/buttons/rh_button_bg.png") repeat-x scroll 0 0 #1a3749;
+    border: 1px solid #1a3749;
     border-radius: 2px 2px 2px 2px;
-    color: #000000 !important;
+    color: #ffffff !important;
     text-decoration: none!important;
 }
-
 
 .default-popup {
     border: 1px solid #A7ABB4;
@@ -471,30 +473,29 @@ a:focus {
 }
 
 .toolstrip-button {
-    background: url("images/buttons/button_bg.gif") repeat-x scroll 0 0 #DDDDDD;
-    border: 1px solid #CCC;
+    background: url("images/buttons/rh_button_bg.png") repeat-x scroll 0 0 #1a3749;
+    border: 1px solid #1a3749;
     border-radius: 2px 2px 2px 2px;
-    color: #000000 !important;
+    color: #ffffff !important;
     cursor: pointer;
     float: left;
-    font-size: 10px;
+    font-size: 11px!important;
     margin: 0 2px;
     outline: medium none;
     padding: 1px 10px;
     text-decoration: none;
     white-space: nowrap;
+    height:18px;
+    font-weight: bold;
+    text-shadow: 1px 1px #1a3749;
 
-    -webkit-transition: background-color .1s ease-in-out;
-    -moz-transition: background-color .1s ease-in-out;
-    transition: background-color .1s ease-in-out;
 }
 
-
 .toolstrip-button:hover {
-    background: url("images/buttons/button_bg.gif") repeat-x scroll 0 0 #DDDDDD;
-    border: 1px solid #888888!important;
+    background: url("images/buttons/rh_button_bg.png") repeat-x scroll 0 0 #1a3749;
+    border: 1px solid #1a3749!important;
     border-radius: 2px 2px 2px 2px;
-    color: #000000 !important;
+    color: #ffffff !important;
     text-decoration: none!important;
 }
 
@@ -954,15 +955,16 @@ a:focus {
 .section-stack {
     width:99%;
     margin:0px;
-    border-left:1px solid #A7ABB4;
-    border-right:1px solid #A7ABB4!important;
+    border-left:1px solid #e9e6e6;
+    border-right:1px solid #e9e6e6!important;
 }
 
 
 .stack-section-header {
+    background: url("images/header/rh_stackheader.png") repeat-x scroll 0 0 #1a3749;
     background-color: #F8F8F8;
-    border-top: 1px solid #A7ABB4;
-    border-bottom: 1px solid #A7ABB4;
+    border-top: 1px solid #e9e6e6;
+    border-bottom: 1px solid #e9e6e6;
     color: #606060;
     cursor: pointer;
     font-family: Arial,Verdana,sans-serif;
@@ -990,8 +992,8 @@ a:focus {
     height:20px;
     color:#000;
     font-size:12px;
-    border-top:1px solid #A7ABB4;
-    border-bottom:1px solid #A7ABB4;
+    border-top:1px solid #e9e6e6;
+    border-bottom:1px solid #e9e6e6;
     cursor:pointer;
 }
 
