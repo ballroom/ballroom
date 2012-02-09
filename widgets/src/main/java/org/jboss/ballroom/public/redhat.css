@@ -395,9 +395,9 @@ a:focus {
     border: 1px solid #e9e6e6;
     background-color:#ffffff;
 
-    -moz-box-shadow: 2px 2px 3px #000000;
-    -webkit-box-shadow: 2px 2px 3px #000000;
-    box-shadow: 2px 2px 3px #000000;
+    -webkit-box-shadow: 0px 5px 80px #505050;
+    -moz-box-shadow: 0px 5px 80px #505050;
+    box-shadow: 0px 5px 80px #505050;
 
     z-index: 10;
 }
@@ -423,9 +423,18 @@ a:focus {
 }
 
 .gwt-PopupPanelGlass {
-    background-color:#e9e6e6;
-    filter:alpha(opacity=75);
-    opacity:0.75;
+
+    background: -moz-radial-gradient(rgba(127, 127, 127, 0.5),
+    rgba(127, 127, 127, 0.5) 35%,
+    rgba(0, 0, 0, 0.7));
+
+    background: -webkit-radial-gradient(rgba(127, 127, 127, 0.5),
+    rgba(127, 127, 127, 0.5) 35%,
+    rgba(0, 0, 0, 0.7));
+
+    background-color:#e9e6e6!important;
+    filter:alpha(opacity=35);
+    opacity:0.35;
 
     z-index: 5;
 }
@@ -497,6 +506,11 @@ a:focus {
     border-radius: 2px 2px 2px 2px;
     color: #ffffff !important;
     text-decoration: none!important;
+}
+
+.toolstrip-button-secondary {
+    border-color:#1a3749;
+    color: #ffffff!important;
 }
 
 
@@ -907,9 +921,10 @@ a:focus {
 
 .gwt-TabBarFirst-wrapper {
     border-bottom:1px solid #e9e6e6;
-    border-right:1px solid #808080;
+    border-right:1px solid #e9e6e6;
     width:15px;
 }
+
 
 .gwt-TabBarRest-wrapper {
     border-bottom:1px solid #e9e6e6;
@@ -922,11 +937,12 @@ a:focus {
 }
 
 .gwt-TabBarItem-wrapper {
-    background-color:#F8F8F8;
+    background: url("images/header/rh_stackheader.png") repeat-x scroll 0 0 #1a3749;
+    background-color: #F8F8F8;
     border-right: 1px solid #e9e6e6;
     border-bottom: 1px solid #e9e6e6;
     border-top: 1px solid #e9e6e6;
-    color: #606060 !important;
+    color: #000000;
     cursor: pointer;
     margin-left: 0px;
     min-width: 50px;
@@ -940,6 +956,7 @@ a:focus {
 
 .gwt-TabBarItem-wrapper-selected {
     background-color:#ffffff;
+    background-image: none;
     border-right: 1px solid #e9e6e6;
     border-bottom: 1px solid #e9e6e6;
     border-top: 1px solid #e9e6e6;
@@ -947,8 +964,8 @@ a:focus {
     border-bottom: none!important;
     cursor: default;
     font-family: Arial,Verdana,sans-serif;
-    font-size: 12px;
 }
+
 
 /*stack sections*/
 
