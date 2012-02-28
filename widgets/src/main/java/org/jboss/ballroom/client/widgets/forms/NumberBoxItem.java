@@ -50,6 +50,7 @@ public class NumberBoxItem extends FormItem<Number> {
             @Override
             public void onValueChange(ValueChangeEvent<String> event) {
                 setModified(true);
+                setUndefined(event.getValue().equals(""));
             }
         });
 
