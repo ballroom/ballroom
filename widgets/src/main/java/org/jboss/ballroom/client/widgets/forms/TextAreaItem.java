@@ -42,6 +42,7 @@ public class TextAreaItem extends FormItem<String> {
             @Override
             public void onValueChange(ValueChangeEvent<String> event) {
                 setModified(true);
+                setUndefined(event.getValue().equals(""));
             }
         };
         textArea.addValueChangeHandler(valueChangeHandler);

@@ -43,8 +43,7 @@ public class TextBoxItem extends FormItem<String> {
             @Override
             public void onValueChange(ValueChangeEvent<String> event) {
                 setModified(true);
-                if(event.getValue().equals(""))
-                    setUndefined(true);
+                setUndefined(event.getValue().equals(""));
             }
         });
         wrapper = new InputElementWrapper(textBox, this);
@@ -62,8 +61,7 @@ public class TextBoxItem extends FormItem<String> {
             @Override
             public void onValueChange(ValueChangeEvent<String> event) {
                 setModified(true);
-                if(event.getValue().equals(""))
-                    setUndefined(true);
+                setUndefined(event.getValue().equals(""));
             }
         });
         wrapper = new InputElementWrapper(textBox, this);
