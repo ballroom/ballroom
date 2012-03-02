@@ -1093,6 +1093,14 @@ a:focus {
     background:#ddeef5;  /* ddeef5 */
 }
 
+.cellTableSelectedRow .cellTableFirstColumn {
+    background:#eef4f9;
+    background-image: url(images/activerow.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left:10px;
+
+}
 /*edit mode*/
 .cellTableKeyboardSelectedRow {
     /*background:none; doesn't work atm */
