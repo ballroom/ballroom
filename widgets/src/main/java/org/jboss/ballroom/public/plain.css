@@ -941,6 +941,9 @@ a:focus {
 
 .cellTableSelectedRow {
     background:#eef4f9;
+    background-image: url(images/activerow.png);
+    background-repeat: no-repeat;
+    background-position: left;
 }
 
 /*edit mode*/
