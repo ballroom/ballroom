@@ -18,6 +18,7 @@
  */
 package org.jboss.ballroom.client.widgets.forms;
 
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.junit.client.GWTTestCase;
 
 import junit.framework.Assert;
@@ -68,7 +69,8 @@ public class TextAreaItemTest extends GWTTestCase {
     public void testModification() {
         TextAreaItem tai = new TextAreaItem("a", "b");
         Assert.assertFalse("Precondition", tai.isModified());
-        tai.valueChangeHandler.onValueChange(null);
+        ValueChangeEvent<String> event = new ValueChangeEvent<String>("Some value") {};
+        tai.valueChangeHandler.onValueChange(event);
         Assert.assertTrue(tai.isModified());
         tai.resetMetaData();
         Assert.assertFalse(tai.isModified());
