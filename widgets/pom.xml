@@ -23,7 +23,7 @@
     <name>Ballroom :: Widgets</name>
     <groupId>org.jboss.ballroom</groupId>
     <artifactId>widgets</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.1.0.FINAL</version>
     <packaging>jar</packaging>
 
     <description>GWT Widget Set</description>
@@ -45,7 +45,7 @@
     <parent>
         <groupId>org.jboss.ballroom</groupId>
         <artifactId>ballroom</artifactId>
-        <version>1.1.0-SNAPSHOT</version>
+        <version>1.1.0.FINAL</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
