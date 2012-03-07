@@ -57,7 +57,7 @@ body {
 }
 
 .page-header {
-    background: url("images/header/rh_header.png") repeat-x scroll 0 0 #3f3f3f!important;
+    background: url(app/images/header/rh_header.png) repeat-x scroll 0 0 #3f3f3f!important;
     color:white;
 }
 
@@ -95,7 +95,7 @@ body {
 }
 
 .header-link-selected {
-    background-image: url('images/header/header_arrow_dark.png')!important;
+    background-image: url('app/images/header/header_arrow_dark.png')!important;
     background-position:70% 100%;
     background-repeat: no-repeat;
 }
@@ -175,7 +175,7 @@ a:focus {
     font-size:16px;
     font-weight:bold;
     text-overflow:ellipsis;
-    background-image: url('images/sc/skins/Enterprise/images/ToolStrip/background.png');
+    background-image: url('app/images/sc/skins/Enterprise/images/ToolStrip/background.png');
     padding-left:10px;
     padding-top:6px;
     padding-bottom:6px;
@@ -209,7 +209,7 @@ a:focus {
 .gwt-SplitLayoutPanel-HDragger {
     cursor:col-resize;
     border-left:1px solid #E0E0E0!important;
-    background-image:url(images/split_shadow.png);
+    background-image:url(app/images/split_shadow.png);
     background-repeat: repeat-y;
 }
 
@@ -225,7 +225,7 @@ a:focus {
 
 .lhs-tree-item:hover {
     background-color:#e5e5e5;
-    background-image: url('images/lhs_arrow_over.png');
+    background-image: url('app/images/lhs_arrow_over.png');
     background-position:center right;
     background-repeat: no-repeat;
     -webkit-transition: background-color .1s ease-in-out;
@@ -240,7 +240,7 @@ a:focus {
 .lhs-tree-item-selected {
     color:#ffffff!important;
     background-color:#64645d;
-    background-image: url('images/rh_lhs_arrow.png');
+    background-image: url('app/images/rh_lhs_arrow.png');
     background-position:center right;
     background-repeat: no-repeat;
 }
@@ -248,7 +248,7 @@ a:focus {
 .lhs-tree-item-selected:hover {
     color:#ffffff!important;
     background-color:#64645d;
-    background-image: url('images/rh_lhs_arrow.png');
+    background-image: url('app/images/rh_lhs_arrow.png');
     background-position:center right;
     background-repeat: no-repeat;
 }
@@ -291,7 +291,7 @@ a:focus {
 .default-button {
     padding:1px 10px 1px 10px;
     font-size:11px;
-    background: url("images/buttons/rh_button_bg.png") repeat-x scroll 0 0 #1a3749;
+    background: url(app/images/buttons/rh_button_bg.png) repeat-x scroll 0 0 #1a3749;
     border: 1px solid #1a3749;
     border-radius: 2px 2px 2px 2px;
     color: #ffffff !important;
@@ -304,7 +304,7 @@ a:focus {
 }
 
 .default-button:hover {
-    background: url("images/buttons/rh_button_bg.png") repeat-x scroll 0 0 #1a3749;
+    background: url(app/images/buttons/rh_button_bg.png) repeat-x scroll 0 0 #1a3749;
     border: 1px solid #1a3749;
     border-radius: 2px 2px 2px 2px;
     color: #ffffff !important;
@@ -478,11 +478,11 @@ a:focus {
     width:100%;
     height:20px;
     padding: 4px 0px 4px 0px;
-    background:url('images/sc/skins/Enterprise/images/ToolStrip/background.png') repeat-x;
+    background:url('app/images/sc/skins/Enterprise/images/ToolStrip/background.png') repeat-x;
 }
 
 .toolstrip-button {
-    background: url("images/buttons/rh_button_bg.png") repeat-x scroll 0 0 #1a3749;
+    background: url(app/images/buttons/rh_button_bg.png) repeat-x scroll 0 0 #1a3749;
     border: 1px solid #1a3749;
     border-radius: 2px 2px 2px 2px;
     color: #ffffff !important;
@@ -501,7 +501,7 @@ a:focus {
 }
 
 .toolstrip-button:hover {
-    background: url("images/buttons/rh_button_bg.png") repeat-x scroll 0 0 #1a3749;
+    background: url(app/images/buttons/rh_button_bg.png) repeat-x scroll 0 0 #1a3749;
     border: 1px solid #1a3749!important;
     border-radius: 2px 2px 2px 2px;
     color: #ffffff !important;
@@ -650,7 +650,7 @@ a:focus {
 .default-window-footer {
     width:100%;
     height:16px;
-    background-image: url(images/window/resizer.png);
+    background-image: url(app/images/window/resizer.png);
     background-repeat:no-repeat;
     background-position:top right;
 }
@@ -669,7 +669,7 @@ a:focus {
     margin-left:15px;
     margin-bottom:10px;
     padding-left: 20px;
-    background-image: url(images/info/icn_info_red.png) ;
+    background-image: url(app/images/info/icn_info_red.png) ;
     background-repeat: no-repeat; float:left;
 }
 
@@ -690,7 +690,7 @@ a:focus {
 }
 
 .celltable-button:hover {
-    background:#B2D7FF url(images/sc/skins/Enterprise/images/cssButton/button_Over_stretch.png) repeat-x;
+    background:#B2D7FF url(app/images/sc/skins/Enterprise/images/cssButton/button_Over_stretch.png) repeat-x;
     color:#000!important;
 }
 
@@ -942,7 +942,7 @@ a:focus {
 }
 
 .gwt-TabBarItem-wrapper {
-    background: url("images/header/rh_stackheader.png") repeat-x scroll 0 0 #1a3749;
+    background: url(app/images/header/rh_stackheader.png) repeat-x scroll 0 0 #1a3749;
     background-color: #F8F8F8;
     border-right: 1px solid #e9e6e6;
     border-bottom: 1px solid #e9e6e6;
@@ -983,7 +983,7 @@ a:focus {
 
 
 .stack-section-header {
-    background: url("images/header/rh_stackheader.png") repeat-x scroll 0 0 #1a3749;
+    background: url(app/images/header/rh_stackheader.png) repeat-x scroll 0 0 #1a3749;
     background-color: #F8F8F8;
     border-top: 1px solid #e9e6e6;
     border-bottom: 1px solid #e9e6e6;
@@ -1088,7 +1088,7 @@ a:focus {
 
 .cellTableSelectedRow .cellTableFirstColumn {
     background:#eef4f9;
-    background-image: url(images/activerow.png);
+    background-image: url(app/images/activerow.png);
     background-repeat: no-repeat;
     background-position: left;
     padding-left:10px;

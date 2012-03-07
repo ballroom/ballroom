@@ -21,23 +21,14 @@
 
     <!-- Inherit the core Web Toolkit stuff.                  -->
     <inherits name='com.google.gwt.user.User'/>
-    <inherits name='com.google.gwt.user.theme.chrome.ChromeResources'/>
-    <inherits name="com.google.gwt.editor.Editor"/>
 
     <inherits name='com.gwtplatform.mvp.Mvp' />
     <inherits name="com.google.gwt.autobean.AutoBean"/>
-
-    <!--define-configuration-property name="gin.ginjector" is-multi-valued="false" />
-    <set-configuration-property name="gin.ginjector"
-                                value="org.jboss.as.console.client.core.gin.CoreUI" /-->
 
     <replace-with class="org.jboss.ballroom.client.spi.NoopFramework">
         <when-type-is class="org.jboss.ballroom.client.spi.Framework"/>
     </replace-with>
 
-    <stylesheet src="plain.css" />
-    <stylesheet src="redhat.css" />
-
-    <entry-point class='org.jboss.ballroom.client.Bootstrap'/>
+    <entry-point class='org.jboss.ballroom.client.BootstrapRedhat'/>
 
 </module>

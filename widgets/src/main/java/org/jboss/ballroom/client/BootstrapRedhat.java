@@ -4,11 +4,11 @@ import com.google.gwt.core.client.EntryPoint;
 
 /**
  * @author Heiko Braun
- * @date 7/12/11
+ * @date 3/7/12
  */
-public class Bootstrap implements EntryPoint{
-
+public class BootstrapRedhat implements EntryPoint {
+    @Override
     public void onModuleLoad() {
-         BallroomResources.INSTANCE.plainCss().ensureInjected();
+         BallroomResources.INSTANCE.redhatCss().ensureInjected();
     }
 }
