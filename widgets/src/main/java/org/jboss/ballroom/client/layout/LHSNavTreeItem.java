@@ -63,9 +63,13 @@ public class LHSNavTreeItem extends TreeItem {
     public void setSelected(boolean selected) {
         super.setSelected(selected);
         if(selected)
+        {
             addStyleName("lhs-tree-item-selected");
+        }
         else
+        {
             removeStyleName("lhs-tree-item-selected");
+        }
     }
 
 }

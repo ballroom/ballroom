@@ -157,4 +157,12 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
     interface StateChange {
         void applyTo(LHSNavTreeItem item);
     }
+
+    public void expandTopLevel() {
+        for(int i=0; i<getItemCount(); i++)
+        {
+            TreeItem item = getItem(i);
+            item.setState(true);
+        }
+    }
 }
