@@ -77,6 +77,8 @@ public class DefaultCellTable<T> extends CellTable {
         // default empty
         setRowCount(0);
         setRowData(0, Collections.EMPTY_LIST);
+
+        getElement().setAttribute("role", "grid");
     }
 
     @Override

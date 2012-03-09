@@ -108,7 +108,11 @@ public class DefaultGroupRenderer implements GroupRenderer
         {
             FormItem item = groupItems.get(key);
             final String widgetId = id + key;
-            panel.add(item.asWidget(), widgetId);
+            final String labelId = id + key+"_l"; // aria property key
+
+            Widget widget = item.asWidget();
+            widget.getElement().setAttribute("aria-labelledby", labelId);
+            panel.add(widget, widgetId);
 
         }
 
@@ -117,16 +121,15 @@ public class DefaultGroupRenderer implements GroupRenderer
 
     private void createItemCell(RenderMetaData metaData, SafeHtmlBuilder builder, String key, FormItem item) {
 
+        final String labelId = id + key+"_l"; // aria property key
+
         final String widgetId = id + key;
-        
-	/* TODO: String title = item.getTitle();
-        if ((title != null) && title.trim().length() > 0) {
-            builder.appendEscaped(item.getTitle()+":");
-        } */
 
         builder.appendHtmlConstant("<td class='form-item-title'>"); // style='width:"+metaData.getTitleWidth()*5+"pt'
         String text = !item.getTitle().isEmpty() ? item.getTitle() + ":" : "";
+        builder.appendHtmlConstant("<label id='"+labelId+"'>");
         builder.appendEscaped(text);
+        builder.appendHtmlConstant("</label>");
         builder.appendHtmlConstant("</td>");
 
         builder.appendHtmlConstant("<td id='" + widgetId + "' class='form-item'>").appendHtmlConstant("</td>");

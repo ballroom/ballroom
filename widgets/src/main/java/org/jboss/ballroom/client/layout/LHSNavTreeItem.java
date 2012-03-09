@@ -29,9 +29,25 @@ public class LHSNavTreeItem extends TreeItem {
 
 
     public LHSNavTreeItem(String text, String token) {
+
+        /*String uniqueId = "navItem_"+HTMLPanel.createUniqueId();
+
+        SafeHtmlBuilder html = new SafeHtmlBuilder();
+        html.appendHtmlConstant("<span id='"+uniqueId+"'>");
+        html.appendEscaped(text);
+        html.appendHtmlConstant("</span>");
+
+        setHTML(html.toSafeHtml());
+
+        setStyleName("lhs-tree-item");
+        getElement().setAttribute("token", token);
+        getElement().setAttribute("role", "treeitem");
+        getElement().setAttribute("aria-labelledby", uniqueId);  */
+
         setText(text);
         setStyleName("lhs-tree-item");
         getElement().setAttribute("token", token);
+
     }
 
     public void setKey(String key) {

@@ -56,6 +56,7 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
 
         addStyleName("stack-section");
 
+        // TODO: this clashes with ARIA. it causes auto selection of links when using keyboard navigation
         addSelectionHandler(new SelectionHandler<TreeItem>() {
             @Override
             public void onSelection(SelectionEvent<TreeItem> event) {
