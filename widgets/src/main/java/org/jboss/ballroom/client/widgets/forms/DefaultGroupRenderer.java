@@ -109,10 +109,13 @@ public class DefaultGroupRenderer implements GroupRenderer
             FormItem item = groupItems.get(key);
             final String widgetId = id + key;
             final String labelId = id + key+"_l"; // aria property key
+            final String insertId = id + key+"_i";
 
             Widget widget = item.asWidget();
+            widget.getElement().setAttribute("id", widgetId);
+            widget.getElement().setAttribute("tabindex", "1");
             widget.getElement().setAttribute("aria-labelledby", labelId);
-            panel.add(widget, widgetId);
+            panel.add(widget, insertId);
 
         }
 
@@ -124,15 +127,16 @@ public class DefaultGroupRenderer implements GroupRenderer
         final String labelId = id + key+"_l"; // aria property key
 
         final String widgetId = id + key;
+        final String insertId = id + key+"_i";
 
         builder.appendHtmlConstant("<td class='form-item-title'>"); // style='width:"+metaData.getTitleWidth()*5+"pt'
         String text = !item.getTitle().isEmpty() ? item.getTitle() + ":" : "";
-        builder.appendHtmlConstant("<label id='"+labelId+"'>");
+        builder.appendHtmlConstant("<label for='"+widgetId+"' id='"+labelId+"'>");
         builder.appendEscaped(text);
         builder.appendHtmlConstant("</label>");
         builder.appendHtmlConstant("</td>");
 
-        builder.appendHtmlConstant("<td id='" + widgetId + "' class='form-item'>").appendHtmlConstant("</td>");
+        builder.appendHtmlConstant("<td class='form-item' id='"+insertId+"'>").appendHtmlConstant("</td>");
         // contents added later
         builder.appendHtmlConstant("</td>");
     }
