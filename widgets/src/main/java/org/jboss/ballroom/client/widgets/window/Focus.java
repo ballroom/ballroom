@@ -15,6 +15,8 @@ import java.util.List;
  */
 public class Focus {
 
+    private static final String[] INPUT_TYPES = new String[]{"INPUT, TEXTAREA"};
+    private static final String[] BUTTON_TYPES = new String[]{"BUTTON"};
     private List<Element> focusable = new LinkedList<Element>();
     private int currentFocus = 0;
     private boolean includeChildren = false;
@@ -22,9 +24,7 @@ public class Focus {
     private Element rootElement;
 
     public Focus(Element root) {
-        this.rootElement = root;
-
-        findFocusable(root, focusable, includeChildren);
+        reset(root);
     }
 
     public void reset(Element root)
@@ -38,6 +38,8 @@ public class Focus {
         currentFocus = 0;
         includeChildren = false;
         findFocusable(rootElement, focusable, includeChildren);
+
+        System.out.println("num focusable: " + focusable.size());
     }
 
     public void next() {
@@ -53,7 +55,7 @@ public class Focus {
 
     private void setFocus(Element element) {
 
-        System.out.println("on: "+element.getTagName());
+        //System.out.println("on: "+element.getTagName());
         element.focus();
     }
 
@@ -69,10 +71,10 @@ public class Focus {
         currentFocus = prev;
     }
 
-    public static void flagFocusable(Element element, boolean isFocusable)
+    /*public static void flagFocusable(Element element, boolean isFocusable)
     {
         element.setAttribute("focusable", String.valueOf(isFocusable));
-    }
+    } */
 
     private void findFocusable(Element root, List<Element> focusable, boolean include)
     {
@@ -91,12 +93,13 @@ public class Focus {
                 if(childElement.getTabIndex()>=0)
                 {
                     String tagName = childElement.getTagName();
-                    System.out.println(tagName);
-                    if(tagName.equals("INPUT")
-                            || tagName.equals("TEXTAREA")
-                            || tagName.equals("BUTTON")
-                            || tagName.equals("A"))
+                    //System.out.println(tagName);
+                    if(tagName.equalsIgnoreCase("INPUT")
+                            || tagName.equalsIgnoreCase("TEXTAREA")
+                            || tagName.equalsIgnoreCase("BUTTON")
+                            || tagName.equalsIgnoreCase("A"))
                     {
+
                         focusable.add(childElement);
                     }
 
@@ -109,24 +112,31 @@ public class Focus {
 
     }
 
-    public void setDefault() {
-        currentFocus = focusOnInput(focusable);
+    public void onFirstInput() {
+        currentFocus = focusOn(focusable, INPUT_TYPES);
     }
 
-    private static int focusOnInput(List<Element> focusable)
+    public void onFirstButton() {
+        currentFocus = focusOn(focusable, BUTTON_TYPES);
+    }
+
+    private static int focusOn(List<Element> focusable, String[] types)
     {
         int index = 0;
         for(int i=0; i<focusable.size(); i++)
         {
             Element element = focusable.get(i);
             String tagName = element.getTagName();
-            if(tagName.equals("INPUT")
-                    || tagName.equals("TEXTAREA"))
+
+            for(String type : types)
             {
-                element.focus();
-                index =i;
-                System.out.println("default: "+element.getTagName());
-                break;
+                if(tagName.equalsIgnoreCase(type))
+                {
+                    element.focus();
+                    index =i;
+                    //System.out.println("default: "+element.getTagName());
+                    break;
+                }
             }
         }
 

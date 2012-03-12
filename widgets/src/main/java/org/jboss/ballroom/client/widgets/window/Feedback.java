@@ -19,6 +19,7 @@
 
 package org.jboss.ballroom.client.widgets.window;
 
+import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.safehtml.shared.SafeHtml;
@@ -75,7 +76,24 @@ public class Feedback {
 
         Widget content = new WindowContentBuilder(panel, options).build();
 
-        window.setWidget(content);
+
+        TrappedFocusPanel trap = new TrappedFocusPanel(content)
+        {
+            @Override
+            protected void onAttach() {
+                super.onAttach();
+                Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+                    @Override
+                    public void execute() {
+                        getFocus().onFirstButton();
+                    }
+                });
+            }
+        };
+
+
+        window.setWidget(trap);
+
 
         window.center();
     }
@@ -115,7 +133,25 @@ public class Feedback {
 
         Widget content = new WindowContentBuilder(panel, options.showCancel(false)).build();
 
-        window.setWidget(content);
+        TrappedFocusPanel trap = new TrappedFocusPanel(content)
+        {
+            @Override
+            protected void onAttach() {
+                super.onAttach();
+
+                Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+                    @Override
+                    public void execute() {
+                        getFocus().onFirstButton();
+                    }
+                });
+
+            }
+        };
+
+
+        window.setWidget(trap);
+
 
         window.center();
     }
@@ -154,9 +190,25 @@ public class Feedback {
 
         //DialogueOptions options = new DialogueOptions("OK", confirmHandler, "Cancel", cancelHandler);
 
+
         Widget content = new WindowContentBuilder(panel, new HTML()).build();
 
-        window.setWidget(content);
+        TrappedFocusPanel trap = new TrappedFocusPanel(content)
+        {
+            @Override
+            protected void onAttach() {
+                super.onAttach();
+                Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+                    @Override
+                    public void execute() {
+                        getFocus().onFirstButton();
+                    }
+                });
+            }
+        };
+
+
+        window.setWidget(trap);
 
         window.center();
 

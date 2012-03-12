@@ -46,7 +46,7 @@ public class TrappedFocusPanel extends LayoutPanel {
                     @Override
                     public void execute() {
                         //focus = new Focus(getElement());
-                        focus.setDefault();
+                        focus.onFirstInput();
                     }
                 }
         );
