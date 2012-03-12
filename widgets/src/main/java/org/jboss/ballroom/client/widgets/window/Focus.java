@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class Focus {
 
-    private static final String[] INPUT_TYPES = new String[]{"INPUT, TEXTAREA"};
+    private static final String[] INPUT_TYPES = new String[]{"INPUT", "TEXTAREA"};
     private static final String[] BUTTON_TYPES = new String[]{"BUTTON"};
     private List<Element> focusable = new LinkedList<Element>();
     private int currentFocus = 0;
@@ -39,7 +39,7 @@ public class Focus {
         includeChildren = false;
         findFocusable(rootElement, focusable, includeChildren);
 
-        System.out.println("num focusable: " + focusable.size());
+        //System.out.println("num focusable: " + focusable.size());
     }
 
     public void next() {
@@ -128,19 +128,34 @@ public class Focus {
             Element element = focusable.get(i);
             String tagName = element.getTagName();
 
+            Element match = null;
+
             for(String type : types)
             {
                 if(tagName.equalsIgnoreCase(type))
                 {
-                    element.focus();
-                    index =i;
-                    //System.out.println("default: "+element.getTagName());
+                    match = element;
                     break;
                 }
+            }
+
+            if(match!=null)
+            {
+                match.focus();
+                index =i;
+                break;
             }
         }
 
         return index;
     }
+
+    public static native Element getActiveElement()
+    /*-{
+        if($wnd.document.activeElement)
+            return $wnd.document.activeElement;
+        else
+            return null;
+    }-*/;
 }
 

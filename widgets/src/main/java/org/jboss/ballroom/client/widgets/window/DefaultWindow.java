@@ -20,6 +20,8 @@
 package org.jboss.ballroom.client.widgets.window;
 
 import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.dom.client.MouseDownHandler;
@@ -58,6 +60,8 @@ public class DefaultWindow extends ResizePanel {
 
     private DockLayoutPanel layout;
     private Focus focus = null;
+
+    private Element lastFocus = null;
 
     public DefaultWindow(String title) {
 
@@ -223,6 +227,25 @@ public class DefaultWindow extends ResizePanel {
 
         //focus = new Focus(layout.getElement());
         //focus.setDefault();
+
+        lastFocus = Focus.getActiveElement();
+
     }
 
+    @Override
+    public void hide() {
+        super.hide();
+
+        if(lastFocus!=null)
+        {
+            Scheduler.get().scheduleDeferred(
+                    new Scheduler.ScheduledCommand() {
+                        @Override
+                        public void execute() {
+                            lastFocus.focus();
+                        }
+                    }
+            );
+        }
+    }
 }
