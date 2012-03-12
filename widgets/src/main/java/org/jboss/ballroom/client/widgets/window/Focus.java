@@ -17,6 +17,8 @@ public class Focus {
 
     private static final String[] INPUT_TYPES = new String[]{"INPUT", "TEXTAREA"};
     private static final String[] BUTTON_TYPES = new String[]{"BUTTON"};
+    private static final String[] SUPPORTED_TYPES = new String[]{"INPUT", "TEXTAREA", "SELECT", "CHECKBOX", "A", "BUTTON"};
+
     private List<Element> focusable = new LinkedList<Element>();
     private int currentFocus = 0;
     private boolean includeChildren = false;
@@ -94,13 +96,15 @@ public class Focus {
                 {
                     String tagName = childElement.getTagName();
                     //System.out.println(tagName);
-                    if(tagName.equalsIgnoreCase("INPUT")
-                            || tagName.equalsIgnoreCase("TEXTAREA")
-                            || tagName.equalsIgnoreCase("BUTTON")
-                            || tagName.equalsIgnoreCase("A"))
-                    {
 
-                        focusable.add(childElement);
+                    for(String supported : SUPPORTED_TYPES)
+                    {
+                        if(tagName.equalsIgnoreCase(supported))
+                        {
+                            focusable.add(childElement);
+                            break;
+                        }
+
                     }
 
                 }
@@ -151,11 +155,11 @@ public class Focus {
     }
 
     public static native Element getActiveElement()
-    /*-{
-        if($wnd.document.activeElement)
-            return $wnd.document.activeElement;
-        else
-            return null;
-    }-*/;
+        /*-{
+            if($wnd.document.activeElement)
+                return $wnd.document.activeElement;
+            else
+                return null;
+        }-*/;
 }
 
