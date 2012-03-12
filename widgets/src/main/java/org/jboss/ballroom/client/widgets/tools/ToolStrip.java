@@ -69,9 +69,15 @@ public class ToolStrip extends FocusPanel {
             @Override
             public void onKeyDown(KeyDownEvent event) {
                 if(event.getNativeKeyCode()== KeyCodes.KEY_DOWN)
+                {
                     nextButton();
+                    event.getNativeEvent().stopPropagation();
+                }
                 else if(event.getNativeKeyCode()== KeyCodes.KEY_UP)
+                {
                     prevButton();
+                    event.getNativeEvent().stopPropagation();
+                }
             }
         }) ;
     }
