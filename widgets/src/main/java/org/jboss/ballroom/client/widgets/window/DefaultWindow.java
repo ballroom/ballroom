@@ -21,13 +21,13 @@ package org.jboss.ballroom.client.widgets.window;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.dom.client.MouseDownHandler;
 import com.google.gwt.event.dom.client.MouseMoveEvent;
 import com.google.gwt.event.dom.client.MouseMoveHandler;
 import com.google.gwt.event.dom.client.MouseUpEvent;
 import com.google.gwt.event.dom.client.MouseUpHandler;
-import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
@@ -57,13 +57,46 @@ public class DefaultWindow extends ResizePanel {
     private int     dragStartX;
     private int     dragStartY;
 
-    private Command afterShowEvent;
-    private boolean fixedLocation = false;
     private DockLayoutPanel layout;
+    private Focus focus = null;
 
     public DefaultWindow(String title) {
 
-        layout = new DockLayoutPanel(Style.Unit.PX);
+        layout = new DockLayoutPanel(Style.Unit.PX) {
+            {
+                this.sinkEvents(Event.ONKEYDOWN);
+
+
+            }
+
+            @Override
+            public void onBrowserEvent(Event event) {
+
+                int type = DOM.eventGetType(event);
+                switch (type) {
+                    case Event.ONKEYDOWN:
+                        if(event.getKeyCode()== KeyCodes.KEY_TAB)
+                        {
+                            event.preventDefault();
+                            event.stopPropagation();
+
+                            if(event.getShiftKey())
+                                focus.prev();
+                            else
+                                focus.next();
+
+                        }
+                        break;
+                    default:
+                        return;
+
+                }
+
+            }
+
+        };
+        layout.getElement().setTabIndex(-1);
+
         setStyleName("default-window");
 
         final WindowHeader header = new WindowHeader(title, this);
@@ -97,6 +130,8 @@ public class DefaultWindow extends ResizePanel {
         } );
 
 
+
+
         layout.addNorth(header, 40);
 
         HorizontalPanel footer = new HorizontalPanel();
@@ -112,6 +147,7 @@ public class DefaultWindow extends ResizePanel {
         content = new LayoutPanel();
         content.setStyleName("default-window-content");
         layout.add(content);
+
 
         super.setWidget(layout);
 
@@ -186,5 +222,8 @@ public class DefaultWindow extends ResizePanel {
             });
         }
 
+        focus = new Focus(layout.getElement());
+        focus.setDefault();
     }
+
 }
