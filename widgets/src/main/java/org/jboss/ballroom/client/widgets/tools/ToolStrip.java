@@ -71,12 +71,12 @@ public class ToolStrip extends FocusPanel {
                 if(event.getNativeKeyCode()== KeyCodes.KEY_DOWN)
                 {
                     nextButton();
-                    event.getNativeEvent().stopPropagation();
+                    event.stopPropagation();
                 }
                 else if(event.getNativeKeyCode()== KeyCodes.KEY_UP)
                 {
                     prevButton();
-                    event.getNativeEvent().stopPropagation();
+                    event.stopPropagation();
                 }
             }
         }) ;
