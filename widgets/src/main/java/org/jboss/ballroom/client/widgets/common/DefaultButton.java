@@ -32,10 +32,12 @@ public class DefaultButton extends Button {
     public DefaultButton(String title) {
         super(title);
         addStyleName("default-button");
+        getElement().setTabIndex(0);
     }
 
     public DefaultButton(String title, ClickHandler handler) {
         this(title);
         addClickHandler(handler);
+        getElement().setTabIndex(0);
     }
 }
