@@ -33,6 +33,7 @@ public class StatusItem extends FormItem<Boolean> {
     public StatusItem(String name, String title) {
         super(name, title);
         this.widget = new Label();
+        this.widget.getElement().setTabIndex(0);
     }
 
     @Override

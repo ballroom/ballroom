@@ -45,6 +45,7 @@ public class NumberBoxItem extends FormItem<Number> {
         textBox = new TextBox();
         textBox.setName(name);
         textBox.setTitle(title);
+        textBox.setTabIndex(0);
 
         textBox.addValueChangeHandler(new ValueChangeHandler<String>() {
             @Override

@@ -43,6 +43,7 @@ public class ListBoxItem extends FormItem<String> implements ChoiceItem<String> 
         listBox.setName(name);
         listBox.setTitle(title);
         listBox.setVisibleItemCount(1);
+        listBox.setTabIndex(0);
 
         valueChangeHandler = new ChangeHandler() {
             @Override

@@ -42,7 +42,7 @@ public class ComboBoxItem extends FormItem<String> {
     public ComboBoxItem(String name, String title) {
         super(name, title);
         this.comboBox = new ListBox();
-
+        this.comboBox.setTabIndex(0);
         this.comboBox.addChangeHandler(new ChangeHandler() {
 
             @Override

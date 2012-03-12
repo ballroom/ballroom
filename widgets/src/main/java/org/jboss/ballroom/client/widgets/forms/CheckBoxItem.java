@@ -35,6 +35,7 @@ public class CheckBoxItem extends FormItem<Boolean> {
     public CheckBoxItem(String name, String title) {
         super(name, title);
         checkBox = new CheckBox();
+        checkBox.setTabIndex(0);
         checkBox.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
             @Override
             public void onValueChange(ValueChangeEvent<Boolean> booleanValueChangeEvent) {

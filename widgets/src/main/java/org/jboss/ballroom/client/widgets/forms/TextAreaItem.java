@@ -38,6 +38,8 @@ public class TextAreaItem extends FormItem<String> {
         textArea = new TextArea();
         textArea.setName(name);
         textArea.setTitle(title);
+        textArea.setTabIndex(0);
+
         valueChangeHandler = new ValueChangeHandler<String>() {
             @Override
             public void onValueChange(ValueChangeEvent<String> event) {

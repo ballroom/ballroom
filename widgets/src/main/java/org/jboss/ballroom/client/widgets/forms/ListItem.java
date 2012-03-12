@@ -53,6 +53,7 @@ public class ListItem extends FormItem<List> {
     public ListItem(String name, String title, boolean displayOnly) {
         super(name, title);
         this.textArea = new TextArea();
+        this.textArea.setTabIndex(0);
 
         this.textArea.addValueChangeHandler(new ValueChangeHandler<String>() {
             @Override

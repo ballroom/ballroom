@@ -35,6 +35,7 @@ public class ButtonItem extends FormItem<Boolean> {
     public ButtonItem(String name, String title) {
         super(name, title);
         this.button = new DefaultButton(title);
+        button.setTabIndex(0);
         setModified(false);
         setUndefined(false);
     }

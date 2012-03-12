@@ -113,7 +113,7 @@ public class DefaultGroupRenderer implements GroupRenderer
 
             Widget widget = item.asWidget();
             widget.getElement().setAttribute("id", widgetId);
-            widget.getElement().setAttribute("tabindex", "1");
+            //widget.getElement().setAttribute("tabindex", "0");
             widget.getElement().setAttribute("aria-labelledby", labelId);
             panel.add(widget, insertId);
 

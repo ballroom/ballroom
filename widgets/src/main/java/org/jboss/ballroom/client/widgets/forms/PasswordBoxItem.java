@@ -39,6 +39,7 @@ public class PasswordBoxItem extends FormItem<String> {
         textBox = new PasswordTextBox();
         textBox.setName(name);
         textBox.setTitle(title);
+        textBox.setTabIndex(0);
 
         textBox.addValueChangeHandler(new ValueChangeHandler<String>() {
             @Override
