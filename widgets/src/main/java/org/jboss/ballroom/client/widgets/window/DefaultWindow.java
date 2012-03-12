@@ -21,7 +21,6 @@ package org.jboss.ballroom.client.widgets.window;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.Style;
-import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.dom.client.MouseDownHandler;
 import com.google.gwt.event.dom.client.MouseMoveEvent;
@@ -62,7 +61,7 @@ public class DefaultWindow extends ResizePanel {
 
     public DefaultWindow(String title) {
 
-        layout = new DockLayoutPanel(Style.Unit.PX) {
+        layout = new DockLayoutPanel(Style.Unit.PX) ;/*{
             {
                 this.sinkEvents(Event.ONKEYDOWN);
 
@@ -94,7 +93,7 @@ public class DefaultWindow extends ResizePanel {
 
             }
 
-        };
+        };   */
         layout.getElement().setTabIndex(-1);
 
         setStyleName("default-window");
@@ -222,8 +221,8 @@ public class DefaultWindow extends ResizePanel {
             });
         }
 
-        focus = new Focus(layout.getElement());
-        focus.setDefault();
+        //focus = new Focus(layout.getElement());
+        //focus.setDefault();
     }
 
 }
