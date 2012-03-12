@@ -175,6 +175,14 @@ public class DefaultWindow extends ResizePanel {
         }
     }
 
+    public void trapWidget(Widget w) {
+        content.clear();
+
+        TrappedFocusPanel trap = new TrappedFocusPanel(w);
+
+        content.add(trap);
+    }
+
     @Override
     public void setWidget(Widget w) {
         content.clear();
