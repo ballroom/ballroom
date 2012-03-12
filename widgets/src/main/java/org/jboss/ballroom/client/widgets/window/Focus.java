@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Used to trap focus in model windows.
+ * Used to trap focus in modal windows.
  *
  * @author Heiko Braun
  * @date 3/12/12
@@ -27,6 +27,12 @@ public class Focus {
         findFocusable(root, focusable, includeChildren);
     }
 
+    public void reset(Element root)
+    {
+        rootElement = root;
+        reset();
+    }
+
     public void reset() {
         focusable = new LinkedList<Element>();
         currentFocus = 0;
@@ -37,7 +43,6 @@ public class Focus {
     public void next() {
         if(focusable.isEmpty()) return;
 
-        // forward
         int next = currentFocus+1;
         if(next>focusable.size()-1)
             next = 0;
@@ -48,15 +53,13 @@ public class Focus {
 
     private void setFocus(Element element) {
 
-        //System.out.println("on: "+element.getTagName());
+        System.out.println("on: "+element.getTagName());
         element.focus();
     }
 
     public void prev() {
-        // backward
         if(focusable.isEmpty()) return;
 
-        // forward
         int prev = currentFocus-1;
         if(prev<0)
             prev = focusable.size()-1;
@@ -66,6 +69,10 @@ public class Focus {
         currentFocus = prev;
     }
 
+    public static void flagFocusable(Element element, boolean isFocusable)
+    {
+        element.setAttribute("focusable", String.valueOf(isFocusable));
+    }
 
     private void findFocusable(Element root, List<Element> focusable, boolean include)
     {
@@ -78,13 +85,13 @@ public class Focus {
             {
                 Element childElement = (Element)child;
 
-                if(childElement.hasAttribute("focusable"))
-                    includeChildren = childElement.getAttribute("focusable").equals("true");
+                //if(childElement.hasAttribute("focusable"))
+                //    includeChildren = childElement.getAttribute("focusable").equals("true");
 
-                if(includeChildren && childElement.getTabIndex()>=0)
+                if(childElement.getTabIndex()>=0)
                 {
                     String tagName = childElement.getTagName();
-                    //System.out.println(tagName);
+                    System.out.println(tagName);
                     if(tagName.equals("INPUT")
                             || tagName.equals("TEXTAREA")
                             || tagName.equals("BUTTON")
@@ -118,6 +125,7 @@ public class Focus {
             {
                 element.focus();
                 index =i;
+                System.out.println("default: "+element.getTagName());
                 break;
             }
         }
