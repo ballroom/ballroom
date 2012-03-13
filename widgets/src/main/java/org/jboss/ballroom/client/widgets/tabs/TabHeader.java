@@ -42,6 +42,11 @@ public class TabHeader extends HorizontalPanel {
         add(tabTitle);
         add(tabRight);
 
+        getElement().setAttribute("role", "tablist");
+        getElement().setTabIndex(0);
+        tabTitle.getElement().setAttribute("role", "tab");
+        tabTitle.getElement().setAttribute("aria-selected", "true");
+
 
     }
 }
