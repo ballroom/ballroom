@@ -48,7 +48,7 @@ public class ToolStrip extends FocusPanel {
     public ToolStrip() {
         super();
 
-        setTabIndex(0);
+        setTabIndex(-1);
 
         layout = new HorizontalPanel();
         layout.setStyleName("default-toolstrip");
