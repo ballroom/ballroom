@@ -358,7 +358,6 @@ a:focus {
     float: left;
     font-size: 10px;
     margin: 0 2px;
-    outline: medium none;
     padding: 2px 10px;
     text-decoration: none;
     white-space: nowrap;
@@ -944,9 +943,21 @@ a:focus {
 
 }
 
-/*edit mode*/
-.cellTableKeyboardSelectedRow {
-    /*background:none; doesn't work atm */
+.cellTableKeyboardSelectedCell {
+
+}
+
+.cellTableKeyboardSelectedRowCell {
+    border-top: 1px solid #606060;
+    border-bottom: 1px solid #606060;
+}
+
+.cellTableKeyboardSelectedRow .cellTableFirstColumn{
+    border-left: 1px solid #606060;
+}
+
+.cellTableKeyboardSelectedRow .cellTableLastColumn{
+    border-right: 1px solid #606060;
 }
 
 .default-pager {
