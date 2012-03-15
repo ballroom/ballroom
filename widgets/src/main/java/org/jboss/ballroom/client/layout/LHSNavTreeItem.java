@@ -19,21 +19,32 @@
 
 package org.jboss.ballroom.client.layout;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TreeItem;
+import org.jboss.ballroom.client.spi.Framework;
+import org.jboss.ballroom.client.util.Places;
 
 /**
  * An LHS navigation item that carries a reference to view.
- * When it's clicked the placemanager is invoked to reveal the place.
+ * When it's clicked the {@link org.jboss.ballroom.client.spi.Framework#getPlaceManager()} is invoked to reveal the place.
  *
- * The state is managed through {@link LHSNavTree}
+ * The state is managed by the {@link LHSNavTree} that own this item.
+ *
  * @author Heiko Braun
  * @date 3/24/11
  */
 public class LHSNavTreeItem extends TreeItem {
 
+    private static final Framework framework = GWT.create(Framework.class);
 
     public LHSNavTreeItem(String text, String token) {
         setText(text);
+
         setStyleName("lhs-tree-item");
         getElement().setAttribute("token", token);
     }
@@ -60,7 +71,21 @@ public class LHSNavTreeItem extends TreeItem {
         }
 
         // TODO: move the tab cursor
-        //super.setSelected(active);
+        super.setSelected(active);
     }
 
+    void activate() {
+
+        // reveal view
+        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+            @Override
+            public void execute() {
+                String token = LHSNavTreeItem.this.getElement().getAttribute("token");
+                framework.getPlaceManager().revealPlaceHierarchy(
+                        Places.fromString(token)
+                );
+            }
+        });
+
+    }
 }

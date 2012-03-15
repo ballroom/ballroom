@@ -149,6 +149,10 @@ table {
     border: 1px solid #606060;
 }
 
+.lhs-tree-item-selected .gwt-TreeItem-selected {
+    border:none;
+}
+
 .tree-section {
     margin-bottom:15px;
 }

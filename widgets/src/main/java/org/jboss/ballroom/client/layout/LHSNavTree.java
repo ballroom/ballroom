@@ -24,6 +24,8 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
+import com.google.gwt.event.dom.client.MouseDownEvent;
+import com.google.gwt.event.dom.client.MouseDownHandler;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
@@ -64,15 +66,17 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
             public void onKeyDown(KeyDownEvent keyDownEvent) {
                 if(keyDownEvent.getNativeKeyCode()== KeyCodes.KEY_ENTER)
                 {
-                    TreeItem selectedItem = getSelectedItem();
-                    if(selectedItem instanceof LHSNavTreeItem)
-                    {
-                        activate((LHSNavTreeItem)selectedItem);
-                    }
+                    handleSelectedItem();
                 }
             }
         });
 
+        addMouseDownHandler(new MouseDownHandler() {
+            @Override
+            public void onMouseDown(MouseDownEvent mouseDownEvent) {
+                handleSelectedItem();
+            }
+        });
 
         Scheduler.get().scheduleEntry(new Scheduler.ScheduledCommand() {
             @Override
@@ -82,7 +86,15 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
         });
     }
 
-    private void activate(final LHSNavTreeItem navItem) {
+    private void handleSelectedItem() {
+        TreeItem selectedItem = getSelectedItem();
+        if(selectedItem instanceof LHSNavTreeItem)
+        {
+            ((LHSNavTreeItem)selectedItem).activate();
+        }
+    }
+
+    /*private void activate(final LHSNavTreeItem navItem) {
 
         // reveal view
         Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
@@ -95,7 +107,7 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
             }
         });
 
-    }
+    }  */
 
     public String getTreeId() {
         return treeId;
