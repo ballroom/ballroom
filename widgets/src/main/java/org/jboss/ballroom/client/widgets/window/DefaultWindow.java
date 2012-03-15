@@ -37,6 +37,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.LayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
+import org.jboss.ballroom.client.widgets.Aria;
 
 /**
  * @author Heiko Braun
@@ -98,11 +99,14 @@ public class DefaultWindow extends ResizePanel {
             }
 
         };   */
-        layout.getElement().setTabIndex(-1);
+        //layout.getElement().setTabIndex(-1);
 
         setStyleName("default-window");
 
         final WindowHeader header = new WindowHeader(title, this);
+        layout.getElement().setAttribute(Aria.ROLE, Aria.DIALOG);
+        layout.getElement().setAttribute(Aria.LABELLED_BY, header.getHeaderId());
+
 
         // dnd
 

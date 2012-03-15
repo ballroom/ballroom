@@ -16,6 +16,7 @@ import com.google.gwt.event.dom.client.MouseUpHandler;
 import com.google.gwt.event.dom.client.MouseWheelEvent;
 import com.google.gwt.event.dom.client.MouseWheelHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
@@ -30,6 +31,7 @@ public class WindowHeader extends Composite implements HasAllMouseHandlers {
     private int origHeight  = -1;
     private int origTop     = -1;
     private int origLeft    = -1;
+    String headerId;
 
     public WindowHeader(String title, final PopupPanel callback) {
 
@@ -37,6 +39,8 @@ public class WindowHeader extends Composite implements HasAllMouseHandlers {
         header.setStyleName("default-window-header");
 
         HTML titleText = new HTML(title);
+        headerId = "h_" + DOM.createUniqueId();
+        titleText.getElement().setId(headerId);
         titleText.setStyleName("default-window-title");
 
         Image closeIcon = new Image(Icons.INSTANCE.close());
@@ -107,6 +111,10 @@ public class WindowHeader extends Composite implements HasAllMouseHandlers {
         closeIcon.getElement().getParentElement().setAttribute("width", "16px");
         closeIcon.getElement().getParentElement().setAttribute("style", "width:16px;padding-right:5px");
 
+    }
+
+    public String getHeaderId() {
+        return headerId;
     }
 
     public HandlerRegistration addMouseMoveHandler(MouseMoveHandler handler) {
