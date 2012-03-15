@@ -22,6 +22,10 @@ package org.jboss.ballroom.client.layout;
 import com.google.gwt.user.client.ui.TreeItem;
 
 /**
+ * An LHS navigation item that carries a reference to view.
+ * When it's clicked the placemanager is invoked to reveal the place.
+ *
+ * The state is managed through {@link LHSNavTree}
  * @author Heiko Braun
  * @date 3/24/11
  */

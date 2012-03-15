@@ -37,6 +37,7 @@ import org.jboss.ballroom.client.widgets.icons.DefaultTreeResources;
  * It's driven by a token attribute that's associated with the tree item.
  *
  * @see LHSNavTreeItem
+ * @see LHSTreeSection
  *
  * @author Heiko Braun
  * @date 3/24/11
