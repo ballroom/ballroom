@@ -21,8 +21,9 @@ package org.jboss.ballroom.client.layout;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.event.logical.shared.SelectionEvent;
-import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
@@ -47,6 +48,7 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
 
     private String treeId;
     private String category;
+    private LHSNavTreeItem prevNavItem;
 
     public LHSNavTree(final String category) {
         super(DefaultTreeResources.INSTANCE);
@@ -56,29 +58,42 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
 
         addStyleName("stack-section");
 
-        // TODO: this clashes with ARIA. it causes auto selection of links when using keyboard navigation
-        addSelectionHandler(new SelectionHandler<TreeItem>() {
+        addKeyDownHandler(new KeyDownHandler() {
             @Override
-            public void onSelection(SelectionEvent<TreeItem> event) {
-
-                final TreeItem selectedItem = event.getSelectedItem();
-
-                if (selectedItem.getElement().hasAttribute("token")) {
-                    String token = selectedItem.getElement().getAttribute("token");
-                    framework.getPlaceManager().revealPlaceHierarchy(
-                            Places.fromString(token)
-                    );
-
+            public void onKeyDown(KeyDownEvent keyDownEvent) {
+                if(keyDownEvent.getNativeKeyCode()== KeyCodes.KEY_ENTER)
+                {
+                    TreeItem selectedItem = getSelectedItem();
+                    if(selectedItem instanceof LHSNavTreeItem)
+                    {
+                        activate((LHSNavTreeItem)selectedItem);
+                    }
                 }
             }
         });
 
-         Scheduler.get().scheduleEntry(new Scheduler.ScheduledCommand() {
-             @Override
-             public void execute() {
-                 framework.getEventBus().addHandler(LHSHighlightEvent.TYPE, LHSNavTree.this);
-             }
-         });
+
+        Scheduler.get().scheduleEntry(new Scheduler.ScheduledCommand() {
+            @Override
+            public void execute() {
+                framework.getEventBus().addHandler(LHSHighlightEvent.TYPE, LHSNavTree.this);
+            }
+        });
+    }
+
+    private void activate(final LHSNavTreeItem navItem) {
+
+        // reveal view
+        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+            @Override
+            public void execute() {
+                String token = navItem.getElement().getAttribute("token");
+                framework.getPlaceManager().revealPlaceHierarchy(
+                        Places.fromString(token)
+                );
+            }
+        });
+
     }
 
     public String getTreeId() {
@@ -103,16 +118,22 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
                 public void applyTo(LHSNavTreeItem treeItem) {
 
                     String token = treeItem.getElement().hasAttribute("token") ?
-                        treeItem.getElement().getAttribute("token") : "not-set";
+                            treeItem.getElement().getAttribute("token") : "not-set";
 
                     boolean isSelected = event.getItem().equals(treeItem.getText())
                             || token.equals(event.getToken());
 
-                    treeItem.setSelected(isSelected);
-
                     if(isSelected)
                     {
+                        treeItem.setActive(true);
+
+                        if(prevNavItem!=null)
+                            prevNavItem.setActive(false);
+
+                        prevNavItem=treeItem;
+
                         openParents(treeItem);
+
                     }
                 }
             });
@@ -165,4 +186,6 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
             item.setState(true);
         }
     }
+
+
 }

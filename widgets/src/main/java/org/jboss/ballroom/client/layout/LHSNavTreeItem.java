@@ -29,25 +29,9 @@ public class LHSNavTreeItem extends TreeItem {
 
 
     public LHSNavTreeItem(String text, String token) {
-
-        /*String uniqueId = "navItem_"+HTMLPanel.createUniqueId();
-
-        SafeHtmlBuilder html = new SafeHtmlBuilder();
-        html.appendHtmlConstant("<span id='"+uniqueId+"'>");
-        html.appendEscaped(text);
-        html.appendHtmlConstant("</span>");
-
-        setHTML(html.toSafeHtml());
-
-        setStyleName("lhs-tree-item");
-        getElement().setAttribute("token", token);
-        getElement().setAttribute("role", "treeitem");
-        getElement().setAttribute("aria-labelledby", uniqueId);  */
-
         setText(text);
         setStyleName("lhs-tree-item");
         getElement().setAttribute("token", token);
-
     }
 
     public void setKey(String key) {
@@ -60,9 +44,9 @@ public class LHSNavTreeItem extends TreeItem {
         return key;
     }
 
-    public void setSelected(boolean selected) {
-        super.setSelected(selected);
-        if(selected)
+    public void setActive(boolean active) {
+
+        if(active)
         {
             addStyleName("lhs-tree-item-selected");
         }
@@ -70,6 +54,9 @@ public class LHSNavTreeItem extends TreeItem {
         {
             removeStyleName("lhs-tree-item-selected");
         }
+
+        // TODO: move the tab cursor
+        //super.setSelected(active);
     }
 
 }
