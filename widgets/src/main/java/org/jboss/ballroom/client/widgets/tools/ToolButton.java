@@ -32,11 +32,13 @@ public class ToolButton extends Button
         super(title);
         //addStyleName("default-button");
         addStyleName("toolstrip-button");
+        getElement().setTabIndex(0);
     }
 
     public ToolButton(String title, ClickHandler handler) {
         this(title);
         addClickHandler(handler);
+        getElement().setTabIndex(0);
     }
 }
 
