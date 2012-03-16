@@ -21,6 +21,10 @@ package org.jboss.ballroom.client.layout;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.event.dom.client.BlurEvent;
+import com.google.gwt.event.dom.client.BlurHandler;
+import com.google.gwt.event.dom.client.FocusEvent;
+import com.google.gwt.event.dom.client.FocusHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
@@ -78,6 +82,34 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
             }
         });
 
+        // remove kdb highlight on blur
+        addBlurHandler(new BlurHandler() {
+            @Override
+            public void onBlur(BlurEvent blurEvent) {
+
+                TreeItem item = getSelectedItem();
+                if(item!=null)
+                {
+                    item.getElement().getFirstChildElement().removeClassName("gwt-TreeItem-selected");
+                }
+
+            }
+        });
+
+        // show kbd highlight on focus
+        addFocusHandler(new FocusHandler() {
+            @Override
+            public void onFocus(FocusEvent focusEvent) {
+
+                TreeItem item = getSelectedItem();
+                if(item!=null)
+                {
+                    item.getElement().getFirstChildElement().addClassName("gwt-TreeItem-selected");
+                }
+            }
+        });
+
+
         Scheduler.get().scheduleEntry(new Scheduler.ScheduledCommand() {
             @Override
             public void execute() {
@@ -85,6 +117,8 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
             }
         });
     }
+
+
 
     private void handleSelectedItem() {
         TreeItem selectedItem = getSelectedItem();
