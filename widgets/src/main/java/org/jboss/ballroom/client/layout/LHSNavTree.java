@@ -82,15 +82,14 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
             }
         });
 
-        // remove kdb highlight on blur
+        //remove kdb highlight on blur
         addBlurHandler(new BlurHandler() {
             @Override
             public void onBlur(BlurEvent blurEvent) {
 
                 TreeItem item = getSelectedItem();
-                if(item!=null)
-                {
-                    item.getElement().getFirstChildElement().removeClassName("gwt-TreeItem-selected");
+                if (item != null) {
+                    item.getElement().getFirstChildElement().addClassName("lostFocus");
                 }
 
             }
@@ -102,9 +101,8 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
             public void onFocus(FocusEvent focusEvent) {
 
                 TreeItem item = getSelectedItem();
-                if(item!=null)
-                {
-                    item.getElement().getFirstChildElement().addClassName("gwt-TreeItem-selected");
+                if (item != null) {
+                    item.getElement().getFirstChildElement().removeClassName("lostFocus");
                 }
             }
         });
