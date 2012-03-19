@@ -19,13 +19,14 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * The default renderer for a group of form items.
@@ -38,7 +39,7 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public class DefaultGroupRenderer implements GroupRenderer
 {
-    private final String id = "form-"+ HTMLPanel.createUniqueId()+"_";
+    private final String id = "form-"+ DOM.createUniqueId()+"_";
     private final String tablePrefix = "<table border=0 id='"+id+"' border=0 cellpadding=0 cellspacing=0 role='presentation'>";
     private final static String tableSuffix = "</table>";
 
@@ -118,6 +119,7 @@ public class DefaultGroupRenderer implements GroupRenderer
                 input.setAttribute("id", widgetId);
                 //widget.getElement().setAttribute("tabindex", "0");
                 input.setAttribute("aria-labelledby", labelId);
+                input.setAttribute("aria-required", String.valueOf(item.isRequired()));
             }
             panel.add(item.asWidget(), insertId);
 
