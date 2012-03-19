@@ -1003,6 +1003,18 @@ table {
     border-right: 1px solid #606060;
 }
 
+.default-cell-table .cellTableSelectedRow .cellTableKeyboardSelectedRowCell {
+    border:none!important;
+}
+
+.default-cell-table .cellTableSelectedRow .cellTableKeyboardSelectedRow .cellTableFirstColumn{
+    border:none!important;
+}
+
+.default-cell-table .cellTableSelectedRow.cellTableKeyboardSelectedRow .cellTableLastColumn{
+    border:none!important;
+}
+
 .default-pager {
     float:right;
     padding-right:15px;

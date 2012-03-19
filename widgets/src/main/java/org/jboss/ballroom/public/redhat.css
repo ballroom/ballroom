@@ -624,7 +624,7 @@ table {
 
 
 .help-panel-open {
-
+    color:#000000;
     background-color: #FDFDEF;
     border: 1px solid #EAE9E1;
     border-radius: 5px 5px 5px 5px;
@@ -1068,7 +1068,7 @@ table {
 
 .default-cell-table{
     font-family:Arial, Verdana, sans-serif;
-    font-size:11px;
+    /*font-size:11px;*/
     color: black;
     border: 1px solid #dcdcdc;
     -moz-border-radius: 4px;
@@ -1123,7 +1123,6 @@ table {
 }
 
 .cellTableSelectedRow .cellTableFirstColumn {
-    background:#eef4f9;
     background-image: url(app/images/activerow.png);
     background-repeat: no-repeat;
     background-position: left;
@@ -1142,6 +1141,18 @@ table {
 
 .default-cell-table .cellTableKeyboardSelectedRow .cellTableLastColumn{
     border-right: 1px solid #606060;
+}
+
+.default-cell-table .cellTableSelectedRow .cellTableKeyboardSelectedRowCell {
+    border:none!important;
+}
+
+.default-cell-table .cellTableSelectedRow .cellTableKeyboardSelectedRow .cellTableFirstColumn{
+    border:none!important;
+}
+
+.default-cell-table .cellTableSelectedRow.cellTableKeyboardSelectedRow .cellTableLastColumn{
+    border:none!important;
 }
 
 .default-pager {
