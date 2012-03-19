@@ -170,10 +170,11 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
 
                     if(isSelected)
                     {
-                        treeItem.setActive(true);
 
-                        if(prevNavItem!=null)
+                        if(prevNavItem!=null && !prevNavItem.equals(treeItem))
                             prevNavItem.setActive(false);
+
+                        treeItem.setActive(true);
 
                         prevNavItem=treeItem;
 
