@@ -9,7 +9,7 @@ import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
-import com.google.gwt.user.cellview.client.TextColumn;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -24,6 +24,8 @@ public class PlainFormView {
 
     private static final FormItemTableResources DEFAULT_CELL_TABLE_RESOURCES =
             new FormItemTableResources();
+
+    private final String id = "formview-"+ DOM.createUniqueId()+"_";
 
     private CellTable<Row> table;
     private List<FormItem> items;
@@ -45,11 +47,17 @@ public class PlainFormView {
         table = new CellTable<Row>(20, DEFAULT_CELL_TABLE_RESOURCES);
         table.setStyleName("form-item-table");
 
+        // see http://www.w3.org/TR/wai-aria/roles#group
+        // ... when a group is used in the context of list, authors MUST limit its children to listitem elements
+
+        table.getElement().setAttribute("role", "group");
+
+
         for(int col = 0; col<numColumns; col++)
         {
             final int currentCol = col;
 
-            Column titleCol = new Column<Row, String>(new TitleCell()) {
+            Column titleCol = new Column<Row, String>(new TitleCell(currentCol)) {
                 @Override
                 public String getValue(Row row) {
                     FormItem item = row.get(currentCol);
@@ -58,7 +66,7 @@ public class PlainFormView {
             };
 
 
-            Column valueCol = new TextColumn<Row>() {
+            Column valueCol = new Column<Row, String>(new ValueCell(currentCol)) {
                 @Override
                 public String getValue(Row row) {
                     FormItem item = row.get(currentCol);
@@ -154,7 +162,7 @@ public class PlainFormView {
                     itemsPerRow[col] = items.get(i+col);
             }
 
-            rows.add(new Row(itemsPerRow));
+            rows.add(new Row(i, itemsPerRow));
 
             i+=numColumns;
         }
@@ -165,25 +173,44 @@ public class PlainFormView {
     private final class Row {
 
         FormItem[] items;
+        private int rowNum;
 
-        Row(FormItem... items) {
+        Row(int rowNum, FormItem... items) {
+            this.rowNum = rowNum;
             this.items = items;
         }
 
         public FormItem get(int i) {
             return items[i];
         }
+
+        public int getRowNum() {
+            return rowNum;
+        }
     }
 
 
     interface Template extends SafeHtmlTemplates {
-        @Template("<div class='form-item-title' style='outline:none;'>{0}: </div>")
-        SafeHtml render(String title);
+        @Template("<div class='form-item-title' style='outline:none;' id='{0}'>{1}: </div>")
+        SafeHtml render(String id, String title);
+    }
+
+    interface ValueTemplate extends SafeHtmlTemplates {
+        @Template("<span aria-labelledBy='{0}' tabindex=0 role='listitem'>{1}</span>")
+        SafeHtml render(String id, String title);
     }
 
     private static final Template TEMPLATE = GWT.create(Template.class);
+    private static final ValueTemplate VALUE_TEMPLATE = GWT.create(ValueTemplate.class);
 
     private class TitleCell extends AbstractCell<String> {
+
+        private int index;
+
+        public TitleCell(int index) {
+            super();
+            this.index = index;
+        }
 
         @Override
         public void render(
@@ -192,8 +219,39 @@ public class PlainFormView {
                 SafeHtmlBuilder safeHtmlBuilder)
         {
 
+            Row row = (Row)context.getKey();
+            final String labelId = id + row.getRowNum() +"_"+index+"_l";
+
             boolean hasTitle = title!=null && !title.equals("");
-            SafeHtml render = hasTitle ? TEMPLATE.render(title) : new SafeHtmlBuilder().toSafeHtml();
+            SafeHtml render = hasTitle ? TEMPLATE.render(labelId, title) : new SafeHtmlBuilder().toSafeHtml();
+            safeHtmlBuilder.append(render);
+
+        }
+
+    }
+
+    private class ValueCell extends AbstractCell<String> {
+
+        private int index;
+
+        private ValueCell(int index) {
+            super();
+            this.index = index;
+        }
+
+        @Override
+        public void render(
+                Cell.Context context,
+                String value,
+                SafeHtmlBuilder safeHtmlBuilder)
+        {
+
+
+            Row row = (Row)context.getKey();
+            final String labelId = id + row.getRowNum() +"_"+index+"_l";
+
+            boolean hasValue = value!=null && !value.equals("");
+            SafeHtml render = hasValue ? VALUE_TEMPLATE.render(labelId, value) : new SafeHtmlBuilder().toSafeHtml();
             safeHtmlBuilder.append(render);
 
         }
