@@ -1,5 +1,6 @@
 package org.jboss.ballroom.client.widgets.forms;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.SuggestBox;
@@ -49,6 +50,11 @@ public class SuggestBoxItem extends FormItem<String> {
             }
         });
         wrapper = new InputElementWrapper(textBox, this);
+    }
+
+    @Override
+    public Element getInputElement() {
+        return textBox.getElement();
     }
 
     public void setOracle(SuggestOracle oracle) {

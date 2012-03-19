@@ -19,6 +19,7 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
@@ -147,6 +148,9 @@ public abstract class FormItem<T> implements InputElement<T> {
 
     public enum VALUE_SEMANTICS {UNDEFINED}
 
+    Element getInputElement() {
+        return null;
+    }
 
     protected void toggleExpressionInput(Widget target, boolean flag)
     {
@@ -162,4 +166,6 @@ public abstract class FormItem<T> implements InputElement<T> {
     {
         return value.startsWith("${") && value.endsWith("}");
     }
+
+
 }

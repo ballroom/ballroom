@@ -19,6 +19,7 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.CheckBox;
@@ -43,6 +44,11 @@ public class CheckBoxItem extends FormItem<Boolean> {
             }
         });
         setUndefined(false);
+    }
+
+    @Override
+    public Element getInputElement() {
+        return checkBox.getElement().getFirstChildElement();
     }
 
     @Override

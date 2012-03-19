@@ -18,6 +18,7 @@
  */
 package org.jboss.ballroom.client.widgets.forms;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.TextArea;
@@ -52,6 +53,11 @@ public class TextAreaItem extends FormItem<String> {
         textArea.setVisibleLines(3);
 
         wrapper = new InputElementWrapper(textArea, this);
+    }
+
+    @Override
+    public Element getInputElement() {
+        return textArea.getElement();
     }
 
     public void setVisibleLines(int lines) {

@@ -19,6 +19,7 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.ui.ListBox;
@@ -33,7 +34,7 @@ import java.util.Collection;
 public class ComboBoxItem extends FormItem<String> {
 
 
-    private ListBox comboBox;
+    private ListBox listBox;
     private boolean defaultToFirst;
 
     private InputElementWrapper wrapper;
@@ -41,9 +42,9 @@ public class ComboBoxItem extends FormItem<String> {
 
     public ComboBoxItem(String name, String title) {
         super(name, title);
-        this.comboBox = new ListBox();
-        this.comboBox.setTabIndex(0);
-        this.comboBox.addChangeHandler(new ChangeHandler() {
+        this.listBox = new ListBox();
+        this.listBox.setTabIndex(0);
+        this.listBox.addChangeHandler(new ChangeHandler() {
 
             @Override
             public void onChange(ChangeEvent event) {
@@ -52,7 +53,7 @@ public class ComboBoxItem extends FormItem<String> {
             }
         });
 
-        this.wrapper = new InputElementWrapper(comboBox.asWidget(), this);
+        this.wrapper = new InputElementWrapper(listBox.asWidget(), this);
         wrapper.getElement().setAttribute("style", "width:100%");
 
     }
@@ -62,11 +63,16 @@ public class ComboBoxItem extends FormItem<String> {
         return getSelectedValue();
     }
 
+    @Override
+    public Element getInputElement() {
+        return listBox.getElement();
+    }
+
     private String getSelectedValue() {
 
-        int selectedIndex = comboBox.getSelectedIndex();
+        int selectedIndex = listBox.getSelectedIndex();
         if(selectedIndex>=0)
-            return comboBox.getValue(selectedIndex);
+            return listBox.getValue(selectedIndex);
         else
             return "";
     }
@@ -83,9 +89,9 @@ public class ComboBoxItem extends FormItem<String> {
 
         clearSelection();
 
-        for(int i=0; i< comboBox.getItemCount(); i++)
+        for(int i=0; i< listBox.getItemCount(); i++)
         {
-            if(comboBox.getValue(i).equals(value))
+            if(listBox.getValue(i).equals(value))
             {
                 selectItem(i);
                 break;
@@ -96,8 +102,8 @@ public class ComboBoxItem extends FormItem<String> {
     }
 
     public void selectItem(int i) {
-        setUndefined(comboBox.getValue(i).equals(""));
-        comboBox.setItemSelected(i, true);
+        setUndefined(listBox.getValue(i).equals(""));
+        listBox.setItemSelected(i, true);
     }
 
     @Override
@@ -106,7 +112,7 @@ public class ComboBoxItem extends FormItem<String> {
     }
     
     public void clearSelection() {
-        this.comboBox.setSelectedIndex(0);
+        this.listBox.setSelectedIndex(0);
     }
 
     public void setDefaultToFirstOption(boolean b) {
@@ -115,15 +121,15 @@ public class ComboBoxItem extends FormItem<String> {
 
     public void setValueMap(String[] values) {
 
-        comboBox.clear();
+        listBox.clear();
 
-        //comboBox.clearSelection();
+        //listBox.clearSelection();
         if(values.length==0 || !values[0].isEmpty())
-            comboBox.addItem("");
+            listBox.addItem("");
 
         for(String s : values)
         {
-            comboBox.addItem(s);
+            listBox.addItem(s);
         }
 
         if(defaultToFirst)
@@ -131,15 +137,15 @@ public class ComboBoxItem extends FormItem<String> {
     }
 
     public void setValueMap(Collection<String> values) {
-        comboBox.clear();
-        //comboBox.clearSelection();
+        listBox.clear();
+        //listBox.clearSelection();
 
         if(values.isEmpty() || !values.iterator().next().isEmpty())
-            comboBox.addItem("");
+            listBox.addItem("");
 
         for(String s : values)
         {
-            comboBox.addItem(s);
+            listBox.addItem(s);
         }
 
         if(defaultToFirst)
@@ -148,7 +154,7 @@ public class ComboBoxItem extends FormItem<String> {
 
     @Override
     public void setEnabled(boolean b) {
-        comboBox.setEnabled(b);
+        listBox.setEnabled(b);
     }
 
     @Override
@@ -179,11 +185,11 @@ public class ComboBoxItem extends FormItem<String> {
     public void clearValue() {
         clearSelection();
 
-        if(defaultToFirst && comboBox.getItemCount()>0)
+        if(defaultToFirst && listBox.getItemCount()>0)
             selectItem(0);
     }
     
    /* public void addValueChangeHandler(ValueChangeHandler<String> handler) {
-        this.comboBox.addValueChangeHandler(handler);
+        this.listBox.addValueChangeHandler(handler);
     }*/
 }

@@ -21,6 +21,7 @@ package org.jboss.ballroom.client.widgets.forms;
 
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -64,6 +65,11 @@ public class NumberBoxItem extends FormItem<Number> {
     public void setVisibleLength(int length)
     {
         textBox.setVisibleLength(length);
+    }
+
+    @Override
+    public Element getInputElement() {
+        return textBox.getElement();
     }
 
     @Override

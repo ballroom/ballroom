@@ -22,6 +22,7 @@ package org.jboss.ballroom.client.widgets.forms;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -38,7 +39,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class DefaultGroupRenderer implements GroupRenderer
 {
     private final String id = "form-"+ HTMLPanel.createUniqueId()+"_";
-    private final String tablePrefix = "<table border=0 id='"+id+"' border=0 cellpadding=0 cellspacing=0>";
+    private final String tablePrefix = "<table border=0 id='"+id+"' border=0 cellpadding=0 cellspacing=0 role='presentation'>";
     private final static String tableSuffix = "</table>";
 
     @Override
@@ -111,11 +112,14 @@ public class DefaultGroupRenderer implements GroupRenderer
             final String labelId = id + key+"_l"; // aria property key
             final String insertId = id + key+"_i";
 
-            Widget widget = item.asWidget();
-            widget.getElement().setAttribute("id", widgetId);
-            //widget.getElement().setAttribute("tabindex", "0");
-            widget.getElement().setAttribute("aria-labelledby", labelId);
-            panel.add(widget, insertId);
+            Element input = item.getInputElement();
+            if(input!=null)
+            {
+                input.setAttribute("id", widgetId);
+                //widget.getElement().setAttribute("tabindex", "0");
+                input.setAttribute("aria-labelledby", labelId);
+            }
+            panel.add(item.asWidget(), insertId);
 
         }
 
