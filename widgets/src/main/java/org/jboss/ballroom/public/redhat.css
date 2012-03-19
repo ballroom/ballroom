@@ -101,9 +101,9 @@ body {
 }
 
 .header-prod-version {
-    padding-top:20px;
     padding-left: 4px;
-    font-size: 10pt!important;
+    padding-bottom:4px;
+    font-size: 11pt!important;
     font-weight: BOLD;
     color: #dbdbdb!important;
     vertical-align:bottom;
@@ -131,6 +131,10 @@ a:link {
 
 a:focus {
     -moz-outline-style: none;
+}
+
+table {
+    outline: none;
 }
 
 .description-label {
@@ -169,6 +173,12 @@ a:focus {
 .lhs-nav-item:hover {
     background-color:#e5e5c1;
 }
+
+
+.lostFocus, .lostFocus .gwt-TreeItem-selected  {
+    border:none!important;
+}
+
 
 .title-bar {
     font-family:Arial,Verdana,sans-serif;
@@ -221,6 +231,8 @@ a:focus {
 .lhs-tree-item {
     cursor:pointer;
     color:#404040;
+    margin-top:4px;
+    margin-bottom:4px;
 }
 
 .lhs-tree-item:hover {
@@ -251,6 +263,38 @@ a:focus {
     background-image: url('app/images/rh_lhs_arrow.png');
     background-position:center right;
     background-repeat: no-repeat;
+}
+
+.gwt-TreeItem-selected {
+    border: 1px solid #606060;
+}
+
+.lhs-tree-item-selected .gwt-TreeItem-selected {
+    border:none;
+}
+
+.tree-section {
+    margin-bottom:15px;
+}
+
+.tree-section > table:first-child {
+    background: url("app/images/header/rh_stackheader.png") repeat-x scroll 0 0 #F8F8F8;
+    border-top: 1px solid #e9e6e6;
+    border-bottom: 1px solid #e9e6e6;
+    color: #606060;
+    cursor: pointer;
+    font-family: Arial,Verdana,sans-serif;
+    padding: 0px!important;
+    width: 100%;
+}
+
+.tree-section-first > table:first-child{
+    border-top: none !important;
+}
+
+
+.tree-section > table:first-child td:first-child {
+    width:16px;
 }
 
 .cell-record {
@@ -490,7 +534,6 @@ a:focus {
     float: left;
     font-size: 11px!important;
     margin: 0 2px;
-    outline: medium none;
     padding: 1px 10px;
     text-decoration: none;
     white-space: nowrap;
@@ -590,18 +633,11 @@ a:focus {
     padding-bottom:10px;
     padding-left:10px;
     padding-right:10px;
-
-    opacity: 1.0!important;
-
-    -webkit-transition: opacity .15s ease-in-out .05s;
-    -moz-transition: opacity .15s ease-in-out .05s;
-    transition: opacity .15s ease-in-out .05s;
 }
 
 .help-panel {
     margin: 5px;
     width:99%;
-    opacity:0.4;filter:alpha(opacity=40)
 }
 
 .help-panel:hover {
@@ -947,7 +983,7 @@ a:focus {
     border-right: 1px solid #e9e6e6;
     border-bottom: 1px solid #e9e6e6;
     border-top: 1px solid #e9e6e6;
-    color: #000000;
+    color: #555;
     cursor: pointer;
     margin-left: 0px;
     min-width: 50px;
@@ -1021,7 +1057,7 @@ a:focus {
 
 .stack-section {
     border-top: none!important;
-    margin-top: 5px;
+    margin-top:0px;
     padding-bottom: 15px;
     padding-left: 0;
     padding-right: 0;
@@ -1094,9 +1130,18 @@ a:focus {
     padding-left:10px;
 
 }
-/*edit mode*/
-.cellTableKeyboardSelectedRow {
-    /*background:none; doesn't work atm */
+
+.default-cell-table .cellTableKeyboardSelectedRowCell {
+    border-top: 1px solid #606060;
+    border-bottom: 1px solid #606060;
+}
+
+.default-cell-table .cellTableKeyboardSelectedRow .cellTableFirstColumn{
+    border-left: 1px solid #606060;
+}
+
+.default-cell-table .cellTableKeyboardSelectedRow .cellTableLastColumn{
+    border-right: 1px solid #606060;
 }
 
 .default-pager {
