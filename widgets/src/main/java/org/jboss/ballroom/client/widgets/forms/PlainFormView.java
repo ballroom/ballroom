@@ -50,7 +50,7 @@ public class PlainFormView {
         // see http://www.w3.org/TR/wai-aria/roles#group
         // ... when a group is used in the context of list, authors MUST limit its children to listitem elements
 
-        table.getElement().setAttribute("role", "group");
+       // table.getElement().setAttribute("role", "group");
 
 
         for(int col = 0; col<numColumns; col++)
@@ -196,7 +196,7 @@ public class PlainFormView {
     }
 
     interface ValueTemplate extends SafeHtmlTemplates {
-        @Template("<span aria-labelledBy='{0}' tabindex=0 role='listitem'>{1}</span>")
+        @Template("<span aria-labelledBy='{0}'>{1}</span>")
         SafeHtml render(String id, String title);
     }
 
