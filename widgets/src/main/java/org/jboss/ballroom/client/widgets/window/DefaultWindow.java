@@ -66,41 +66,7 @@ public class DefaultWindow extends ResizePanel {
 
     public DefaultWindow(String title) {
 
-        layout = new DockLayoutPanel(Style.Unit.PX) ;/*{
-            {
-                this.sinkEvents(Event.ONKEYDOWN);
-
-
-            }
-
-            @Override
-            public void onBrowserEvent(Event event) {
-
-                int type = DOM.eventGetType(event);
-                switch (type) {
-                    case Event.ONKEYDOWN:
-                        if(event.getKeyCode()== KeyCodes.KEY_TAB)
-                        {
-                            event.preventDefault();
-                            event.stopPropagation();
-
-                            if(event.getShiftKey())
-                                focus.prev();
-                            else
-                                focus.next();
-
-                        }
-                        break;
-                    default:
-                        return;
-
-                }
-
-            }
-
-        };   */
-        //layout.getElement().setTabIndex(-1);
-
+        layout = new DockLayoutPanel(Style.Unit.PX) ;
         setStyleName("default-window");
 
         final WindowHeader header = new WindowHeader(title, this);
@@ -109,7 +75,6 @@ public class DefaultWindow extends ResizePanel {
 
 
         // dnd
-
         header.addMouseDownHandler( new MouseDownHandler() {
 
             public void onMouseDown(MouseDownEvent event) {
@@ -135,9 +100,6 @@ public class DefaultWindow extends ResizePanel {
                 DOM.releaseCapture( header.getElement() );
             }
         } );
-
-
-
 
         layout.addNorth(header, 40);
 
@@ -165,8 +127,6 @@ public class DefaultWindow extends ResizePanel {
         setWidth(winWidth);
         setHeight(winHeight);
 
-        //layout.setWidgetTopHeight(header, 0, Style.Unit.PX, 25, Style.Unit.PX);
-        //layout.setWidgetTopHeight(content, 25, Style.Unit.PX, 500, Style.Unit.PX);
     }
 
     @Override
