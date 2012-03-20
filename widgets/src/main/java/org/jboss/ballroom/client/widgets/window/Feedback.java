@@ -54,6 +54,7 @@ public class Feedback {
         panel.setStyleName("default-window-content");
 
         HTML text = new HTML(message);
+        text.getElement().setId("confirmation-message");
         panel.add(text);
 
         ClickHandler confirmHandler = new ClickHandler() {
@@ -73,6 +74,7 @@ public class Feedback {
         };
 
         DialogueOptions options = new DialogueOptions(I18n.CONSTANTS.common_label_confirm(), confirmHandler, I18n.CONSTANTS.common_label_cancel(), cancelHandler);
+        options.getSubmit().setAttribute("aria-describedby", "confirmation-message");
 
         Widget content = new WindowContentBuilder(panel, options).build();
 
@@ -120,6 +122,7 @@ public class Feedback {
         panel.setStyleName("default-window-content");
 
         HTML text = new HTML(message);
+        text.getElement().setId("alert-message");
         panel.add(text);
 
         ClickHandler confirmHandler = new ClickHandler() {
@@ -130,6 +133,7 @@ public class Feedback {
         };
 
         DialogueOptions options = new DialogueOptions(I18n.CONSTANTS.common_label_confirm(), confirmHandler, I18n.CONSTANTS.common_label_cancel(), confirmHandler);
+        options.getSubmit().setAttribute("aria-describedby", "alert-message");
 
         Widget content = new WindowContentBuilder(panel, options.showCancel(false)).build();
 
@@ -172,6 +176,7 @@ public class Feedback {
         panel.setStyleName("default-window-content");
 
         HTML text = new HTML(message);
+        text.getElement().setId("loading-message");
         panel.add(text);
 
         ClickHandler confirmHandler = new ClickHandler() {

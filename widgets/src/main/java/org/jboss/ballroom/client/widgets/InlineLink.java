@@ -3,6 +3,7 @@ package org.jboss.ballroom.client.widgets;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.HTML;
@@ -16,7 +17,7 @@ public class InlineLink extends HTML {
     private ClickHandler handler;
 
     public InlineLink(String title) {
-        super("<a href='javascript:void(0)' style='vertical-align:bottom;padding-left:5px;'>"+title+"</a>");
+        super("<a href='javascript:void(0)' aria-label='"+ SafeHtmlUtils.htmlEscape(title)+"' style='vertical-align:bottom;padding-left:5px;'>"+title+"</a>");
         getElement().setTabIndex(0);
 
         this.sinkEvents(Event.ONKEYDOWN);

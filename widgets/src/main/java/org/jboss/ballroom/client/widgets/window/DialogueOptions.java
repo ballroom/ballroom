@@ -19,7 +19,9 @@
 
 package org.jboss.ballroom.client.widgets.window;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -73,5 +75,13 @@ public class DialogueOptions extends HorizontalPanel {
     {
         cancel.setVisible(b);
         return this;
+    }
+
+    public Element getSubmit() {
+        return submit.getElement();
+    }
+
+    public Element getCancel() {
+        return cancel.getElement();
     }
 }
