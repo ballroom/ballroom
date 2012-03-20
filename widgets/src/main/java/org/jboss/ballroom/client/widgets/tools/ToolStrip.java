@@ -35,6 +35,7 @@ public class ToolStrip extends HorizontalPanel{
     public ToolStrip() {
         super();
         setStyleName("default-toolstrip");
+        getElement().setAttribute("role", "toolbar");
 
         left = new HorizontalPanel();
         right = new HorizontalPanel();
