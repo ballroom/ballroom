@@ -1,6 +1,8 @@
 package org.jboss.ballroom.client.widgets.forms;
 
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.SuggestBox;
@@ -24,6 +26,7 @@ public class SuggestBoxItem extends FormItem<String> {
         textBox = new TextBox();
         textBox.setName(name);
         textBox.setTitle(title);
+        textBox.setTabIndex(0);
         textBox.addValueChangeHandler(new ValueChangeHandler<String>() {
             @Override
             public void onValueChange(ValueChangeEvent<String> event) {
@@ -31,6 +34,7 @@ public class SuggestBoxItem extends FormItem<String> {
                 setUndefined(event.getValue().equals(""));
             }
         });
+
         wrapper = new InputElementWrapper(textBox, this);
     }
 
@@ -42,6 +46,7 @@ public class SuggestBoxItem extends FormItem<String> {
         textBox = new TextBox();
         textBox.setName(name);
         textBox.setTitle(title);
+        textBox.setTabIndex(0);
         textBox.addValueChangeHandler(new ValueChangeHandler<String>() {
             @Override
             public void onValueChange(ValueChangeEvent<String> event) {
@@ -49,6 +54,7 @@ public class SuggestBoxItem extends FormItem<String> {
                 setUndefined(event.getValue().equals(""));
             }
         });
+
         wrapper = new InputElementWrapper(textBox, this);
     }
 
@@ -68,6 +74,22 @@ public class SuggestBoxItem extends FormItem<String> {
             throw new RuntimeException("oracle required!");
 
         this.suggestBox = new SuggestBox(oracle, textBox);
+
+        suggestBox.addValueChangeHandler(new ValueChangeHandler<String>() {
+            @Override
+            public void onValueChange(ValueChangeEvent<String> event) {
+                setModified(true);
+                setUndefined(event.getValue().equals(""));
+            }
+        });
+
+        suggestBox.addSelectionHandler(new SelectionHandler<SuggestOracle.Suggestion>() {
+            @Override
+            public void onSelection(SelectionEvent<SuggestOracle.Suggestion> suggestionSelectionEvent) {
+                setModified(true);
+                setUndefined(suggestBox.getValue().equals(""));
+            }
+        });
         return suggestBox;
     }
 
