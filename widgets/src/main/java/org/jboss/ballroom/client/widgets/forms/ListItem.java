@@ -86,7 +86,7 @@ public class ListItem extends FormItem<List> {
         value.clear();
 
         for(String s : split)
-            value.add(s);
+            if(!s.equals("")) value.add(s);
 
         // prevent references
         return new ArrayList(value);
