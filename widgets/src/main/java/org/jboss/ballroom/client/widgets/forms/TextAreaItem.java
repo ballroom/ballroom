@@ -35,7 +35,16 @@ public class TextAreaItem extends FormItem<String> {
 
     public TextAreaItem(String name, String title) {
         super(name, title);
+        setup();
+    }
 
+    public TextAreaItem(String name, String title, boolean required) {
+        super(name, title);
+        setup();
+        setRequired(required);
+    }
+
+    private void setup() {
         textArea = new TextArea();
         textArea.setName(name);
         textArea.setTitle(title);

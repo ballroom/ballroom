@@ -36,7 +36,16 @@ public class PasswordBoxItem extends FormItem<String> {
 
     public PasswordBoxItem(String name, String title) {
         super(name, title);
+        setup();
+    }
 
+    public PasswordBoxItem(String name, String title, boolean required) {
+        super(name, title);
+        setup();
+        setRequired(required);
+    }
+
+    private void setup(){
         textBox = new PasswordTextBox();
         textBox.setName(name);
         textBox.setTitle(title);
