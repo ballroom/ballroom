@@ -32,10 +32,10 @@ import java.util.List;
  * @author Heiko Braun
  * @date 5/12/11
  */
-public class ListItem extends FormItem<List> {
+public class ListItem extends FormItem<List<String>> {
 
     private TextArea textArea;
-    private List value = new ArrayList();
+    private List<String> value = new ArrayList<String>();
     private boolean displayOnly;
 
 
@@ -80,7 +80,7 @@ public class ListItem extends FormItem<List> {
     }
 
     @Override
-    public List getValue() {
+    public List<String> getValue() {
 
         String[] split = textArea.getText().split("\n");
         value.clear();
@@ -93,7 +93,7 @@ public class ListItem extends FormItem<List> {
     }
 
     @Override
-    public void setValue(List list) {
+    public void setValue(List<String> list) {
 
         this.value.clear();
 
