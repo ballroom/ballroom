@@ -56,6 +56,7 @@ public class ComboBox implements HasValueChangeHandlers<String> {
     private static final int ESCAPE = 27;
 
     private List<String> values = new ArrayList<String>();
+    private int numCharsClip = 20;
 
     interface Template extends SafeHtmlTemplates {
         @Template("<div class=\"{0}\">{1}</div>")
@@ -69,12 +70,27 @@ public class ComboBox implements HasValueChangeHandlers<String> {
     private CellList<String> cellList;
 
     private HorizontalPanel header;
-    private HTML currentValue;
+    private Display displayed;
 
     private boolean isEnabled = true;
 
     private List<ValueChangeHandler<String>> changeHandlers = new ArrayList<ValueChangeHandler<String>>();
 
+    class Display extends HTML {
+        private String actual;
+
+        Display(String html) {
+            super(html);
+        }
+
+        public String getActual() {
+            return actual;
+        }
+
+        public void setActual(String actual) {
+            this.actual = actual;
+        }
+    }
     public ComboBox(String cssSuffix) {
 
         cellList = new CellList<String>(new TextCell()
@@ -83,7 +99,7 @@ public class ComboBox implements HasValueChangeHandlers<String> {
             public void render(Context context, String data, SafeHtmlBuilder sb) {
                 String cssName = (context.getIndex() %2 > 0) ? "combobox-item combobox-item-odd" : "combobox-item";
 
-                if(data.equals(currentValue.getText()))
+                if(data.equals(displayed.getActual()))
                     cssName+=" combobox-item-selected";
 
                 sb.append(TEMPLATE.item(cssName, data));
@@ -98,7 +114,7 @@ public class ComboBox implements HasValueChangeHandlers<String> {
             public void onSelectionChange(SelectionChangeEvent event) {
                 String selectedValue = selectionModel.getSelectedObject();
 
-                currentValue.setText(selectedValue);
+                setDisplayedValue(selectedValue);
                 popup.hide();
 
                 onSelection(selectedValue);
@@ -129,17 +145,17 @@ public class ComboBox implements HasValueChangeHandlers<String> {
 
         popup.setWidget(cellList);
 
-        currentValue = new HTML("");
-        currentValue.setStyleName("combobox-value"+cssSuffix);
+        displayed = new Display("");
+        displayed.setStyleName("combobox-value"+cssSuffix);
 
         header = new HorizontalPanel();
         header.setStyleName("combobox"+cssSuffix);
-        header.add(currentValue);
+        header.add(displayed);
 
         Image img = new Image(Icons.INSTANCE.comboPicker());
         header.add(img);
 
-        currentValue.getElement().getParentElement().setAttribute("width", "100%");
+        displayed.getElement().getParentElement().setAttribute("width", "100%");
 
         img.getParent().getElement().setAttribute("width", "18");
 
@@ -156,7 +172,7 @@ public class ComboBox implements HasValueChangeHandlers<String> {
             }
         };
 
-        currentValue.addClickHandler(clickHandler);
+        displayed.addClickHandler(clickHandler);
         img.addClickHandler(clickHandler);
 
     }
@@ -165,8 +181,12 @@ public class ComboBox implements HasValueChangeHandlers<String> {
         this("");
     }
 
+    public void setClipping(int clipAt) {
+        numCharsClip = clipAt;
+    }
+
     public String getSelectedValue() {
-        return currentValue.getText();
+        return displayed.getActual();
     }
 
     private void onSelection(String selectedValue) {
@@ -209,16 +229,30 @@ public class ComboBox implements HasValueChangeHandlers<String> {
         if(isSelected && !values.isEmpty())
         {
             selection = values.get(i);
-            currentValue.setText(selection);
+            setDisplayedValue(selection);
             onSelection(selection);
         }
         else if(!isSelected)
         {
-            currentValue.setText(selection);
+            setDisplayedValue(selection);
             onSelection(selection);
         }
 
         cellList.getSelectionModel().setSelected(selection, isSelected);
+    }
+
+    private void setDisplayedValue(String display)
+    {
+        displayed.setActual(display);
+        displayed.setText(clip(display, numCharsClip));
+    }
+
+    private static String clip(String value, int clipping)
+    {
+        String result = value;
+        if(value!=null && value.length()>clipping)
+            result = value.substring(0, clipping)+"...";
+        return result;
     }
 
     public void setValues(Collection<String> values)
@@ -269,16 +303,16 @@ public class ComboBox implements HasValueChangeHandlers<String> {
         this.isEnabled = b;
         if(isEnabled)
         {
-            currentValue.removeStyleName("combobox-value-disabled");
+            displayed.removeStyleName("combobox-value-disabled");
         }
         else
         {
-            currentValue.addStyleName("combobox-value-disabled");
+            displayed.addStyleName("combobox-value-disabled");
         }
     }
 
     public void clearSelection() {
-        currentValue.setText("");
+        setDisplayedValue("");
         for(int i=0; i< getItemCount(); i++)
         {
             setItemSelected(i, false);
