@@ -74,7 +74,7 @@ public class LHSNavTreeItem extends TreeItem {
         super.setSelected(active);
     }
 
-    void activate() {
+    void reveal() {
 
         // reveal view
         Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
