@@ -21,20 +21,17 @@ package org.jboss.ballroom.client.layout;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.event.dom.client.BlurEvent;
-import com.google.gwt.event.dom.client.BlurHandler;
-import com.google.gwt.event.dom.client.FocusEvent;
-import com.google.gwt.event.dom.client.FocusHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.dom.client.MouseDownHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 import org.jboss.ballroom.client.spi.Framework;
-import org.jboss.ballroom.client.util.Places;
 import org.jboss.ballroom.client.widgets.icons.DefaultTreeResources;
 
 /**
@@ -65,12 +62,15 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
 
         addStyleName("stack-section");
 
+        /**
+         * actions that reveal content
+         */
         addKeyDownHandler(new KeyDownHandler() {
             @Override
             public void onKeyDown(KeyDownEvent keyDownEvent) {
                 if(keyDownEvent.getNativeKeyCode()== KeyCodes.KEY_ENTER)
                 {
-                    handleSelectedItem();
+                    revealContent(false);
                 }
             }
         });
@@ -78,35 +78,9 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
         addMouseDownHandler(new MouseDownHandler() {
             @Override
             public void onMouseDown(MouseDownEvent mouseDownEvent) {
-                handleSelectedItem();
+                revealContent(true);
             }
         });
-
-        //remove kdb highlight on blur
-        addBlurHandler(new BlurHandler() {
-            @Override
-            public void onBlur(BlurEvent blurEvent) {
-
-                TreeItem item = getSelectedItem();
-                if (item != null) {
-                    item.getElement().getFirstChildElement().addClassName("lostFocus");
-                }
-
-            }
-        });
-
-        // show kbd highlight on focus
-        addFocusHandler(new FocusHandler() {
-            @Override
-            public void onFocus(FocusEvent focusEvent) {
-
-                TreeItem item = getSelectedItem();
-                if (item != null) {
-                    item.getElement().getFirstChildElement().removeClassName("lostFocus");
-                }
-            }
-        });
-
 
         Scheduler.get().scheduleEntry(new Scheduler.ScheduledCommand() {
             @Override
@@ -114,32 +88,24 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
                 framework.getEventBus().addHandler(LHSHighlightEvent.TYPE, LHSNavTree.this);
             }
         });
+
     }
 
+    /**
+     * flag the 'active' item and revel content if necessary
+     */
+    private void revealContent(boolean open) {
+        TreeItem activeItem = getSelectedItem();
 
-
-    private void handleSelectedItem() {
-        TreeItem selectedItem = getSelectedItem();
-        if(selectedItem instanceof LHSNavTreeItem)
+        if(activeItem instanceof LHSNavTreeItem)
         {
-            ((LHSNavTreeItem)selectedItem).activate();
+            ((LHSNavTreeItem)activeItem).reveal();
+        }
+        else if(open)
+        {
+            activeItem.setState(!activeItem.getState());
         }
     }
-
-    /*private void activate(final LHSNavTreeItem navItem) {
-
-        // reveal view
-        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-            @Override
-            public void execute() {
-                String token = navItem.getElement().getAttribute("token");
-                framework.getPlaceManager().revealPlaceHierarchy(
-                        Places.fromString(token)
-                );
-            }
-        });
-
-    }  */
 
     public String getTreeId() {
         return treeId;
