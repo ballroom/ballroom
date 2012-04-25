@@ -32,6 +32,7 @@ public class TextAreaItem extends FormItem<String> {
     protected TextArea textArea;
     private InputElementWrapper wrapper;
     ValueChangeHandler<String> valueChangeHandler;
+    private boolean allowWhiteSpace;
 
     public TextAreaItem(String name, String title) {
         super(name, title);
@@ -80,7 +81,7 @@ public class TextAreaItem extends FormItem<String> {
 
     @Override
     public String getValue() {
-        return textArea.getValue();
+        return textArea.getValue().replace("\n", " ");
     }
 
     @Override
