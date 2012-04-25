@@ -101,7 +101,7 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
         {
             ((LHSNavTreeItem)activeItem).reveal();
         }
-        else if(open)
+        else if(activeItem!=null && open)
         {
             activeItem.setState(!activeItem.getState());
         }
