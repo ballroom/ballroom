@@ -1,18 +1,19 @@
-
-body {
+html,body {
     background-color: #ececec!important;
     background-image: none!important;
     color: #555555!important;
     font: 12px "Lucida Sans Unicode","Lucida Grande",sans-serif;
-    margin: 0 auto;
+    margin-top: 0;
+    height: 100%;
 }
 #container {
-
+    margin-top: 0;
     max-width: 960px;
     background: #8c9093!important;
     border-right: 2px solid #8c9093!important;
     border-left: 2px solid #8c9093!important;
-    margin:0 auto;
+    width: 50%;
+    margin: 0 auto;
 
     -moz-box-shadow: 6px 6px 6px #e3e3e3,
     -6px 6px 6px #e3e3e3,
@@ -33,22 +34,12 @@ body {
 #content {
     background-color: #ffffff;
     border-bottom:1px solid #A7ABB4;
-    margin:4px 0px 0px 0px;
-    bottom: 25px;
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: 58px;
+    margin-top:4px;
 }
 
 #header {
+    position: relative;
 	height: 58px;
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: 0;
     min-height:58px;
     width:100%;
     background: url("images/header_bg.png") repeat-x scroll 0 0 #424242;
@@ -56,21 +47,16 @@ body {
 }
 
 #footer {
-	bottom: 0;
-    height: 25px;
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
+	height: 27px;
+    margin: 0 10px;
     min-height:25px;
     width:100%;
+    color: #ffffff;
 }
 
 .section {
-	width:620px;
-	max-width:620px;
-	margin-left:auto;
-    margin-right:auto;
+	margin-left: 170px;
+    margin-right: 170px;
 	padding-top:20px;
 }
 
@@ -101,7 +87,7 @@ H2 {
 }
 
 sub {
-	color:#a3a7aa;	
+	color:#a3a7aa;
 }
 
 .prod-version {
@@ -109,7 +95,7 @@ sub {
     padding-left: 4px;
     padding-bottom: 2px;
     font-size: 12pt!important;
-    font-weight: BOLD;
+    font-weight: bold;
     color: #dbdbdb!important;
     vertical-align:bottom;
 }
