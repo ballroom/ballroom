@@ -111,7 +111,7 @@ public abstract class FormItem<T> implements InputElement<T> {
         return isModified;
     }
 
-    void setModified(boolean modified) {
+    public void setModified(boolean modified) {
         isModified = modified;
     }
 
@@ -119,7 +119,7 @@ public abstract class FormItem<T> implements InputElement<T> {
         return isUndefined;
     }
 
-    protected void setUndefined(boolean undefined) {
+    public  void setUndefined(boolean undefined) {
         isUndefined = undefined;
     }
 
