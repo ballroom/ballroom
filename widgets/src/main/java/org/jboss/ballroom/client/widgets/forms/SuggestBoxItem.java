@@ -35,7 +35,6 @@ public class SuggestBoxItem extends FormItem<String> {
             }
         });
 
-        wrapper = new InputElementWrapper(textBox, this);
     }
 
     public SuggestBoxItem(String name, String title, boolean isRequired) {
@@ -55,7 +54,7 @@ public class SuggestBoxItem extends FormItem<String> {
             }
         });
 
-        wrapper = new InputElementWrapper(textBox, this);
+
     }
 
     @Override
@@ -90,7 +89,10 @@ public class SuggestBoxItem extends FormItem<String> {
                 setUndefined(suggestBox.getValue().equals(""));
             }
         });
-        return suggestBox;
+
+
+        wrapper = new InputElementWrapper(suggestBox, this);
+        return wrapper;
     }
 
     @Override
