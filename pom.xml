@@ -75,7 +75,7 @@
     <dependencyManagement>
         <dependencies>
 
-               <!-- GWT related -->
+            <!-- GWT related -->
             <dependency>
                 <groupId>com.google.gwt</groupId>
                 <artifactId>gwt-servlet</artifactId>
@@ -122,11 +122,11 @@
             </dependency>
 
             <dependency>
-                 <groupId>com.gwtplatform</groupId>
-                 <artifactId>gwtp-mvp-client</artifactId>
-                 <version>${gwtp.version}</version>
-                 <scope>provided</scope>
-               </dependency>
+                <groupId>com.gwtplatform</groupId>
+                <artifactId>gwtp-mvp-client</artifactId>
+                <version>${gwtp.version}</version>
+                <scope>provided</scope>
+            </dependency>
 
 
             <dependency>
@@ -263,6 +263,16 @@
                         </execution>
                     </executions>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <skipTests>true</skipTests>
+                    </configuration>
+                </plugin>
+
+
             </plugins>
         </pluginManagement>
         <plugins>
