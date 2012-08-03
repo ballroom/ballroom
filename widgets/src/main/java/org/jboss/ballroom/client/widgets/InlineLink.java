@@ -17,7 +17,7 @@ public class InlineLink extends HTML {
     private ClickHandler handler;
 
     public InlineLink(String title) {
-        super("<a href='javascript:void(0)' aria-label='"+ SafeHtmlUtils.htmlEscape(title)+"' style='vertical-align:bottom;padding-left:5px;'>"+title+"</a>");
+        super("<a href='javascript:void(0)' aria-label='"+ SafeHtmlUtils.htmlEscape(title)+"' style='vertical-align:bottom;'>"+title+"</a>");
         getElement().setTabIndex(0);
 
         this.sinkEvents(Event.ONKEYDOWN);
