@@ -103,6 +103,11 @@ public class TextBoxItem extends FormItem<String> {
     }
 
     @Override
+    public String asExpressionValue() {
+        return textBox.getValue();
+    }
+
+    @Override
     public void setValue(String value) {
         toggleExpressionInput(textBox, false);
         textBox.setValue(value.trim());

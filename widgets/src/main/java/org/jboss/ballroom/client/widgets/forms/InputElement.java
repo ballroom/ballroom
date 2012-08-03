@@ -41,4 +41,9 @@ public interface InputElement<T> {
     String getErrMessage();
 
     void setErrMessage(String errMessage);
+
+    boolean isExpressionValue();
+
+    // to support expressions override this method
+    String asExpressionValue();
 }

@@ -19,6 +19,7 @@
 
 package org.jboss.ballroom.client.widgets.forms;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -26,6 +27,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.Widget;
+import org.jboss.ballroom.client.spi.Framework;
 import org.jboss.ballroom.client.widgets.icons.Icons;
 
 /**
@@ -37,6 +39,8 @@ class InputElementWrapper extends HorizontalPanel {
     private Image err = new Image(Icons.INSTANCE.exclamation());
     private Image expr = new Image(Icons.INSTANCE.expression());
 
+    private final static Framework framework = GWT.create(Framework.class);
+
     public InputElementWrapper(Widget widget, final InputElement input) {
         super();
 
@@ -46,26 +50,17 @@ class InputElementWrapper extends HorizontalPanel {
         widget.getElement().getParentElement().setAttribute("style", "width:100%;vertical-align:middle");
 
         add(expr);
+        expr.setAltText("Resolve Expression");
         expr.setVisible(false);
         expr.getElement().getParentElement().setAttribute("style", "width:16px;vertical-align:middle");
 
-        /*
-
-        TODO: resolve expressions
-
         expr.addClickHandler(new ClickHandler() {
-
-            @Override
-            public void onClick(ClickEvent event) {
-
-                PopupPanel popup = new PopupPanel(true);
-                popup.getElement().setAttribute("style", "z-index:20");
-                popup.setWidget(new Label(input.getErrMessage()));
-                popup.setStyleName("popup-hint");
-                popup.setPopupPosition(err.getAbsoluteLeft()+16, err.getAbsoluteTop()+16);
-                popup.show();
+            public void onClick(ClickEvent clickEvent) {
+                framework.getEventBus().fireEvent(
+                        new ResolveExpressionEvent(input.asExpressionValue())
+                );
             }
-        });*/
+        });
 
         // error icon
         add(err);
@@ -74,7 +69,6 @@ class InputElementWrapper extends HorizontalPanel {
 
         err.addClickHandler(new ClickHandler() {
 
-            @Override
             public void onClick(ClickEvent event) {
                 PopupPanel popup = new PopupPanel(true);
                 popup.getElement().setAttribute("style", "z-index:20");
