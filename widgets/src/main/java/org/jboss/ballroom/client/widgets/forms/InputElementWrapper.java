@@ -51,6 +51,7 @@ class InputElementWrapper extends HorizontalPanel {
 
         add(expr);
         expr.setAltText("Resolve Expression");
+        expr.setStyleName("expression-icon");
         expr.setVisible(false);
         expr.getElement().getParentElement().setAttribute("style", "width:16px;vertical-align:middle");
 
