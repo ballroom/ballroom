@@ -351,7 +351,7 @@ table {
     color: #ffffff !important;
     text-decoration: none!important;
 
-      -webkit-box-shadow: 0px 2px 4px #A7ABB4;
+    -webkit-box-shadow: 0px 2px 4px #A7ABB4;
     -moz-box-shadow: 0px 2px 4px #A7ABB4;
     box-shadow: 0px 2px 4px #A7ABB4;
 }
@@ -380,9 +380,9 @@ table {
 
 .combobox-value {
 
-    border-left: 1px solid #e9e6e6;
-    border-top: 1px solid #e9e6e6;
-    border-bottom: 1px solid #e9e6e6;
+    border-left: 1px solid #A7ABB4;
+    border-top: 1px solid #A7ABB4;
+    border-bottom: 1px solid #A7ABB4;
 
     vertical-align:middle;
 
@@ -542,7 +542,7 @@ table {
     color: #ffffff !important;
     text-decoration: none!important;
 
-       -webkit-box-shadow: 0px 2px 4px #A7ABB4;
+    -webkit-box-shadow: 0px 2px 4px #A7ABB4;
     -moz-box-shadow: 0px 2px 4px #A7ABB4;
     box-shadow: 0px 2px 4px #A7ABB4;
 }
@@ -868,10 +868,14 @@ table {
     padding-left: 15px;
 }
 
+.gwt-TabLayoutPanelTab:first-of-type {
+    border-left: none;
+}
+
 .gwt-TabLayoutPanelTab {
     background-color:#F8F8F8;
-    border-right: 1px solid #e9e6e6;
-    border-bottom: 1px solid #e9e6e6;
+    border-right: 1px solid #A7ABB4;
+    border-bottom: 1px solid #A7ABB4;
     cursor: pointer;
 }
 
@@ -1115,7 +1119,7 @@ table {
 }
 
 .cellTableSelectedRow .cellTableFirstColumn {
-    background: none;
+    background-color: none;
     padding-left:10px;
 
 }
@@ -1127,7 +1131,7 @@ table {
 
 .default-cell-table .cellTableKeyboardSelectedRow .cellTableFirstColumn{
     border-left: 1px solid #606060;
-    background:none;
+    background-color:none;
 }
 
 .default-cell-table .cellTableKeyboardSelectedRow .cellTableLastColumn{
@@ -1140,7 +1144,7 @@ table {
 
 .default-cell-table .cellTableSelectedRow .cellTableKeyboardSelectedRow .cellTableFirstColumn{
     border:none!important;
-    background:none;
+    background-color:none;
 }
 
 .default-cell-table .cellTableSelectedRow.cellTableKeyboardSelectedRow .cellTableLastColumn{
