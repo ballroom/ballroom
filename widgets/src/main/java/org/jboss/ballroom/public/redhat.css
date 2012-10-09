@@ -531,12 +531,10 @@ table {
     color: #ffffff !important;
     cursor: pointer;
     float: left;
-    font-size: 11px!important;
     margin: 0 2px;
     padding: 1px 10px;
     text-decoration: none;
     white-space: nowrap;
-    height:18px;
     font-weight: bold;
     text-shadow: 1px 1px #1a3749;
 
