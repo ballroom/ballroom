@@ -334,7 +334,6 @@ table {
 
 .default-button {
     padding:1px 10px 1px 10px;
-    font-size:11px;
     background: url(app/images/buttons/rh_button_bg.png) repeat-x scroll 0 0 #1a3749;
     border: 1px solid #1a3749;
     border-radius: 2px 2px 2px 2px;
@@ -342,8 +341,6 @@ table {
     -moz-border-radius: 2px;
     border-radius: 2px;
     white-space:nowrap;
-    height:18px;
-    font-weight: bold;
     text-shadow: 1px 1px #1a3749;
 }
 
@@ -360,7 +357,6 @@ table {
 }
 
 .default-popup {
-    border: 1px solid #e9e6e6;
     background-color:#ffffff;
     padding:4px;
 
@@ -535,7 +531,6 @@ table {
     padding: 1px 10px;
     text-decoration: none;
     white-space: nowrap;
-    font-weight: bold;
     text-shadow: 1px 1px #1a3749;
 
 }
@@ -1120,9 +1115,7 @@ table {
 }
 
 .cellTableSelectedRow .cellTableFirstColumn {
-    background-image: url(app/images/activerow.png);
-    background-repeat: no-repeat;
-    background-position: left;
+    background: none;
     padding-left:10px;
 
 }
@@ -1134,6 +1127,7 @@ table {
 
 .default-cell-table .cellTableKeyboardSelectedRow .cellTableFirstColumn{
     border-left: 1px solid #606060;
+    background:none;
 }
 
 .default-cell-table .cellTableKeyboardSelectedRow .cellTableLastColumn{
@@ -1146,6 +1140,7 @@ table {
 
 .default-cell-table .cellTableSelectedRow .cellTableKeyboardSelectedRow .cellTableFirstColumn{
     border:none!important;
+    background:none;
 }
 
 .default-cell-table .cellTableSelectedRow.cellTableKeyboardSelectedRow .cellTableLastColumn{
