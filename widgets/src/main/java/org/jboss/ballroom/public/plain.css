@@ -977,7 +977,6 @@ table {
 }
 
 .cellTableSelectedRow .cellTableFirstColumn {
-    background:#eef4f9;
     background-image: url(app/images/activerow.png);
     background-repeat: no-repeat;
     background-position: left;
