@@ -6,7 +6,7 @@
     <groupId>org.jboss.ballroom</groupId>
     <artifactId>ballroom</artifactId>
     <packaging>pom</packaging>
-    <version>1.4.1-SNAPSHOT</version>
+    <version>1.4.1.Final</version>
 
     <name>Ballroom</name>
     <description>Common Red Hat GWT style</description>
