@@ -1,7 +1,7 @@
 package org.jboss.ballroom.client.spi;
 
 import com.google.web.bindery.autobean.shared.AutoBeanFactory;
-import com.google.gwt.event.shared.EventBus;
+import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 
 /**

@@ -19,7 +19,7 @@ package org.jboss.as.console.client.layout;
  * MA  02110-1301, USA.
  */
 
-import com.google.gwt.event.shared.EventBus;
+import com.google.web.bindery.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.Presenter;
