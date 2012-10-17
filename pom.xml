@@ -6,7 +6,7 @@
     <groupId>org.jboss.ballroom</groupId>
     <artifactId>ballroom</artifactId>
     <packaging>pom</packaging>
-    <version>1.4.1.Final</version>
+    <version>1.5.0-SNAPSHOT</version>
 
     <name>Ballroom</name>
     <description>Common Red Hat GWT style</description>
@@ -58,12 +58,12 @@
     </scm>
 
     <properties>
-        <gwt.version>2.3.2-redhat</gwt.version>
-        <gwt.maven>2.3.0</gwt.maven>
+        <gwt.version>2.5.0-rc2</gwt.version>
+        <gwt.maven>2.5.0-rc2</gwt.maven>
         <gwt-log.version>3.1.3</gwt-log.version>
         <gin.version>1.5_past22</gin.version>
         <guice.version>3.0</guice.version>
-        <gwtp.version>0.6</gwtp.version>
+        <gwtp.version>0.7</gwtp.version>
         <junit.version>4.8.1</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
