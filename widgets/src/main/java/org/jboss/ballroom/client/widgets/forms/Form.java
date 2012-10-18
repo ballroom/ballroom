@@ -495,9 +495,12 @@ public class Form<T> implements FormAdapter<T> {
                 c++;
             }
         } else {
-            sb.append("\"");
+
+            boolean quoted = (object instanceof String);
+
+            if(quoted)sb.append("\"");
             sb.append(object.toString());
-            sb.append("\"");
+            if(quoted)sb.append("\"");
         }
 
         return sb.toString();
@@ -562,7 +565,7 @@ public class Form<T> implements FormAdapter<T> {
 
         // toggle default view
         toggleViews();
-        refreshPlainView(); // make sureit's build, even empty...
+        refreshPlainView(); // make sure it's build, even empty...
 
         return deck;
     }
@@ -570,7 +573,7 @@ public class Form<T> implements FormAdapter<T> {
     /**
      * Enable/disable this form.
      *
-     * @param b
+     * @param isEnabled
      */
     @Override
     public void setEnabled(boolean isEnabled) {
