@@ -147,6 +147,10 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
                         openParents(treeItem);
 
                     }
+                    else
+                    {
+                        treeItem.setActive(false);
+                    }
                 }
             });
         }
