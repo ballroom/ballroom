@@ -43,7 +43,6 @@ import java.util.Map;
 public class Form<T> extends AbstractForm<T> {
 
     private final static Framework framework = GWT.create(Framework.class);
-    private static final String EXPR_TAG = "EXPRESSIONS";
 
     private AutoBeanFactory factory;
 

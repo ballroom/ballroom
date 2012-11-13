@@ -21,6 +21,8 @@ import java.util.Map;
  */
 public abstract class AbstractForm<T> implements FormAdapter<T> {
 
+    public static final String EXPR_TAG = "EXPRESSIONS";
+
     protected final Map<String, Map<String, FormItem>> formItems = new LinkedHashMap<String, Map<String, FormItem>>();
     protected final Map<String,GroupRenderer> renderer = new HashMap<String, GroupRenderer>();
     protected int numColumns = 1;
