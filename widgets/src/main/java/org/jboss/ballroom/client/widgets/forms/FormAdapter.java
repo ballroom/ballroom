@@ -29,7 +29,7 @@ import java.util.Map;
  *
  * @author Stan Silvert ssilvert@redhat.com (C) 2011 Red Hat Inc.
  */
-public interface FormAdapter<T> extends IsWidget {
+public interface FormAdapter<T> extends FormControl {
 
     /**
      * Binds a default single selection model to the table
@@ -39,40 +39,18 @@ public interface FormAdapter<T> extends IsWidget {
      */
     void bind(CellTable<T> instanceTable);
 
-    /**
-     * Reset the form back to its unedited state.
-     */
-    void cancel();
 
     /**
      * Use the Form to edit the bean.
      * @param bean The bean to be edited.
      */
     void edit(T bean);
-    
-    /**
-     * Add a listener that is notified when a bean starts to be edited.
-     * @param listener The listener.
-     */
-    void addEditListener(EditListener listener);
-    
-    /**
-     * Remove a listener so it will no longer be notified when a bean starts to be edited.
-     * @param listener The listener.
-     */
-    void removeEditListener(EditListener listener);
 
     /**
      * Get changed values since last {@link #edit(Object)} ()}
      * @return
      */
     Map<String, Object> getChangedValues();
-
-    /**
-     * Get the type of the bean that can be edited with this form.
-     * @return The type.
-     */
-    Class<?> getConversionType();
 
     /**
      * Get the bean in its unedited state.
@@ -91,19 +69,29 @@ public interface FormAdapter<T> extends IsWidget {
      * @return The names.
      */
     public List<String> getFormItemNames();
-            
-    /**
-     * Enable/disable this form.
-     *
-     * @param b
-     */
-    void setEnabled(boolean b);
+
 
     /**
-     * Validate the form.
-     * @return The errors (if any).
+     * Get the type of the bean that can be edited with this form.
+     * @return The type.
      */
-    FormValidation validate();
+    @Deprecated
+    Class<?> getConversionType();
 
-    void clearValues();
+    /**
+     * Add a listener that is notified when a bean starts to be edited.
+     * @param listener The listener.
+     */
+    @Deprecated
+    void addEditListener(EditListener listener);
+
+    /**
+     * Remove a listener so it will no longer be notified when a bean starts to be edited.
+     * @param listener The listener.
+     */
+    @Deprecated
+    void removeEditListener(EditListener listener);
+
+
+
 }

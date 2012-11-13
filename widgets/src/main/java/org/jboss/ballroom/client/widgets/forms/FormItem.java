@@ -28,7 +28,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Heiko Braun
  * @date 2/21/11
  */
-public abstract class FormItem<T> implements InputElement<T> {
+public abstract class FormItem<T> implements InputElement<T>, Comparable<String> {
 
     protected String name;
     protected String title;
@@ -48,7 +48,10 @@ public abstract class FormItem<T> implements InputElement<T> {
         this.title = title;
     }
 
-    @Override
+    public int compareTo(String s) {
+        return s.compareTo(this.getName());
+    }
+
     public void setExpressionValue(String expr) {
         this.expressionValue = expr;
     }
@@ -73,32 +76,26 @@ public abstract class FormItem<T> implements InputElement<T> {
         return title;
     }
 
-    @Override
     public void setErroneous(boolean b) {
         this.isErroneous = b;
     }
 
-    @Override
     public void setRequired(boolean required) {
         isRequired = required;
     }
 
-    @Override
     public boolean isErroneous() {
         return isErroneous;
     }
 
-    @Override
     public boolean isRequired() {
         return isRequired;
     }
 
-    @Override
     public String getErrMessage() {
         return errMessage;
     }
 
-    @Override
     public void setErrMessage(String errMessage) {
         this.errMessage = errMessage;
     }
