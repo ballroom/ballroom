@@ -25,7 +25,6 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.Widget;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -37,6 +36,7 @@ public class ListItem extends FormItem<List<String>> {
     private TextArea textArea;
     private List<String> value = new ArrayList<String>();
     private boolean displayOnly;
+    private InputElementWrapper wrapper;
 
 
     public ListItem(String name, String title) {
@@ -62,11 +62,12 @@ public class ListItem extends FormItem<List<String>> {
             }
         });
         this.displayOnly = displayOnly;
+        wrapper = new InputElementWrapper(textArea, this);
     }
     
     @Override
     public Widget asWidget() {
-        return textArea;
+        return wrapper;
     }
 
     @Override
@@ -113,5 +114,18 @@ public class ListItem extends FormItem<List<String>> {
     public void clearValue() {
         this.textArea.setText("");
 
+    }
+
+    @Override
+    public void setErroneous(final boolean b)
+    {
+        super.setErroneous(b);
+        wrapper.setErroneous(b);
+    }
+
+    @Override
+    protected void toggleExpressionInput(final Widget target, final boolean flag)
+    {
+        wrapper.setExpression(flag);
     }
 }
