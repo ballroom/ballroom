@@ -21,13 +21,21 @@ package org.jboss.ballroom.client.layout;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.dom.client.EventTarget;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.dom.client.MouseDownHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
+import com.google.gwt.event.logical.shared.OpenEvent;
+import com.google.gwt.event.logical.shared.OpenHandler;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
@@ -66,7 +74,6 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
          * actions that reveal content
          */
         addKeyDownHandler(new KeyDownHandler() {
-            @Override
             public void onKeyDown(KeyDownEvent keyDownEvent) {
                 if(keyDownEvent.getNativeKeyCode()== KeyCodes.KEY_ENTER)
                 {
@@ -76,16 +83,48 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
         });
 
         addMouseDownHandler(new MouseDownHandler() {
-            @Override
+
             public void onMouseDown(MouseDownEvent mouseDownEvent) {
-                revealContent(true);
+                Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+                    public void execute() {
+                        revealContent(true);
+                    }
+                });
             }
         });
 
         Scheduler.get().scheduleEntry(new Scheduler.ScheduledCommand() {
-            @Override
             public void execute() {
                 framework.getEventBus().addHandler(LHSHighlightEvent.TYPE, LHSNavTree.this);
+            }
+        });
+
+
+        /*
+            Allow clicks on lhs titles to open thr tree
+        */
+
+        addMouseDownHandler(new MouseDownHandler() {
+            public void onMouseDown(MouseDownEvent event) {
+                EventTarget target = event.getNativeEvent().getEventTarget();
+                com.google.gwt.dom.client.Element el = Element.as(target);
+                final String title = el.getInnerText();
+
+                if(el.getTagName().equalsIgnoreCase("div"))
+                {
+                    applyStateChange(new StateChange()
+                    {
+                        public void applyTo(TreeItem treeItem) {
+
+                            boolean isMatched = title.equals(treeItem.getText());
+
+                            if(isMatched)
+                            {
+                                treeItem.setState(!treeItem.getState());
+                            }
+                        }
+                    });
+                }
             }
         });
 
@@ -95,15 +134,12 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
      * flag the 'active' item and revel content if necessary
      */
     private void revealContent(boolean open) {
+
         TreeItem activeItem = getSelectedItem();
 
         if(activeItem instanceof LHSNavTreeItem)
         {
             ((LHSNavTreeItem)activeItem).reveal();
-        }
-        else if(activeItem!=null && open)
-        {
-            activeItem.setState(!activeItem.getState());
         }
     }
 
@@ -118,15 +154,19 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
 
     }
 
-    @Override
     public void onSelectedNavTree(final LHSHighlightEvent event) {
 
         if(category.equals(event.getCategory()) || event.getCategory().equals("*"))
         {
             applyStateChange(new StateChange()
             {
-                @Override
-                public void applyTo(LHSNavTreeItem treeItem) {
+                public void applyTo(TreeItem treeItem) {
+
+
+                    if(!(treeItem instanceof LHSNavTreeItem))
+                        return;
+
+                    LHSNavTreeItem target = (LHSNavTreeItem) treeItem;
 
                     String token = treeItem.getElement().hasAttribute("token") ?
                             treeItem.getElement().getAttribute("token") : "not-set";
@@ -140,16 +180,16 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
                         if(prevNavItem!=null && !prevNavItem.equals(treeItem))
                             prevNavItem.setActive(false);
 
-                        treeItem.setActive(true);
-
-                        prevNavItem=treeItem;
+                        prevNavItem=target;
 
                         openParents(treeItem);
+
+                        target.setActive(true);
 
                     }
                     else
                     {
-                        treeItem.setActive(false);
+                        target.setActive(false);
                     }
                 }
             });
@@ -178,21 +218,17 @@ public class LHSNavTree extends Tree implements LHSHighlightEvent.NavItemSelecti
 
         if(null==item) return;
 
-        if(item instanceof LHSNavTreeItem)
-        {
-            LHSNavTreeItem navItem = (LHSNavTreeItem) item;
-            stateChange.applyTo(navItem);
-            return;
-        }
-
         for(int x=0; x<item.getChildCount(); x++)
         {
             dfsItem(stateChange, item.getChild(x));
         }
+
+        stateChange.applyTo(item);
+
     }
 
     interface StateChange {
-        void applyTo(LHSNavTreeItem item);
+        void applyTo(TreeItem item);
     }
 
     public void expandTopLevel() {

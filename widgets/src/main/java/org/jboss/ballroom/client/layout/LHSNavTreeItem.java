@@ -70,15 +70,14 @@ public class LHSNavTreeItem extends TreeItem {
             removeStyleName("lhs-tree-item-selected");
         }
 
-        // TODO: move the tab cursor
-        super.setSelected(active);
+        /*super.setSelected(active);*/
     }
 
     void reveal() {
 
         // reveal view
         Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-            @Override
+
             public void execute() {
                 String token = LHSNavTreeItem.this.getElement().getAttribute("token");
                 framework.getPlaceManager().revealPlaceHierarchy(
