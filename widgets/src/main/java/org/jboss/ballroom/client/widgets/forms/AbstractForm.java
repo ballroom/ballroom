@@ -246,6 +246,23 @@ public abstract class AbstractForm<T> implements FormAdapter<T> {
         return result;
     }
 
+    public String getFormItemTitle(String ref) {
+        String result = null;
+        for(Map<String, FormItem> groupItems : formItems.values())
+        {
+            for(FormItem item : groupItems.values())
+            {
+                if(item.getName().equals(ref))
+                {
+                    result = item.getTitle();
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
+
     /**
      * Enable/disable this form.
      *

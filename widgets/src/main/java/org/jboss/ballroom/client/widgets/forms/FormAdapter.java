@@ -70,6 +70,7 @@ public interface FormAdapter<T> extends FormControl {
      */
     public List<String> getFormItemNames();
 
+    public String getFormItemTitle(String ref);
 
     /**
      * Get the type of the bean that can be edited with this form.
