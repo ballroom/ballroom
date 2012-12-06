@@ -23,6 +23,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.PopupPanel;
+import org.jboss.ballroom.client.widgets.icons.FontIcon;
 import org.jboss.ballroom.client.widgets.icons.Icons;
 
 public class WindowHeader extends Composite implements HasAllMouseHandlers {
@@ -43,8 +44,7 @@ public class WindowHeader extends Composite implements HasAllMouseHandlers {
         titleText.getElement().setId(headerId);
         titleText.setStyleName("default-window-title");
 
-        Image closeIcon = new Image(Icons.INSTANCE.close());
-        closeIcon.setAltText("Close");
+        FontIcon closeIcon = new FontIcon(" icon-remove", FontIcon.Size.MEDIUM);
         closeIcon.addClickHandler(new ClickHandler(){
             @Override
             public void onClick(ClickEvent clickEvent) {
@@ -52,8 +52,7 @@ public class WindowHeader extends Composite implements HasAllMouseHandlers {
             }
         });
 
-        Image maximizeIcon = new Image(Icons.INSTANCE.maximize());
-        maximizeIcon.setAltText("Min/Maximize");
+        FontIcon maximizeIcon = new FontIcon("icon-fullscreen", FontIcon.Size.MEDIUM);
         maximizeIcon.addClickHandler(new ClickHandler(){
             @Override
             public void onClick(ClickEvent clickEvent) {
@@ -106,10 +105,10 @@ public class WindowHeader extends Composite implements HasAllMouseHandlers {
         titleText.getElement().getParentElement().setAttribute("width", "100%");
 
         maximizeIcon.getElement().getParentElement().setAttribute("width", "16px");
-        maximizeIcon.getElement().getParentElement().setAttribute("style", "width:16px;padding-right:5px");
+        maximizeIcon.getElement().getParentElement().setAttribute("style", "color:#ffffff;padding-right:10px");
 
         closeIcon.getElement().getParentElement().setAttribute("width", "16px");
-        closeIcon.getElement().getParentElement().setAttribute("style", "width:16px;padding-right:5px");
+        closeIcon.getElement().getParentElement().setAttribute("style", "color:#ffffff;padding-right:10px");
 
     }
 
