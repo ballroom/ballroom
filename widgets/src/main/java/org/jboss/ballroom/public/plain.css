@@ -951,7 +951,7 @@ table {
 }
 
 .cellTableCell {
-    padding:5px;
+    padding:7px;
     border-right: 1px solid #e5e5e5;
 
     text-overflow:ellipsis;
