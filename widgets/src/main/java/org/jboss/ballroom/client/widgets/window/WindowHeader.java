@@ -52,7 +52,7 @@ public class WindowHeader extends Composite implements HasAllMouseHandlers {
             }
         });
 
-        FontIcon maximizeIcon = new FontIcon("icon-fullscreen", FontIcon.Size.MEDIUM);
+        FontIcon maximizeIcon = new FontIcon("icon-resize-full", FontIcon.Size.MEDIUM);
         maximizeIcon.addClickHandler(new ClickHandler(){
             @Override
             public void onClick(ClickEvent clickEvent) {
