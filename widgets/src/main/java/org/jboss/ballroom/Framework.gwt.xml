@@ -28,6 +28,8 @@
         <when-type-is class="org.jboss.ballroom.client.spi.Framework"/>
     </replace-with>
 
+    <stylesheet src="font/font-awesome.css"/>
+
     <entry-point class='org.jboss.ballroom.client.Bootstrap'/>
 
 </module>
