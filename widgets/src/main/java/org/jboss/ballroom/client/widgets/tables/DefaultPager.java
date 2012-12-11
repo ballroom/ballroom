@@ -21,6 +21,7 @@ package org.jboss.ballroom.client.widgets.tables;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.cellview.client.SimplePager;
+import org.jboss.ballroom.client.widgets.tables.pager.PagerResources;
 
 /**
  * @author Heiko Braun

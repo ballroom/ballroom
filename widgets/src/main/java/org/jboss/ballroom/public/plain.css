@@ -697,10 +697,14 @@ table {
 }
 
 .cellListSelectedItem {
+    background-image: url(app/images/activerow.png);
+    background-repeat: no-repeat;
+    background-position: left;
     background-color: #EEF4F9;
     color: #000000;
     height: auto;
     overflow: visible;
+    padding-left: 3px;
 }
 
 /* regular gwt tabs */
