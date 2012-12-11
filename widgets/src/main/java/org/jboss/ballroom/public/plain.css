@@ -289,10 +289,10 @@ table {
 }
 
 .combobox-item {
+    padding:7px;
     min-height:20px;
     white-space: nowrap;
     text-overflow:ellipsis;
-    width:100%;
 }
 
 .combobox-item-odd {
