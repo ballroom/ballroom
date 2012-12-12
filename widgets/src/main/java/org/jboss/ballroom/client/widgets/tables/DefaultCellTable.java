@@ -205,6 +205,8 @@ public class DefaultCellTable<T> extends CellTable {
      */
     public void selectDefaultEntity() {
 
+        flush();
+
         if(null == getSelectionModel()) return;
 
         ProvidesKey keyProvider = getKeyProvider();
