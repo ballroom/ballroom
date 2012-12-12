@@ -1,6 +1,7 @@
 package org.jboss.ballroom.client.widgets.window;
 
 import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
@@ -32,6 +33,7 @@ public class TrappedFocusPanel extends LayoutPanel {
         super();
         setStyleName("fill-layout");
         this.sinkEvents(Event.ONKEYDOWN);
+        this.sinkEvents(Event.ONMOUSEDOWN);
         add(child);
 
         focus = new Focus(getElement());
@@ -74,6 +76,10 @@ public class TrappedFocusPanel extends LayoutPanel {
                         focus.next();
 
                 }
+                break;
+            case Event.ONMOUSEDOWN:
+                Element element = event.getEventTarget().cast();
+                focus.onElement(element);
                 break;
             default:
                 return;

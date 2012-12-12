@@ -154,6 +154,20 @@ public class Focus {
         return index;
     }
 
+    public void onElement(Element target) {
+        for(int i=0; i<focusable.size(); i++)
+        {
+            Element element = focusable.get(i);
+            if(target.equals(element))
+            {
+                // reset focus
+                setFocus(element);
+                currentFocus = i;
+                break;
+            }
+        }
+    }
+
     public static native Element getActiveElement()
         /*-{
             if($wnd.document.activeElement)
@@ -161,5 +175,6 @@ public class Focus {
             else
                 return null;
         }-*/;
+
 }
 
