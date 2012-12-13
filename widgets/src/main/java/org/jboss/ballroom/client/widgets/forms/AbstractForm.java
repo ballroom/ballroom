@@ -60,7 +60,7 @@ public abstract class AbstractForm<T> implements FormAdapter<T> {
                 {
                     Object value = item.getValue();
 
-                    // ascii or empty string are ok. the later will be checked in each form item implentation.
+                    // ascii or empty string are ok. the later will be checked in each form item implementation.
                     String stringValue = String.valueOf(value);
                     boolean ascii = stringValue.isEmpty() ||
                             stringValue.matches("^[\\u0020-\\u007e]+$");
