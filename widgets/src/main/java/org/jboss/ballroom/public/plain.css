@@ -585,6 +585,14 @@ table {
     color:#000!important;
 }
 
+.empty-celltable {
+    text-align:center;
+    width:100%;
+    height:50px;
+    color:#cccccc;
+    padding-top:22px;
+}
+
 /* CellTree customizations */
 
 .cellTreeWidget {
