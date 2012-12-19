@@ -60,7 +60,8 @@ public abstract class FormItem<T> implements InputElement<T>, Comparable<String>
         /*if(!doesSupportExpressions())  // TODO: optimize from meta data
             return false;
         */
-        return asExpressionValue()!=null && asExpressionValue().startsWith("$");
+        String exprValue = asExpressionValue();
+        return exprValue !=null && exprValue.startsWith("${") && exprValue.endsWith("}");
     }
 
     // to support expressions override this method
