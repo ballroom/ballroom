@@ -58,6 +58,6 @@ public class WidgetPresenter extends Presenter<WidgetPresenter.MyView, WidgetPre
 
     @Override
     protected void revealInParent() {
-         RevealContentEvent.fire(getEventBus(), MainLayoutPresenter.TYPE_MainContent, this);
+         RevealContentEvent.fire(this, MainLayoutPresenter.TYPE_MainContent, this);
     }
 }
