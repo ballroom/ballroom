@@ -200,8 +200,14 @@ public class PlainFormView {
         SafeHtml render(String id, String title);
     }
 
+    interface HyperlinkTemplate extends SafeHtmlTemplates {
+        @Template("<a aria-labelledBy='{0}' tabindex=\"-1\" class='gwt-Hyperlink' href='{1}' target='_blank'>{1}</a>")
+        SafeHtml render(String id, String title);
+    }
+
     private static final Template TEMPLATE = GWT.create(Template.class);
     private static final ValueTemplate VALUE_TEMPLATE = GWT.create(ValueTemplate.class);
+    private static final HyperlinkTemplate HYPERLINK_TEMPLATE = GWT.create(HyperlinkTemplate.class);
 
     private class TitleCell extends AbstractCell<String> {
 
@@ -213,21 +219,22 @@ public class PlainFormView {
         }
 
         @Override
-        public void render(
-                Cell.Context context,
-                String title,
-                SafeHtmlBuilder safeHtmlBuilder)
+        public void render(Cell.Context context, String title, SafeHtmlBuilder safeHtmlBuilder)
         {
-
+            SafeHtml render;
             Row row = (Row)context.getKey();
             final String labelId = id + row.getRowNum() +"_"+index+"_l";
-
             boolean hasTitle = title!=null && !title.equals("");
-            SafeHtml render = hasTitle ? TEMPLATE.render(labelId, title) : new SafeHtmlBuilder().toSafeHtml();
+            if (hasTitle)
+            {
+                render = TEMPLATE.render(labelId, title);
+            }
+            else
+            {
+                render = new SafeHtmlBuilder().toSafeHtml();
+            }
             safeHtmlBuilder.append(render);
-
         }
-
     }
 
     private class ValueCell extends AbstractCell<String> {
@@ -240,22 +247,29 @@ public class PlainFormView {
         }
 
         @Override
-        public void render(
-                Cell.Context context,
-                String value,
-                SafeHtmlBuilder safeHtmlBuilder)
+        public void render(Cell.Context context, String value, SafeHtmlBuilder safeHtmlBuilder)
         {
-
-
+            SafeHtml render;
             Row row = (Row)context.getKey();
             final String labelId = id + row.getRowNum() +"_"+index+"_l";
-
             boolean hasValue = value!=null && !value.equals("");
-            SafeHtml render = hasValue ? VALUE_TEMPLATE.render(labelId, value) : new SafeHtmlBuilder().toSafeHtml();
+
+            if (hasValue)
+            {
+                if (value.startsWith("http://") || value.startsWith("https://"))
+                {
+                    render = HYPERLINK_TEMPLATE.render(labelId, value);
+                }
+                else
+                {
+                    render = VALUE_TEMPLATE.render(labelId, value);
+                }
+            }
+            else
+            {
+                render = new SafeHtmlBuilder().toSafeHtml();
+            }
             safeHtmlBuilder.append(render);
-
         }
-
     }
-
 }
