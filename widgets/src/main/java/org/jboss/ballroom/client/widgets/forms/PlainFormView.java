@@ -170,6 +170,12 @@ public class PlainFormView {
         return rows;
     }
 
+    private boolean isHyperlink(final String value)
+    {
+        return value != null &&
+                (value.toLowerCase().startsWith("http://") || value.toLowerCase().startsWith("https://"));
+    }
+
     private final class Row {
 
         FormItem[] items;
@@ -256,7 +262,7 @@ public class PlainFormView {
 
             if (hasValue)
             {
-                if (value.startsWith("http://") || value.startsWith("https://"))
+                if (isHyperlink(value))
                 {
                     render = HYPERLINK_TEMPLATE.render(labelId, value);
                 }
