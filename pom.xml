@@ -280,23 +280,6 @@
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>default</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <inherited>true</inherited>
-                        <configuration>
-                            <rules>
-                                <requireJavaVersion>
-                                    <version>[1.6.0,)</version>
-                                </requireJavaVersion>
-                                <requireMavenVersion>
-                                    <version>[3.0.2,)</version>
-                                </requireMavenVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>release</id>
                         <phase>deploy</phase>
                         <goals>
