@@ -21,25 +21,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <name>Ballroom :: Widgets</name>
-    <groupId>org.jboss.ballroom</groupId>
     <artifactId>widgets</artifactId>
     <version>1.6.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
     <description>GWT Widget Set</description>
-
-    <url>http://jboss.org</url>
-
-    <organization>
-        <name>JBoss.org</name>
-        <url>http://www.jboss.org</url>
-    </organization>
-
-    <scm>
-        <connection>scm:git:git@github.com:ballroom/ballroom.git</connection>
-        <developerConnection>scm:git:git@github.com:ballroom/ballroom.git</developerConnection>
-        <url>https://github.com/ballroom/ballroom</url>
-    </scm>
 
     <!-- Parent -->
     <parent>
@@ -48,34 +33,6 @@
         <version>1.6.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
-
-    <developers>
-        <developer>
-            <name>Heiko Braun</name>
-            <id>hbraun</id>
-            <email>hbraun@redhat.com</email>
-            <organization>Red Hat</organization>
-            <roles>
-                <role>Lead</role>
-            </roles>
-            <timezone>+1</timezone>
-        </developer>
-    </developers>
-
-    <!-- IssueManagement -->
-    <issueManagement>
-        <system>jira</system>
-        <url>https://issues.jboss.org/browse/JBAS</url>
-    </issueManagement>
-
-    <!-- licenses -->
-    <licenses>
-        <license>
-            <name>lgpl</name>
-            <url>http://repository.jboss.com/licenses/lgpl.txt</url>
-        </license>
-    </licenses>
 
     <dependencies>
         <!-- GWT -->

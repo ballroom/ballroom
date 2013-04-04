@@ -34,7 +34,7 @@
 
     <!-- Add gwt-log support, default level `DEBUG` -->
     <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
-    <inherits name="com.google.gwt.autobean.AutoBean"/>
+    <inherits name="com.google.web.bindery.autobean.AutoBean"/>
     <inherits name="com.google.gwt.json.JSON"/>
 
 

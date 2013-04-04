@@ -2,7 +2,6 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <name>Ballroom :: Showcase</name>
-    <groupId>org.jboss.ballroom</groupId>
     <artifactId>showcase</artifactId>
     <packaging>war</packaging>
 
@@ -50,29 +49,7 @@
 
         <dependency>
             <groupId>com.gwtplatform</groupId>
-            <artifactId>gwtp-all</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-context</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-beans</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-web</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>net.sourceforge.htmlunit</groupId>
-                    <artifactId>crawl_htmlunit</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>gwtp-mvp-client</artifactId>
         </dependency>
 
         <dependency>
@@ -106,11 +83,9 @@
         </resources>
 
         <plugins>
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
-                <version>2.2.0</version>
                 <configuration>
                     <inplace>true</inplace>
                     <logLevel>TRACE</logLevel>
@@ -119,7 +94,6 @@
                     <!--bindAddress>192.168.0.12</bindAddress-->
                     <extraJvmArgs>-Xmx512m -DDEBUG</extraJvmArgs>
                     <servicePattern>**/*Service.java</servicePattern>
-                    <soyc>false</soyc>
                     <style>OBF</style>
                     <hostedWebapp>war</hostedWebapp>
                     <localWorkers>2</localWorkers>
@@ -136,18 +110,7 @@
             </plugin>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-
-
-            <plugin>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.1-beta-1</version>
                 <configuration>
                     <warSourceDirectory>war</warSourceDirectory>
                     <webappDirectory>war</webappDirectory>
@@ -156,23 +119,20 @@
 
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>2.2</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
             </plugin>
 
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.2</version>
                 <executions>
                     <execution>
                         <id>clean.war</id>
                         <phase>clean</phase>
                         <configuration>
-                            <tasks>
+                            <target>
                                 <!--
                                     The gwt-maven-plugin use the war source folder
                                     as it's build directory. We need to cleanup after we'd run
@@ -186,8 +146,7 @@
                                 <delete file="war/WEB-INF/web.xml"/-->
                                 <delete dir="war/app"/>
                                 <delete dir="target"/>
-
-                            </tasks>
+                            </target>
                         </configuration>
                         <goals>
                             <goal>run</goal>
@@ -206,14 +165,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>gwtplatform.plugin</id>
-            <name>Gwtplatform custom plugin repository</name>
-            <url>http://maven.gwt-platform.googlecode.com/hg/</url>
-            <layout>default</layout>
-        </pluginRepository>
-    </pluginRepositories>
 </project>

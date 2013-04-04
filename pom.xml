@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -34,6 +35,13 @@
             <timezone>+1</timezone>
         </developer>
         <developer>
+            <name>Harald Pehl</name>
+            <id>hpehl</id>
+            <email>hpehl@redhat.com</email>
+            <organization>Red Hat</organization>
+            <timezone>+1</timezone>
+        </developer>
+        <developer>
             <name>Stan Silvert</name>
             <id>ssilvert</id>
         </developer>
@@ -57,20 +65,23 @@
         <url>https://github.com/ballroom/ballroom</url>
     </scm>
 
+
     <properties>
-        <gwt.version>2.5.0</gwt.version>
-        <gwt.maven>2.5.0-rc2</gwt.maven>
-        <gwt-log.version>3.1.3</gwt-log.version>
-        <gin.version>1.5_past22</gin.version>
+        <gwt.version>2.5.1</gwt.version>
+        <gwt.maven>2.5.1</gwt.maven>
+        <gwt-log.version>3.2.1</gwt-log.version>
+        <gin.version>2.0.0</gin.version>
         <guice.version>3.0</guice.version>
-        <gwtp.version>0.7</gwtp.version>
-        <junit.version>4.8.1</junit.version>
+        <gwtp.version>1.0-RC-2</gwtp.version>
+        <junit.version>4.11</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
 
     <modules>
         <module>widgets</module>
     </modules>
+
 
     <dependencyManagement>
         <dependencies>
@@ -127,12 +138,6 @@
                 <version>${gwtp.version}</version>
                 <scope>provided</scope>
             </dependency>
-            <dependency>
-                <groupId>com.gwtplatform</groupId>
-                <artifactId>gwtp-all</artifactId>
-                <version>${gwtp.version}</version>
-                <scope>provided</scope>
-            </dependency>
 
             <dependency>
                 <groupId>com.google.inject</groupId>
@@ -154,6 +159,7 @@
 
         </dependencies>
     </dependencyManagement>
+
 
     <repositories>
         <!-- Conventions are described in http://community.jboss.org/wiki/MavenGettingStarted-Developers -->
@@ -185,6 +191,7 @@
         </pluginRepository>
     </pluginRepositories>
 
+
     <profiles>
         <profile>
             <id>showcase</id>
@@ -193,7 +200,6 @@
                 <module>showcase</module>
             </modules>
         </profile>
-
         <profile>
             <id>release</id>
             <build>
@@ -205,93 +211,130 @@
                 </plugins>
             </build>
         </profile>
-
     </profiles>
 
-    <build>
 
+    <build>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.7</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.5.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-enforcer-plugin</artifactId>
                     <version>1.0</version>
-                    <executions>
-                        <execution>
-                            <id>default</id>
-                            <goals>
-                                <goal>enforce</goal>
-                            </goals>
-                            <inherited>true</inherited>
-                            <configuration>
-                                <rules>
-                                    <requireJavaVersion>
-                                        <version>[1.6.0,)</version>
-                                    </requireJavaVersion>
-                                    <requireMavenVersion>
-                                        <version>[3.0.2,)</version>
-                                    </requireMavenVersion>
-                                </rules>
-                            </configuration>
-                        </execution>
-
-                        <execution>
-                            <id>release</id>
-                            <phase>deploy</phase>
-                            <goals>
-                                <goal>enforce</goal>
-                            </goals>
-                            <inherited>true</inherited>
-                            <configuration>
-                                <rules>
-                                    <requireReleaseVersion>
-                                        <message>No Snapshot Releases allowed!</message>
-                                    </requireReleaseVersion>
-                                </rules>
-                            </configuration>
-                        </execution>
-                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.3.2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>2.1.2</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>jar</goal>
-                                <goal>test-jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
-
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <configuration>
-                        <skipTests>true</skipTests>
-                    </configuration>
+                    <version>2.14</version>
                 </plugin>
-
-
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>gwt-maven-plugin</artifactId>
+                    <version>${gwt.maven}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
+
+
         <plugins>
             <plugin>
-                <artifactId>maven-enforcer-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <inherited>true</inherited>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>[1.6.0,)</version>
+                                </requireJavaVersion>
+                                <requireMavenVersion>
+                                    <version>[3.0.2,)</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>release</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <inherited>true</inherited>
+                        <configuration>
+                            <rules>
+                                <requireReleaseVersion>
+                                    <message>No Snapshot Releases allowed!</message>
+                                </requireReleaseVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
+                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
 
     <distributionManagement>
         <repository>
@@ -305,5 +348,4 @@
             <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
-
 </project>
