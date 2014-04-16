@@ -81,7 +81,7 @@ public class TextAreaItem extends FormItem<String> {
 
     @Override
     public String getValue() {
-        return textArea.getValue().replace("\n", " ");
+        return textArea.getValue().replace("\n", "\\n").replace("\"", "\\\"");
     }
 
     @Override
